@@ -42,7 +42,7 @@ function setup(routeParams: Record<string, string>, permissions: string[], me = 
   localStorage.clear();
   TestBed.configureTestingModule({
     providers: [
-      provideRouter([]),
+      provideRouter([{ path: '**', children: [] }]),
       provideHttpClient(withInterceptors([authInterceptor])),
       provideHttpClientTesting(),
       providePrimeNG({}),
@@ -191,6 +191,26 @@ describe('UserDetail', () => {
     expect(request.request.body).toEqual({ id: 'u2' });
     request.flush(ok(true));
     expect(navigate).toHaveBeenCalledWith(['/users']);
+  });
+
+  it('when the server refuses the delete (403) it stays on the page and tells why', async () => {
+    const { backend, fixture } = await open(['READ_USER', 'DELETE_USER']);
+    vi.spyOn(TestBed.inject(Notify), 'confirmDelete').mockResolvedValue(true);
+    const toast = vi.spyOn(TestBed.inject(MessageService), 'add');
+    const navigate = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    const done = (fixture.componentInstance as unknown as { remove(): Promise<void> }).remove();
+    await tick();
+    backend
+      .expectOne((r) => r.method === 'DELETE')
+      .flush(
+        { success: false, statusCode: 403, message: 'Forbidden' },
+        { status: 403, statusText: 'Forbidden' },
+      );
+    await done;
+    expect(navigate).not.toHaveBeenCalled();
+    expect(toast).toHaveBeenCalledWith(
+      expect.objectContaining({ severity: 'error', summary: 'Bu amal uchun ruxsatingiz yo‘q' }),
+    );
   });
 
   it('assigns a role', async () => {

@@ -1,0 +1,141 @@
+<app-page-header [title]="'slides.title' | t">
+  <p-button
+    *appHasPermission="'CREATE_SLIDE'"
+    [label]="'slides.new' | t"
+    icon="pi pi-plus"
+    (onClick)="open()"
+  />
+</app-page-header>
+
+<app-data-table
+  [columns]="columns"
+  [fetch]="fetch"
+  [reloadKey]="reload()"
+  [defaultSort]="defaultSort"
+  [searchable]="false"
+>
+  <ng-template appCell="uploadedFile" let-slide>
+    @if (slide.uploadedFile?.url) {
+      <img
+        class="thumb"
+        [src]="url(slide.uploadedFile.url)"
+        [alt]="slide.uploadedFile.alt || slide.title"
+      />
+    }
+  </ng-template>
+  <ng-template appRowActions let-slide>
+    <ng-container *appHasPermission="'UPDATE_SLIDE'">
+      <p-button
+        icon="pi pi-arrow-up"
+        [text]="true"
+        severity="secondary"
+        [disabled]="!canMove(slide, -1)"
+        (onClick)="move(slide, -1)"
+        [attr.aria-label]="'slides.moveUp' | t"
+      />
+      <p-button
+        icon="pi pi-arrow-down"
+        [text]="true"
+        severity="secondary"
+        [disabled]="!canMove(slide, 1)"
+        (onClick)="move(slide, 1)"
+        [attr.aria-label]="'slides.moveDown' | t"
+      />
+      <p-button
+        icon="pi pi-pencil"
+        [text]="true"
+        severity="secondary"
+        (onClick)="open(slide)"
+        [attr.aria-label]="'common.edit' | t"
+      />
+    </ng-container>
+    <p-button
+      *appHasPermission="'DELETE_SLIDE'"
+      icon="pi pi-trash"
+      [text]="true"
+      severity="danger"
+      (onClick)="remove(slide)"
+      [attr.aria-label]="'common.delete' | t"
+    />
+  </ng-template>
+</app-data-table>
+
+<p-dialog [header]="dialogTitle" [(visible)]="dialog" [modal]="true" [style]="{ width: '34rem' }">
+  <form [formGroup]="form" (ngSubmit)="save()" novalidate class="dialog-form">
+    <app-form-field
+      [label]="'slides.titleField' | t"
+      [control]="form.controls.title"
+      [required]="true"
+      forId="slideTitle"
+    >
+      <input pInputText id="slideTitle" formControlName="title" />
+    </app-form-field>
+    <app-form-field
+      [label]="'slides.subtitle' | t"
+      [control]="form.controls.subtitle"
+      forId="slideSubtitle"
+    >
+      <input pInputText id="slideSubtitle" formControlName="subtitle" />
+    </app-form-field>
+    <app-form-field
+      [label]="'slides.content' | t"
+      [control]="form.controls.content"
+      forId="slideContent"
+    >
+      <textarea pTextarea id="slideContent" formControlName="content" rows="3"></textarea>
+    </app-form-field>
+    <div class="two">
+      <app-form-field
+        [label]="'slides.order' | t"
+        [control]="form.controls.order"
+        forId="slideOrder"
+      >
+        <p-inputnumber
+          inputId="slideOrder"
+          formControlName="order"
+          [min]="0"
+          [max]="10000"
+          [useGrouping]="false"
+        />
+      </app-form-field>
+      <app-form-field
+        [label]="'slides.duration' | t"
+        [control]="form.controls.durationMs"
+        forId="slideDuration"
+      >
+        <p-inputnumber
+          inputId="slideDuration"
+          formControlName="durationMs"
+          [min]="500"
+          [max]="60000"
+          [useGrouping]="false"
+        />
+      </app-form-field>
+    </div>
+    <div>
+      <span class="label"
+        >{{ 'slides.image' | t }}
+        @if (!editing()) {
+          <span class="star"> *</span>
+        }
+      </span>
+      <app-file-upload rule="image" (filesChange)="picked($event)" />
+      @if (fileError()) {
+        <small class="error" role="alert">{{ 'slides.fileRequired' | t }}</small>
+      }
+      @if (editing()) {
+        <small class="hint">{{ 'slides.keepImage' | t }}</small>
+      }
+    </div>
+    <div class="dialog-actions">
+      <p-button
+        type="button"
+        [label]="'common.cancel' | t"
+        severity="secondary"
+        [text]="true"
+        (onClick)="dialog.set(false)"
+      />
+      <p-button type="submit" [label]="'common.save' | t" icon="pi pi-check" [loading]="busy()" />
+    </div>
+  </form>
+</p-dialog>

@@ -43,3 +43,24 @@ PrimeNG 22 tijoriy litsenziyali kutubxona; tashkilot shartlarga mos kelsa **Comm
 https://primeui.dev/licenses/community). Kalitni `src/environments/environment.ts` va `environment.development.ts` dagi `primeLicense`
 ga yozing. Kalit bo'sh bo'lsa sahifa pastki o'ng burchagida litsenziya ogohlantirishi chiqadi. Kalit bir yillik; muddati tugashidan
 oldin yangilang.
+
+## Docker (statik build + nginx)
+`Dockerfile` statik saytni quradi va nginx bilan beradi (`nginx.conf`: SPA fallback `try_files`, `/api` `/uploads` `/hubs` `/swagger` ni `api`
+konteyneriga proksi qilish, keshlash, CSP va boshqa xavfsizlik sarlavhalari). Brauzer admin va API ni **bitta manzildan** ko'radi, shuning uchun
+CORS kerak emas (`ng build --configuration docker`, `environment.docker.ts`, `apiUrl: ''`).
+
+- Backend papkasidagi `docker-compose.yml` da `admin` xizmati bor: `http://localhost:8081` (`.env` da `ADMIN_PORT`).
+- Lokal: `..\I-Rieltor.uz-backend\deploy\local\up.ps1` adminni ham hostda quradi (`Dockerfile.local`, korporativ TLS sababli) va ishga tushiradi.
+- Admin alohida domenda (`admin.i-rieltor.uz`) va `environment.ts` dagi `apiUrl` bilan qurilsa, backendning `Cors__AllowedOrigins__*` ida
+  admin manzili bo'lishi shart (`.env.example` da bor).
+- CSP `script-src 'self'` — shuning uchun build'da kritik CSS inline qilinmaydi (`inlineCritical: false`); yangi inline skript qo'shmang.
+- HTTPS: backenddagi nginx/certbot sxemasi API uchun; admin konteyneri ham shunday sertifikat ortiga qo'yilishi kerak (hozircha HTTP).
+
+## Ruxsatlar xaritasi (sahifa → ruxsat)
+`/users` READ_USER · `/roles` READ_USERROLE · `/slides` READ_SLIDE · `/company` READ_COMPANY · `/categories` READ_PROPERTYCATEGORY ·
+`/properties` READ_PROPERTY · `/auctions` READ_AUCTION · `/participants` READ_AUCTIONPARTICIPANT · `/documents` READ_PRIVATEDOCUMENT ·
+`/payments` READ_PAYMENT · `/audit` READ_AUDITLOG · `/notifications` READ_NOTIFICATION. Tugmalar `*appHasPermission` bilan (CREATE_/UPDATE_/DELETE_ ...).
+
+## Yangi ekran qo'shish
+1. `features/<nom>/` da xizmat (`ApiClient`), sahifa(lar), `*.spec.ts`. 2. `app.routes.ts` ga lazy marshrut: `canActivate: [permissionGuard]`, `data: { permission, title }`.
+3. `core/layout/nav.ts` ga menyu bandi (`ready: true`). 4. Matnlar `core/i18n/uz.ts` ga. 5. `npm run format; npm run lint; npm test; npm run build`.

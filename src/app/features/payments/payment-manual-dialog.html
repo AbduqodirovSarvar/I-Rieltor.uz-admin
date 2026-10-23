@@ -1,0 +1,105 @@
+<p-dialog
+  [header]="'payments.manualTitle' | t"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '38rem' }"
+  (onShow)="opened()"
+  appendTo="body"
+>
+  <p class="hint">{{ 'payments.manualHint' | t }}</p>
+
+  <div class="form">
+    <label for="mAuction">{{ 'payments.auction' | t }}</label>
+    <p-autocomplete
+      inputId="mAuction"
+      [ngModel]="auction()"
+      (ngModelChange)="chose($event)"
+      [suggestions]="suggestions()"
+      (completeMethod)="search($event)"
+      optionLabel="lotNumber"
+      [dropdown]="true"
+      [forceSelection]="true"
+      [placeholder]="'payments.searchAuction' | t"
+      appendTo="body"
+    >
+      <ng-template #item let-a>{{ a.lotNumber }} · {{ a.title }}</ng-template>
+    </p-autocomplete>
+
+    <label for="mParticipant">{{ 'payments.participant' | t }}</label>
+    <p-select
+      inputId="mParticipant"
+      [options]="people()"
+      optionValue="id"
+      [ngModel]="participantId()"
+      (ngModelChange)="participantId.set($event)"
+      [placeholder]="'payments.selectParticipant' | t"
+      [disabled]="!auction()"
+      appendTo="body"
+    >
+      <ng-template #selectedItem let-p>{{ label(p) }}</ng-template>
+      <ng-template #item let-p>{{ label(p) }}</ng-template>
+    </p-select>
+    @if (auction() && people().length === 0) {
+      <small class="muted">{{ 'payments.noParticipants' | t }}</small>
+    }
+
+    <div class="two">
+      <div>
+        <label for="mPurpose">{{ 'payments.purpose' | t }}</label>
+        <p-select
+          inputId="mPurpose"
+          [options]="purposes"
+          optionLabel="label"
+          optionValue="value"
+          [ngModel]="purpose()"
+          (ngModelChange)="purpose.set($event)"
+          appendTo="body"
+        />
+      </div>
+      <div>
+        <label for="mProvider">{{ 'payments.provider' | t }}</label>
+        <p-select
+          inputId="mProvider"
+          [options]="providers"
+          optionLabel="label"
+          optionValue="value"
+          [ngModel]="provider()"
+          (ngModelChange)="provider.set($event)"
+          appendTo="body"
+        />
+      </div>
+    </div>
+
+    <div class="amount">
+      <span>{{ 'payments.expectedAmount' | t }}</span>
+      <strong>{{ expected() === null ? '—' : (expected() | money) }}</strong>
+    </div>
+    @if (noAward()) {
+      <small class="error" role="alert">{{ 'payments.noAward' | t }}</small>
+    }
+
+    <label for="mReference">{{ 'payments.reference' | t }}</label>
+    <input pInputText id="mReference" [(ngModel)]="reference" maxlength="100" />
+    <label for="mNote">{{ 'payments.note' | t }}</label>
+    <input pInputText id="mNote" [(ngModel)]="note" maxlength="500" />
+
+    <span class="label">{{ 'payments.attachReceipt' | t }}</span>
+    <app-file-upload rule="private" (filesChange)="picked($event)" />
+  </div>
+
+  <div class="dialog-actions">
+    <p-button
+      [label]="'common.cancel' | t"
+      severity="secondary"
+      [text]="true"
+      (onClick)="visible.set(false)"
+    />
+    <p-button
+      [label]="'common.save' | t"
+      icon="pi pi-check"
+      [loading]="busy()"
+      [disabled]="!canSave()"
+      (onClick)="save()"
+    />
+  </div>
+</p-dialog>

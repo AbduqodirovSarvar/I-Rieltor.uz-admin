@@ -1,0 +1,17 @@
+.views,
+.filters {
+  margin-bottom: 0.75rem;
+}
+
+.person {
+  display: flex;
+  flex-direction: column;
+
+  small {
+    color: var(--p-text-muted-color);
+  }
+}
+
+.count {
+  color: var(--p-text-muted-color);
+}

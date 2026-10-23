@@ -1,0 +1,38 @@
+<app-page-header [title]="'documents.title' | t" [subtitle]="'documents.privateHint' | t" />
+
+<div style="margin-bottom: 0.75rem">
+  <app-filter-bar [fields]="fields" (filtersChange)="filters.set($event)" />
+</div>
+
+<app-data-table
+  [columns]="columns"
+  [fetch]="fetch"
+  [filters]="filters()"
+  [reloadKey]="reload()"
+  [searchPlaceholder]="'documents.searchPlaceholder' | t"
+>
+  <ng-template appRowActions let-document>
+    <p-button
+      icon="pi pi-eye"
+      [text]="true"
+      severity="secondary"
+      (onClick)="open(document)"
+      [attr.aria-label]="'documents.open' | t"
+    />
+    <p-button
+      icon="pi pi-download"
+      [text]="true"
+      severity="secondary"
+      (onClick)="download(document)"
+      [attr.aria-label]="'documents.download' | t"
+    />
+    <p-button
+      *appHasPermission="'DELETE_PRIVATEDOCUMENT'"
+      icon="pi pi-trash"
+      [text]="true"
+      severity="danger"
+      (onClick)="remove(document)"
+      [attr.aria-label]="'common.delete' | t"
+    />
+  </ng-template>
+</app-data-table>

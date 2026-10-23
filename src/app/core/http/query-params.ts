@@ -16,6 +16,7 @@ export function listParams(query: ListQuery = {}): HttpParams {
   set('SortBy', query.sortBy);
   if (query.sortBy) set('SortDirection', query.sortDirection);
   for (const [key, value] of Object.entries(query.filters ?? {})) set(`Filters[${key}]`, value);
+  for (const [key, value] of Object.entries(query.extra ?? {})) set(key, value);
   return params;
 }
 

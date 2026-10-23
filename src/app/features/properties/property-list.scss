@@ -1,0 +1,21 @@
+.filters {
+  margin-bottom: 0.75rem;
+}
+
+.thumb {
+  width: 4rem;
+  height: 3rem;
+  object-fit: cover;
+  border-radius: 0.35rem;
+  display: block;
+}
+
+.none {
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 3rem;
+  color: var(--p-text-muted-color);
+  background: var(--p-content-hover-background);
+  border-radius: 0.35rem;
+}

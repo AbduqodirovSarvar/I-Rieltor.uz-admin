@@ -1,0 +1,21 @@
+name: admin-ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: npx ng build --configuration docker
+      # The Docker image builds from a clean checkout (npm ci inside Docker).
+      - run: docker build -t irieltor-admin .

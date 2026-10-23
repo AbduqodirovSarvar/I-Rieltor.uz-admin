@@ -1,0 +1,61 @@
+.wrap {
+  overflow-x: auto;
+  background: var(--p-surface-0);
+  border: 1px solid var(--p-content-border-color);
+  border-radius: 0.75rem;
+}
+
+:host-context(.app-dark) .wrap {
+  background: var(--p-surface-900);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 0.55rem 0.8rem;
+    border-bottom: 1px solid var(--p-content-border-color);
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  thead th {
+    font-size: 0.8rem;
+    color: var(--p-text-muted-color);
+  }
+
+  tbody tr:hover {
+    background: var(--p-content-hover-background);
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  input[type='checkbox'] {
+    width: 1.1rem;
+    height: 1.1rem;
+    accent-color: var(--p-primary-color);
+    cursor: pointer;
+  }
+}
+
+.extra {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-right: 0.75rem;
+}
+
+.warn {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  color: var(--p-orange-600);
+}
+
+.changes {
+  color: var(--p-text-muted-color);
+}

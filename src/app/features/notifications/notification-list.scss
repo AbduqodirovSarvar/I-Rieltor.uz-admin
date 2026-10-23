@@ -1,0 +1,30 @@
+.views,
+.filters {
+  margin-bottom: 0.75rem;
+}
+
+.dest {
+  display: block;
+  color: var(--p-text-muted-color);
+}
+
+dl {
+  margin: 0 0 0.75rem;
+}
+
+h3 {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.body {
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: inherit;
+  margin: 0;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background: var(--p-content-hover-background);
+  max-height: 18rem;
+  overflow: auto;
+}

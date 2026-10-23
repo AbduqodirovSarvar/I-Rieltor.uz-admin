@@ -1,0 +1,236 @@
+<app-page-header [title]="title()" />
+
+@if (loading()) {
+  <p>{{ 'common.loading' | t }}</p>
+} @else {
+  <form class="card" [formGroup]="form" (ngSubmit)="save()" novalidate>
+    <div class="grid">
+      <app-form-field
+        class="wide"
+        [label]="'properties.titleField' | t"
+        [control]="form.controls.title"
+        [required]="true"
+        forId="pTitle"
+      >
+        <input pInputText id="pTitle" formControlName="title" />
+      </app-form-field>
+
+      <app-form-field
+        [label]="'properties.category' | t"
+        [control]="form.controls.categoryId"
+        [required]="true"
+        forId="pCategory"
+      >
+        <p-select
+          inputId="pCategory"
+          formControlName="categoryId"
+          [options]="categoryOptions()"
+          optionLabel="label"
+          optionValue="id"
+          [filter]="true"
+          appendTo="body"
+        />
+      </app-form-field>
+
+      <app-form-field
+        [label]="'properties.status' | t"
+        [control]="form.controls.status"
+        forId="pStatus"
+        [hint]="statusLocked() ? ('properties.statusLocked' | t) : null"
+      >
+        <p-select
+          inputId="pStatus"
+          formControlName="status"
+          [options]="statusOptions()"
+          optionLabel="label"
+          optionValue="value"
+          appendTo="body"
+        />
+      </app-form-field>
+
+      <app-form-field
+        [label]="'properties.region' | t"
+        [control]="form.controls.region"
+        [required]="true"
+        forId="pRegion"
+      >
+        <input pInputText id="pRegion" formControlName="region" />
+      </app-form-field>
+      <app-form-field
+        [label]="'properties.district' | t"
+        [control]="form.controls.district"
+        forId="pDistrict"
+      >
+        <input pInputText id="pDistrict" formControlName="district" />
+      </app-form-field>
+      <app-form-field
+        class="wide"
+        [label]="'properties.address' | t"
+        [control]="form.controls.address"
+        [required]="true"
+        forId="pAddress"
+      >
+        <input pInputText id="pAddress" formControlName="address" />
+      </app-form-field>
+
+      <app-form-field
+        [label]="'properties.latitude' | t"
+        [control]="form.controls.latitude"
+        forId="pLat"
+      >
+        <p-inputnumber
+          inputId="pLat"
+          formControlName="latitude"
+          [min]="-90"
+          [max]="90"
+          [maxFractionDigits]="6"
+          [useGrouping]="false"
+        />
+      </app-form-field>
+      <app-form-field
+        [label]="'properties.longitude' | t"
+        [control]="form.controls.longitude"
+        forId="pLng"
+      >
+        <p-inputnumber
+          inputId="pLng"
+          formControlName="longitude"
+          [min]="-180"
+          [max]="180"
+          [maxFractionDigits]="6"
+          [useGrouping]="false"
+        />
+      </app-form-field>
+      <div class="map-link">
+        @if (mapLink; as link) {
+          <a [href]="link" target="_blank" rel="noopener noreferrer"
+            ><i class="pi pi-map-marker"></i> {{ 'properties.openMap' | t }}</a
+          >
+        }
+      </div>
+
+      <app-form-field
+        [label]="'properties.cadastralNumber' | t"
+        [control]="form.controls.cadastralNumber"
+        forId="pCadastral"
+      >
+        <input pInputText id="pCadastral" formControlName="cadastralNumber" />
+      </app-form-field>
+      <app-form-field
+        [label]="'properties.areaSqm' | t"
+        [control]="form.controls.areaSqm"
+        forId="pArea"
+      >
+        <p-inputnumber
+          inputId="pArea"
+          formControlName="areaSqm"
+          [min]="0.01"
+          [maxFractionDigits]="2"
+        />
+      </app-form-field>
+      <app-form-field
+        [label]="'properties.landAreaSotix' | t"
+        [control]="form.controls.landAreaSotix"
+        forId="pLand"
+      >
+        <p-inputnumber
+          inputId="pLand"
+          formControlName="landAreaSotix"
+          [min]="0.01"
+          [maxFractionDigits]="2"
+        />
+      </app-form-field>
+      <app-form-field
+        [label]="'properties.rooms' | t"
+        [control]="form.controls.rooms"
+        forId="pRooms"
+      >
+        <p-inputnumber
+          inputId="pRooms"
+          formControlName="rooms"
+          [min]="0"
+          [max]="1000"
+          [useGrouping]="false"
+        />
+      </app-form-field>
+      <app-form-field
+        [label]="'properties.floor' | t"
+        [control]="form.controls.floor"
+        forId="pFloor"
+      >
+        <p-inputnumber
+          inputId="pFloor"
+          formControlName="floor"
+          [min]="-5"
+          [max]="300"
+          [useGrouping]="false"
+        />
+      </app-form-field>
+      <app-form-field
+        [label]="'properties.totalFloors' | t"
+        [control]="form.controls.totalFloors"
+        forId="pTotalFloors"
+      >
+        <p-inputnumber
+          inputId="pTotalFloors"
+          formControlName="totalFloors"
+          [min]="1"
+          [max]="300"
+          [useGrouping]="false"
+        />
+      </app-form-field>
+      <app-form-field
+        [label]="'properties.buildYear' | t"
+        [control]="form.controls.buildYear"
+        forId="pYear"
+      >
+        <p-inputnumber
+          inputId="pYear"
+          formControlName="buildYear"
+          [min]="1800"
+          [max]="2100"
+          [useGrouping]="false"
+        />
+      </app-form-field>
+      <app-form-field
+        [label]="'properties.estimatedValue' | t"
+        [control]="form.controls.estimatedValue"
+        forId="pValue"
+      >
+        <p-inputnumber
+          inputId="pValue"
+          formControlName="estimatedValue"
+          [min]="0"
+          [maxFractionDigits]="2"
+          suffix=" so‘m"
+        />
+      </app-form-field>
+      <app-form-field
+        [label]="'properties.sellerName' | t"
+        [control]="form.controls.sellerName"
+        forId="pSeller"
+      >
+        <input pInputText id="pSeller" formControlName="sellerName" />
+      </app-form-field>
+    </div>
+
+    <app-form-field
+      [label]="'properties.description' | t"
+      [control]="form.controls.description"
+      forId="pDescription"
+    >
+      <textarea pTextarea id="pDescription" formControlName="description" rows="6"></textarea>
+    </app-form-field>
+
+    <div class="actions">
+      <p-button type="submit" [label]="'common.save' | t" icon="pi pi-check" [loading]="busy()" />
+      <p-button
+        type="button"
+        [label]="'common.cancel' | t"
+        severity="secondary"
+        [text]="true"
+        (onClick)="cancel()"
+      />
+    </div>
+  </form>
+}

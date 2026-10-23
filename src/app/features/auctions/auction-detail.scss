@@ -1,0 +1,156 @@
+.help {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  color: var(--p-text-muted-color);
+  margin: 0 0 1rem;
+}
+
+.two {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+  gap: 1rem;
+  align-items: start;
+  padding-top: 0.75rem;
+}
+
+.card {
+  background: var(--p-surface-0);
+  border: 1px solid var(--p-content-border-color);
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+
+  h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.05rem;
+  }
+
+  h3 {
+    margin: 1rem 0 0.4rem;
+    font-size: 0.95rem;
+  }
+
+  dl {
+    margin: 0;
+  }
+}
+
+:host-context(.app-dark) .card {
+  background: var(--p-surface-900);
+}
+
+.description {
+  white-space: pre-line;
+}
+
+.awards {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 0.4rem 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid var(--p-content-border-color);
+    white-space: nowrap;
+  }
+
+  th {
+    font-size: 0.8rem;
+    color: var(--p-text-muted-color);
+  }
+
+  .num {
+    text-align: right;
+  }
+
+  small {
+    display: block;
+    color: var(--p-text-muted-color);
+  }
+}
+
+.hint {
+  color: var(--p-text-muted-color);
+}
+
+:host ::ng-deep .dialog-form textarea {
+  width: 100%;
+}
+
+.live-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--p-text-muted-color);
+
+  .pi {
+    font-size: 0.6rem;
+  }
+
+  &[data-state='connected'] .pi {
+    color: var(--p-green-500);
+  }
+
+  &[data-state='reconnecting'] .pi,
+  &[data-state='connecting'] .pi {
+    color: var(--p-orange-500);
+  }
+
+  &[data-state='disconnected'] .pi {
+    color: var(--p-red-500);
+  }
+}
+
+.live {
+  margin: 0.75rem 0 0;
+
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: 1rem;
+
+    small {
+      display: block;
+      color: var(--p-text-muted-color);
+    }
+
+    strong {
+      font-size: 1.4rem;
+    }
+
+    .countdown {
+      font-variant-numeric: tabular-nums;
+    }
+  }
+
+  .feed {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+
+    li {
+      display: flex;
+      gap: 0.75rem;
+      align-items: baseline;
+    }
+
+    .who {
+      min-width: 3.5rem;
+      color: var(--p-text-muted-color);
+    }
+
+    .ext {
+      color: var(--p-orange-600);
+    }
+  }
+}
+
+.muted {
+  color: var(--p-text-muted-color);
+}

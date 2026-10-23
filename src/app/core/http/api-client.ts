@@ -24,6 +24,13 @@ export class ApiClient {
     return this.unwrap(this.http.get<ResponseModel<T>>(this.url(path), { params }));
   }
 
+  /** For the few endpoints that answer with the bare value, without the envelope (for example `all-permissions`). */
+  getRaw<T>(path: string, params?: HttpParams): Observable<T> {
+    return this.http
+      .get<T>(this.url(path), { params })
+      .pipe(catchError((error) => throwError(() => ApiError.from(error))));
+  }
+
   /** A list endpoint: `data` is the array, the paging fields come from the envelope. */
   getPage<T>(path: string, query: ListQuery = {}): Observable<Page<T>> {
     return this.http.get<ResponseModel<T[]>>(this.url(path), { params: listParams(query) }).pipe(

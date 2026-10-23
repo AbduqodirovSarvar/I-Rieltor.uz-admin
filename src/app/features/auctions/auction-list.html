@@ -1,0 +1,18 @@
+<app-page-header [title]="'auctions.title' | t">
+  <a *appHasPermission="'CREATE_AUCTION'" routerLink="/auctions/new">
+    <p-button [label]="'auctions.new' | t" icon="pi pi-plus" />
+  </a>
+</app-page-header>
+
+<div style="margin-bottom: 0.75rem">
+  <app-filter-bar [fields]="fields" (filtersChange)="filters.set($event)" />
+</div>
+
+<app-data-table
+  [columns]="columns"
+  [fetch]="fetch"
+  [filters]="filters()"
+  [searchPlaceholder]="'auctions.searchPlaceholder' | t"
+  [clickable]="true"
+  (rowClick)="open($event)"
+/>

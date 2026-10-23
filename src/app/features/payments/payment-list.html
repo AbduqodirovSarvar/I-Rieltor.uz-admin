@@ -1,0 +1,82 @@
+<app-page-header [title]="'payments.title' | t">
+  <p-button
+    *appHasPermission="'CREATE_PAYMENT'"
+    [label]="'payments.manual' | t"
+    icon="pi pi-plus"
+    (onClick)="openManual()"
+  />
+</app-page-header>
+
+<div class="views">
+  <p-selectbutton
+    [options]="views"
+    optionLabel="label"
+    optionValue="value"
+    [ngModel]="view()"
+    (ngModelChange)="setView($event)"
+    [allowEmpty]="false"
+  />
+</div>
+
+<div class="filters">
+  <app-filter-bar [fields]="fields" (filtersChange)="barFilters.set($event)" />
+</div>
+
+<app-data-table
+  [columns]="columns"
+  [fetch]="fetch"
+  [filters]="filters()"
+  [reloadKey]="reload()"
+  [searchPlaceholder]="'payments.searchPlaceholder' | t"
+>
+  <ng-template appCell="userFullName" let-payment>
+    <div class="person">
+      <strong>{{ payment.userFullName }}</strong>
+      @if (payment.userPhone) {
+        <small>{{ payment.userPhone }}</small>
+      }
+    </div>
+  </ng-template>
+  <ng-template appCell="lotNumber" let-payment>
+    <a [routerLink]="['/auctions', payment.auctionId]">{{ payment.lotNumber }}</a>
+  </ng-template>
+  <ng-template appCell="receipts" let-payment>
+    @if ((payment.receipts ?? []).length > 0) {
+      <span class="count"><i class="pi pi-paperclip"></i> {{ payment.receipts.length }}</span>
+    }
+  </ng-template>
+  <ng-template appRowActions let-payment>
+    <ng-container *appHasPermission="'UPDATE_PAYMENT'">
+      @if (canConfirm(payment)) {
+        <p-button
+          [label]="'payments.confirm' | t"
+          icon="pi pi-check"
+          size="small"
+          severity="success"
+          [outlined]="true"
+          (onClick)="openConfirm(payment, 'confirm')"
+        />
+      }
+      @if (canCompleteRefund(payment)) {
+        <p-button
+          [label]="'payments.completeRefund' | t"
+          icon="pi pi-replay"
+          size="small"
+          severity="secondary"
+          [outlined]="true"
+          (onClick)="openConfirm(payment, 'refund')"
+        />
+      }
+    </ng-container>
+  </ng-template>
+</app-data-table>
+
+@if (confirming(); as payment) {
+  <app-payment-confirm-dialog
+    [payment]="payment"
+    [mode]="confirmMode()"
+    [(visible)]="confirmOpen"
+    (done)="changed()"
+  />
+}
+<app-payment-manual-dialog [(visible)]="manualOpen" (done)="changed()" />

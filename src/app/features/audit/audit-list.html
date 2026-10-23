@@ -1,0 +1,60 @@
+<app-page-header [title]="'audit.title' | t" [subtitle]="'audit.subtitle' | t" />
+
+<div class="views">
+  <p-selectbutton
+    [options]="views"
+    optionLabel="label"
+    optionValue="value"
+    [ngModel]="view()"
+    (ngModelChange)="setView($event)"
+    [allowEmpty]="false"
+  />
+</div>
+<div class="filters">
+  <app-filter-bar [fields]="fields" (filtersChange)="barFilters.set($event)" />
+</div>
+
+<app-data-table
+  [columns]="columns"
+  [fetch]="fetch"
+  [filters]="filters()"
+  [defaultSort]="defaultSort"
+  [searchPlaceholder]="'audit.searchPlaceholder' | t"
+  [clickable]="true"
+  (rowClick)="open($event)"
+>
+  <ng-template appCell="userFullName" let-entry>
+    @if (entry.userId) {
+      <a [routerLink]="['/users', entry.userId]" (click)="$event.stopPropagation()">{{
+        entry.userFullName || entry.userId
+      }}</a>
+    } @else {
+      <span class="muted">{{ 'audit.anonymous' | t }}</span>
+    }
+  </ng-template>
+  <ng-template appCell="statusCode" let-entry>
+    <span class="code" [attr.data-tone]="tone(entry.statusCode)">{{ entry.statusCode }}</span>
+  </ng-template>
+</app-data-table>
+
+<p-dialog
+  [header]="'audit.detail' | t"
+  [(visible)]="detailOpen"
+  [modal]="true"
+  [style]="{ width: '36rem' }"
+>
+  @if (detail(); as d) {
+    <dl>
+      <app-key-value [label]="'audit.when' | t" [value]="d.occurredAt | dateTime" />
+      <app-key-value [label]="'audit.who' | t" [value]="d.userFullName || d.userId" />
+      <app-key-value [label]="'audit.action' | t" [value]="d.action" />
+      <app-key-value [label]="'audit.method' | t" [value]="d.method" />
+      <app-key-value [label]="'audit.path' | t" [value]="d.path" />
+      <app-key-value [label]="'audit.status' | t" [value]="d.statusCode" />
+      <app-key-value [label]="'audit.duration' | t" [value]="d.durationMs + ' ms'" />
+      <app-key-value [label]="'audit.ip' | t" [value]="d.ipAddress" />
+      <app-key-value [label]="'audit.userAgent' | t" [value]="d.userAgent" />
+      <app-key-value [label]="'audit.correlationId' | t" [value]="d.correlationId" />
+    </dl>
+  }
+</p-dialog>

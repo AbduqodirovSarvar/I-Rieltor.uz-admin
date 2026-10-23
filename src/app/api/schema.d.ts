@@ -4250,6 +4250,12 @@ export interface components {
             rank: number;
             /** Format: uuid */
             participantId: string;
+            /** Format: int32 */
+            participantNumber: number | null;
+            /** Format: uuid */
+            userId: string | null;
+            userFullName: string | null;
+            userPhone: string | null;
             /** Format: uuid */
             bidId: string;
             /** Format: double */
@@ -4372,6 +4378,7 @@ export interface components {
             occurredAt: string;
             /** Format: uuid */
             userId: string | null;
+            userFullName: string | null;
             action: string | null;
             method: string | null;
             path: string | null;
@@ -4814,6 +4821,7 @@ export interface components {
             updatedBy: string | null;
             /** Format: uuid */
             userId: string;
+            userFullName: string | null;
             channel: components["schemas"]["NotificationChannel"];
             type: components["schemas"]["NotificationType"];
             status: components["schemas"]["NotificationStatus"];
@@ -4857,6 +4865,8 @@ export interface components {
             updatedBy: string | null;
             /** Format: uuid */
             auctionId: string;
+            lotNumber: string | null;
+            auctionTitle: string | null;
             /** Format: uuid */
             userId: string;
             userFullName: string | null;
@@ -4971,8 +4981,12 @@ export interface components {
             updatedBy: string | null;
             /** Format: uuid */
             userId: string;
+            userFullName: string | null;
+            userPhone: string | null;
             /** Format: uuid */
             auctionId: string;
+            lotNumber: string | null;
+            auctionTitle: string | null;
             /** Format: uuid */
             participantId: string | null;
             purpose: components["schemas"]["PaymentPurpose"];
@@ -5068,6 +5082,7 @@ export interface components {
             updatedBy: string | null;
             /** Format: uuid */
             ownerId: string;
+            ownerFullName: string | null;
             purpose: components["schemas"]["DocumentPurpose"];
             /** Format: uuid */
             auctionId: string | null;

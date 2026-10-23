@@ -1,0 +1,62 @@
+.tree {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: var(--p-surface-0);
+  border: 1px solid var(--p-content-border-color);
+  border-radius: 0.75rem;
+}
+
+:host-context(.app-dark) .tree {
+  background: var(--p-surface-900);
+}
+
+.node {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.45rem 0.9rem;
+  border-bottom: 1px solid var(--p-content-border-color);
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &:hover {
+    background: var(--p-content-hover-background);
+  }
+}
+
+.name {
+  flex: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  min-width: 0;
+
+  small {
+    color: var(--p-text-muted-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.order {
+  color: var(--p-text-muted-color);
+  font-size: 0.8rem;
+}
+
+.actions {
+  display: flex;
+}
+
+:host ::ng-deep .full {
+  width: 100%;
+}
+
+textarea,
+:host ::ng-deep p-inputnumber,
+:host ::ng-deep p-inputnumber input {
+  width: 100%;
+}

@@ -1,0 +1,166 @@
+<app-page-header [title]="title()" [subtitle]="'auctions.timeNote' | t" />
+
+@if (loading()) {
+  <p>{{ 'common.loading' | t }}</p>
+} @else {
+  <form class="card" [formGroup]="form" (ngSubmit)="save()" novalidate>
+    <div class="grid">
+      <app-form-field
+        class="wide"
+        [label]="'auctions.property' | t"
+        [control]="form.controls.property"
+        [required]="true"
+        [hint]="'auctions.propertyHint' | t"
+        forId="aProperty"
+      >
+        <p-autocomplete
+          inputId="aProperty"
+          formControlName="property"
+          [suggestions]="suggestions()"
+          (completeMethod)="search($event)"
+          optionLabel="title"
+          [dropdown]="true"
+          [forceSelection]="true"
+          [placeholder]="'auctions.searchProperty' | t"
+          appendTo="body"
+        />
+      </app-form-field>
+
+      <app-form-field
+        [label]="'auctions.lotNumber' | t"
+        [control]="form.controls.lotNumber"
+        [hint]="'auctions.lotHint' | t"
+        forId="aLot"
+      >
+        <input pInputText id="aLot" formControlName="lotNumber" />
+      </app-form-field>
+      <app-form-field
+        class="span2"
+        [label]="'auctions.titleField' | t"
+        [control]="form.controls.title"
+        forId="aTitle"
+      >
+        <input pInputText id="aTitle" formControlName="title" />
+      </app-form-field>
+
+      <app-form-field
+        [label]="'auctions.startingPrice' | t"
+        [control]="form.controls.startingPrice"
+        [required]="true"
+        forId="aStart"
+      >
+        <p-inputnumber
+          inputId="aStart"
+          formControlName="startingPrice"
+          [min]="0.01"
+          [maxFractionDigits]="2"
+          suffix=" so‘m"
+        />
+      </app-form-field>
+      <app-form-field
+        [label]="'auctions.minBidStep' | t"
+        [control]="form.controls.minBidStep"
+        [required]="true"
+        forId="aStep"
+      >
+        <p-inputnumber
+          inputId="aStep"
+          formControlName="minBidStep"
+          [min]="0.01"
+          [maxFractionDigits]="2"
+          suffix=" so‘m"
+        />
+      </app-form-field>
+      <app-form-field
+        [label]="'auctions.depositAmount' | t"
+        [control]="form.controls.depositAmount"
+        [required]="true"
+        forId="aDeposit"
+      >
+        <p-inputnumber
+          inputId="aDeposit"
+          formControlName="depositAmount"
+          [min]="0"
+          [maxFractionDigits]="2"
+          suffix=" so‘m"
+        />
+      </app-form-field>
+
+      <app-form-field
+        [label]="'auctions.applicationDeadline' | t"
+        [control]="form.controls.applicationDeadline"
+        [required]="true"
+        forId="aDeadline"
+      >
+        <input
+          pInputText
+          id="aDeadline"
+          type="datetime-local"
+          formControlName="applicationDeadline"
+        />
+      </app-form-field>
+      <app-form-field
+        [label]="'auctions.startsAt' | t"
+        [control]="form.controls.startsAt"
+        [required]="true"
+        forId="aStarts"
+      >
+        <input pInputText id="aStarts" type="datetime-local" formControlName="startsAt" />
+      </app-form-field>
+      <app-form-field
+        [label]="'auctions.endsAt' | t"
+        [control]="form.controls.endsAt"
+        [required]="true"
+        forId="aEnds"
+      >
+        <input pInputText id="aEnds" type="datetime-local" formControlName="endsAt" />
+      </app-form-field>
+
+      <app-form-field
+        [label]="'auctions.extensionMinutes' | t"
+        [control]="form.controls.extensionMinutes"
+        [hint]="'auctions.extensionHint' | t"
+        forId="aExt"
+      >
+        <p-inputnumber
+          inputId="aExt"
+          formControlName="extensionMinutes"
+          [min]="0"
+          [max]="60"
+          [useGrouping]="false"
+        />
+      </app-form-field>
+      <div class="check">
+        <p-checkbox inputId="aRunnerUp" formControlName="offerToRunnerUp" [binary]="true" />
+        <label for="aRunnerUp">{{ 'auctions.offerToRunnerUp' | t }}</label>
+      </div>
+    </div>
+
+    <app-form-field
+      [label]="'auctions.description' | t"
+      [control]="form.controls.description"
+      forId="aDescription"
+    >
+      <textarea pTextarea id="aDescription" formControlName="description" rows="4"></textarea>
+    </app-form-field>
+
+    @if (ruleMessages().length > 0) {
+      <ul class="rules" role="alert">
+        @for (message of ruleMessages(); track message) {
+          <li>{{ message }}</li>
+        }
+      </ul>
+    }
+
+    <div class="actions">
+      <p-button type="submit" [label]="'common.save' | t" icon="pi pi-check" [loading]="busy()" />
+      <p-button
+        type="button"
+        [label]="'common.cancel' | t"
+        severity="secondary"
+        [text]="true"
+        (onClick)="cancel()"
+      />
+    </div>
+  </form>
+}

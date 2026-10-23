@@ -14,6 +14,17 @@
   [defaultSort]="defaultSort"
 >
   <ng-template appRowActions let-role>
+    <a
+      *appHasPermission="'READ_USERROLEPERMISSION'"
+      [routerLink]="['/roles', role.id, 'permissions']"
+    >
+      <p-button
+        icon="pi pi-key"
+        [text]="true"
+        severity="secondary"
+        [attr.aria-label]="'roles.permissions' | t"
+      />
+    </a>
     <p-button
       *appHasPermission="'UPDATE_USERROLE'"
       icon="pi pi-pencil"

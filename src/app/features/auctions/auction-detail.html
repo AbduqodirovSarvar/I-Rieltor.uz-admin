@@ -1,0 +1,259 @@
+@if (auction(); as a) {
+  <app-page-header [title]="(a.lotNumber ?? '') + ' · ' + (a.title ?? '')">
+    <app-status-badge enum="AuctionStatus" [value]="a.status" />
+    @if (isActive() && live.state() !== 'idle') {
+      <span class="live-state" [attr.data-state]="live.state()" role="status"
+        ><i class="pi pi-circle-fill"></i> {{ liveLabel() }}</span
+      >
+    }
+    @if (a.status === 'DRAFT') {
+      <a *appHasPermission="'UPDATE_AUCTION'" [routerLink]="['/auctions', a.id, 'edit']">
+        <p-button
+          [label]="'common.edit' | t"
+          icon="pi pi-pencil"
+          severity="secondary"
+          [outlined]="true"
+        />
+      </a>
+      <p-button
+        *appHasPermission="'UPDATE_AUCTION'"
+        [label]="'auctions.publish' | t"
+        icon="pi pi-send"
+        [loading]="publishing()"
+        (onClick)="publish()"
+      />
+      <p-button
+        *appHasPermission="'DELETE_AUCTION'"
+        [label]="'common.delete' | t"
+        icon="pi pi-trash"
+        severity="danger"
+        [outlined]="true"
+        (onClick)="remove()"
+      />
+    }
+    @if (a.status === 'SCHEDULED' || a.status === 'ONGOING') {
+      <p-button
+        *appHasPermission="'UPDATE_AUCTION'"
+        [label]="'auctions.cancel' | t"
+        icon="pi pi-ban"
+        severity="danger"
+        [outlined]="true"
+        (onClick)="openCancel()"
+      />
+    }
+  </app-page-header>
+
+  <p class="help"><i class="pi pi-info-circle"></i> {{ help() }}</p>
+
+  <p-tabs [value]="tab()" (valueChange)="selectTab($event)" [lazy]="true">
+    <p-tablist>
+      <p-tab value="overview">{{ 'auctions.tabs.overview' | t }}</p-tab>
+      <p-tab value="bids">{{ 'auctions.tabs.bids' | t }}</p-tab>
+      <p-tab value="participants">{{ 'auctions.tabs.participants' | t }}</p-tab>
+      <p-tab value="payments">{{ 'auctions.tabs.payments' | t }}</p-tab>
+    </p-tablist>
+    <p-tabpanels>
+      <p-tabpanel value="overview">
+        @if (isActive()) {
+          <section class="card live">
+            <div class="metrics">
+              <div>
+                <small>{{ 'auctions.currentPrice' | t }}</small>
+                <strong>{{ a.currentPrice | money }}</strong>
+              </div>
+              <div>
+                <small>{{ 'live.minNext' | t }}</small>
+                <strong>{{ minNext() | money }}</strong>
+              </div>
+              <div>
+                <small>{{ countdownLabel() }}</small>
+                <strong class="countdown">{{ countdown() }}</strong>
+              </div>
+            </div>
+            <h3>{{ 'live.feed' | t }}</h3>
+            @if (feed().length === 0) {
+              <p class="muted">{{ 'live.feedEmpty' | t }}</p>
+            } @else {
+              <ul class="feed">
+                @for (bid of feed(); track bid.placedAt + bid.participantNumber) {
+                  <li>
+                    <span class="who">{{
+                      'live.bidNumber' | t: { number: bid.participantNumber }
+                    }}</span>
+                    <strong>{{ bid.amount | money }}</strong>
+                    <small>{{ bid.placedAt | dateTime }}</small>
+                    @if (bid.extended) {
+                      <small class="ext">{{ 'live.extended' | t }}</small>
+                    }
+                  </li>
+                }
+              </ul>
+            }
+          </section>
+        }
+        <div class="two">
+          <section class="card">
+            <dl>
+              <app-key-value [label]="'auctions.property' | t">
+                <a [routerLink]="['/properties', a.propertyId]">{{ 'auctions.property' | t }} →</a>
+              </app-key-value>
+              <app-key-value
+                [label]="'auctions.startingPrice' | t"
+                [value]="a.startingPrice | money"
+              />
+              <app-key-value
+                [label]="'auctions.currentPrice' | t"
+                [value]="a.currentPrice | money"
+              />
+              <app-key-value [label]="'auctions.minBidStep' | t" [value]="a.minBidStep | money" />
+              <app-key-value
+                [label]="'auctions.depositAmount' | t"
+                [value]="a.depositAmount | money"
+              />
+              <app-key-value
+                [label]="'auctions.applicationDeadline' | t"
+                [value]="a.applicationDeadline | dateTime"
+              />
+              <app-key-value [label]="'auctions.startsAt' | t" [value]="a.startsAt | dateTime" />
+              <app-key-value [label]="'auctions.endsAt' | t" [value]="a.endsAt | dateTime" />
+              <app-key-value
+                [label]="'auctions.extensionMinutes' | t"
+                [value]="a.extensionMinutes"
+              />
+              <app-key-value
+                [label]="'auctions.offerToRunnerUp' | t"
+                [value]="(a.offerToRunnerUp ? 'common.yes' : 'common.no') | t"
+              />
+              @if (a.cancelReason) {
+                <app-key-value
+                  [label]="'auctions.cancelReasonLabel' | t"
+                  [value]="a.cancelReason"
+                />
+              }
+            </dl>
+            @if (a.description) {
+              <p class="description">{{ a.description }}</p>
+            }
+          </section>
+
+          @if (a.result; as r) {
+            <section class="card">
+              <h2>{{ 'auctions.result' | t }}</h2>
+              <dl>
+                <app-key-value [label]="'auctions.outcome' | t"
+                  ><app-status-badge enum="AuctionOutcome" [value]="r.outcome"
+                /></app-key-value>
+                <app-key-value [label]="'auctions.finalPrice' | t" [value]="r.finalPrice | money" />
+                <app-key-value
+                  [label]="'auctions.paymentDue' | t"
+                  [value]="r.paymentDueAt | dateTime"
+                />
+              </dl>
+              @if ((r.awards ?? []).length > 0) {
+                <h3>{{ 'auctions.awards' | t }}</h3>
+                <table class="awards">
+                  <thead>
+                    <tr>
+                      <th>{{ 'auctions.rank' | t }}</th>
+                      <th>{{ 'auctions.person' | t }}</th>
+                      <th class="num">{{ 'auctions.bidAmount' | t }}</th>
+                      <th>{{ 'auctions.status' | t }}</th>
+                      <th>{{ 'auctions.respondBy' | t }}</th>
+                      <th>{{ 'auctions.paymentDue' | t }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (award of r.awards; track award.id) {
+                      <tr>
+                        <td>{{ award.rank }}</td>
+                        <td>
+                          №{{ award.participantNumber }} · {{ award.userFullName }}
+                          @if (award.userPhone) {
+                            <small>{{ award.userPhone | phone }}</small>
+                          }
+                        </td>
+                        <td class="num">{{ award.price | money }}</td>
+                        <td><app-status-badge enum="AwardStatus" [value]="award.status" /></td>
+                        <td>{{ award.respondBy | dateTime }}</td>
+                        <td>{{ award.paymentDueAt | dateTime }}</td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              }
+            </section>
+          }
+        </div>
+      </p-tabpanel>
+
+      <p-tabpanel value="bids">
+        <app-data-table
+          [columns]="bidColumns"
+          [fetch]="fetchBids"
+          [reloadKey]="reload()"
+          [searchable]="false"
+          [defaultSort]="null"
+        />
+      </p-tabpanel>
+
+      <p-tabpanel value="participants">
+        <app-data-table
+          [columns]="participantColumns"
+          [fetch]="fetchParticipants"
+          [reloadKey]="reload()"
+          [searchable]="false"
+          [defaultSort]="byNumber"
+        >
+          <ng-template appRowActions let-participant>
+            <app-participant-actions [participant]="participant" (changed)="reviewed()" />
+          </ng-template>
+        </app-data-table>
+      </p-tabpanel>
+
+      <p-tabpanel value="payments">
+        <app-data-table
+          [columns]="paymentColumns"
+          [fetch]="fetchPayments"
+          [reloadKey]="reload()"
+          [searchable]="false"
+        />
+      </p-tabpanel>
+    </p-tabpanels>
+  </p-tabs>
+
+  <p-dialog
+    [header]="'auctions.cancel' | t"
+    [(visible)]="cancelDialog"
+    [modal]="true"
+    [style]="{ width: '28rem' }"
+  >
+    <div class="dialog-form">
+      <label for="cancelReason">{{ 'auctions.cancelReason' | t }}</label>
+      <textarea
+        pTextarea
+        id="cancelReason"
+        rows="3"
+        maxlength="500"
+        [(ngModel)]="cancelReason"
+      ></textarea>
+      <small class="hint">{{ 'auctions.cancelHint' | t }}</small>
+      <div class="dialog-actions">
+        <p-button
+          [label]="'common.close' | t"
+          severity="secondary"
+          [text]="true"
+          (onClick)="cancelDialog.set(false)"
+        />
+        <p-button
+          [label]="'auctions.cancel' | t"
+          severity="danger"
+          [loading]="cancelling()"
+          [disabled]="!cancelReason.trim()"
+          (onClick)="cancel()"
+        />
+      </div>
+    </div>
+  </p-dialog>
+} @else if (loading()) {
+  <p>{{ 'common.loading' | t }}</p>
+}

@@ -1,0 +1,6 @@
+# LOCAL ONLY: serves a build made on the host (npx ng build --configuration docker), because npm cannot always be
+# reached from inside Docker behind a corporate proxy. Used through the backend's deploy/local/up.ps1.
+FROM nginx:1.27-alpine
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY proxy-common.conf /etc/nginx/proxy-common.conf
+COPY dist/I-Rieltor.uz-admin/browser /usr/share/nginx/html

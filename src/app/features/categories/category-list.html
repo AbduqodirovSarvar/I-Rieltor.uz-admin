@@ -1,0 +1,113 @@
+<app-page-header [title]="'categories.title' | t">
+  <p-button
+    *appHasPermission="'CREATE_PROPERTYCATEGORY'"
+    [label]="'categories.new' | t"
+    icon="pi pi-plus"
+    (onClick)="open()"
+  />
+</app-page-header>
+
+@if (loading()) {
+  <p>{{ 'common.loading' | t }}</p>
+} @else if (tree().length === 0) {
+  <app-empty-state [message]="'categories.empty' | t" icon="pi pi-sitemap" />
+} @else {
+  <ul class="tree">
+    @for (node of tree(); track node.category.id) {
+      <li [style.padding-left.rem]="node.depth * 1.75" class="node">
+        <div class="name">
+          <i [class]="node.depth === 0 ? 'pi pi-folder' : 'pi pi-angle-right'"></i>
+          <strong>{{ node.category.name }}</strong>
+          @if (node.category.description) {
+            <small>{{ node.category.description }}</small>
+          }
+        </div>
+        <span class="order">#{{ node.category.sortOrder }}</span>
+        <div class="actions">
+          <p-button
+            *appHasPermission="'CREATE_PROPERTYCATEGORY'"
+            icon="pi pi-plus"
+            [text]="true"
+            severity="secondary"
+            (onClick)="open(undefined, node.category.id)"
+            [attr.aria-label]="'categories.newChild' | t"
+          />
+          <p-button
+            *appHasPermission="'UPDATE_PROPERTYCATEGORY'"
+            icon="pi pi-pencil"
+            [text]="true"
+            severity="secondary"
+            (onClick)="open(node.category)"
+            [attr.aria-label]="'common.edit' | t"
+          />
+          <p-button
+            *appHasPermission="'DELETE_PROPERTYCATEGORY'"
+            icon="pi pi-trash"
+            [text]="true"
+            severity="danger"
+            (onClick)="remove(node.category)"
+            [attr.aria-label]="'common.delete' | t"
+          />
+        </div>
+      </li>
+    }
+  </ul>
+}
+
+<p-dialog [header]="dialogTitle" [(visible)]="dialog" [modal]="true" [style]="{ width: '30rem' }">
+  <form [formGroup]="form" (ngSubmit)="save()" novalidate class="dialog-form">
+    <app-form-field
+      [label]="'categories.name' | t"
+      [control]="form.controls.name"
+      [required]="true"
+      forId="catName"
+    >
+      <input pInputText id="catName" formControlName="name" />
+    </app-form-field>
+    <app-form-field
+      [label]="'categories.description' | t"
+      [control]="form.controls.description"
+      forId="catDescription"
+    >
+      <textarea pTextarea id="catDescription" formControlName="description" rows="2"></textarea>
+    </app-form-field>
+    <app-form-field
+      [label]="'categories.parent' | t"
+      [control]="form.controls.parentCategoryId"
+      forId="catParent"
+    >
+      <p-select
+        inputId="catParent"
+        formControlName="parentCategoryId"
+        [options]="parentOptions()"
+        optionLabel="label"
+        optionValue="id"
+        appendTo="body"
+        styleClass="full"
+      />
+    </app-form-field>
+    <app-form-field
+      [label]="'categories.sortOrder' | t"
+      [control]="form.controls.sortOrder"
+      forId="catOrder"
+    >
+      <p-inputnumber
+        inputId="catOrder"
+        formControlName="sortOrder"
+        [min]="0"
+        [max]="10000"
+        [useGrouping]="false"
+      />
+    </app-form-field>
+    <div class="dialog-actions">
+      <p-button
+        type="button"
+        [label]="'common.cancel' | t"
+        severity="secondary"
+        [text]="true"
+        (onClick)="dialog.set(false)"
+      />
+      <p-button type="submit" [label]="'common.save' | t" icon="pi pi-check" [loading]="busy()" />
+    </div>
+  </form>
+</p-dialog>

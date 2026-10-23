@@ -1,5 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
@@ -20,6 +21,7 @@ import { Role, RoleService } from './role.service';
   selector: 'app-role-list',
   imports: [
     ReactiveFormsModule,
+    RouterLink,
     ButtonModule,
     DialogModule,
     InputTextModule,

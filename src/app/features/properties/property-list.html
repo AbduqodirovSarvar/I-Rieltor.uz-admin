@@ -1,0 +1,26 @@
+<app-page-header [title]="'properties.title' | t">
+  <a *appHasPermission="'CREATE_PROPERTY'" routerLink="/properties/new">
+    <p-button [label]="'properties.new' | t" icon="pi pi-plus" />
+  </a>
+</app-page-header>
+
+<div class="filters">
+  <app-filter-bar [fields]="fields()" (filtersChange)="filters.set($event)" />
+</div>
+
+<app-data-table
+  [columns]="columns"
+  [fetch]="fetch"
+  [filters]="filters()"
+  [searchPlaceholder]="'properties.searchPlaceholder' | t"
+  [clickable]="true"
+  (rowClick)="open($event)"
+>
+  <ng-template appCell="cover" let-property>
+    @if (cover(property); as src) {
+      <img class="thumb" [src]="src" [alt]="property.title" />
+    } @else {
+      <i class="pi pi-image none"></i>
+    }
+  </ng-template>
+</app-data-table>

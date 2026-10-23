@@ -36,7 +36,7 @@ describe('Shell', () => {
   });
 
   it('shows the menu items that exist and that the user may see, and loads the profile', async () => {
-    TestBed.inject(TokenStore).set(sessionWith(['READ_USER', 'READ_AUCTION']));
+    TestBed.inject(TokenStore).set(sessionWith(['READ_USER', 'READ_AUDITLOG']));
     const fixture = TestBed.createComponent(Shell);
     TestBed.inject(HttpTestingController)
       .expectOne('/api/Auth/me')
@@ -46,10 +46,11 @@ describe('Shell', () => {
     const text = (fixture.nativeElement as HTMLElement).textContent ?? '';
     expect(text).toContain('Bosh sahifa');
     expect(text).toContain('Ali Valiyev');
-    // READ_USER is held and the Users section exists: shown. READ_AUCTION is held, but that page is not built yet (ready: false).
+    // Held permissions show their items; a permission that is not held hides it.
     expect(text).toContain('Foydalanuvchilar');
-    expect(text).not.toContain('Auksionlar');
-    expect(NAV.flatMap((g) => g.items).find((i) => i.route === '/auctions')?.ready).toBe(false);
+    expect(text).toContain('Audit jurnali');
+    expect(text).not.toContain('Bildirishnomalar');
+    expect(NAV.flatMap((g) => g.items).every((i) => i.ready)).toBe(true);
     expect(text).not.toContain('Rollar');
   });
 });

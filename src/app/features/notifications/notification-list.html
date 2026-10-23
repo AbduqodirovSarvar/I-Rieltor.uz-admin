@@ -1,0 +1,75 @@
+<app-page-header [title]="'notifications.title' | t" [subtitle]="'notifications.subtitle' | t" />
+
+<div class="views">
+  <p-selectbutton
+    [options]="views"
+    optionLabel="label"
+    optionValue="value"
+    [ngModel]="view()"
+    (ngModelChange)="setView($event)"
+    [allowEmpty]="false"
+  />
+</div>
+<div class="filters">
+  <app-filter-bar [fields]="fields" (filtersChange)="barFilters.set($event)" />
+</div>
+
+<app-data-table
+  [columns]="columns"
+  [fetch]="fetch"
+  [filters]="filters()"
+  [searchPlaceholder]="'notifications.searchPlaceholder' | t"
+  [clickable]="true"
+  (rowClick)="open($event)"
+>
+  <ng-template appCell="userFullName" let-item>
+    <a [routerLink]="['/users', item.userId]" (click)="$event.stopPropagation()">{{
+      item.userFullName || item.userId
+    }}</a>
+    <small class="dest">{{ item.destination }}</small>
+  </ng-template>
+</app-data-table>
+
+<p-dialog
+  [header]="'notifications.detail' | t"
+  [(visible)]="detailOpen"
+  [modal]="true"
+  [style]="{ width: '38rem' }"
+>
+  @if (detail(); as d) {
+    <dl>
+      <app-key-value [label]="'notifications.recipient' | t" [value]="d.userFullName" />
+      <app-key-value [label]="'notifications.destination' | t" [value]="d.destination" />
+      <app-key-value [label]="'notifications.channel' | t"
+        ><app-status-badge enum="NotificationChannel" [value]="d.channel"
+      /></app-key-value>
+      <app-key-value [label]="'notifications.type' | t"
+        ><app-status-badge enum="NotificationType" [value]="d.type"
+      /></app-key-value>
+      <app-key-value [label]="'notifications.status' | t"
+        ><app-status-badge enum="NotificationStatus" [value]="d.status"
+      /></app-key-value>
+      <app-key-value [label]="'notifications.attempts' | t" [value]="d.attempts" />
+      <app-key-value [label]="'notifications.createdAt' | t" [value]="d.createdAt | dateTime" />
+      <app-key-value [label]="'notifications.sentAt' | t" [value]="d.sentAt | dateTime" />
+      @if (d.status === 'PENDING') {
+        <app-key-value
+          [label]="'notifications.nextAttempt' | t"
+          [value]="d.nextAttemptAt | dateTime"
+        />
+      }
+      @if (d.lastError) {
+        <app-key-value [label]="'notifications.lastError' | t" [value]="d.lastError" />
+      }
+      @if (d.auctionId) {
+        <app-key-value [label]="'notifications.auction' | t"
+          ><a [routerLink]="['/auctions', d.auctionId]">→</a></app-key-value
+        >
+      }
+    </dl>
+    @if (d.subject) {
+      <h3>{{ d.subject }}</h3>
+    }
+    <pre class="body">{{ d.body }}</pre>
+  }
+</p-dialog>

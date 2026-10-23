@@ -1,0 +1,70 @@
+<p-dialog
+  [header]="title"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '36rem' }"
+  (onShow)="opened()"
+  appendTo="body"
+>
+  <p class="hint">{{ hint }}</p>
+  <dl>
+    <app-key-value [label]="'payments.payer' | t" [value]="payment().userFullName" />
+    <app-key-value [label]="'payments.lot' | t" [value]="payment().lotNumber" />
+    <app-key-value [label]="'payments.purpose' | t"
+      ><app-status-badge enum="PaymentPurpose" [value]="payment().purpose"
+    /></app-key-value>
+    <app-key-value [label]="'payments.provider' | t"
+      ><app-status-badge enum="PaymentProvider" [value]="payment().provider"
+    /></app-key-value>
+    <app-key-value [label]="'payments.amount' | t" [value]="payment().amount | money" />
+    @if (payment().note) {
+      <app-key-value [label]="'payments.note2' | t" [value]="payment().note" />
+    }
+  </dl>
+
+  <h3>{{ 'payments.receipts' | t }}</h3>
+  @if ((receipts() ?? []).length === 0) {
+    <p class="muted">{{ 'payments.noReceipts' | t }}</p>
+  } @else {
+    <ul class="docs">
+      @for (receipt of receipts(); track receipt.id) {
+        <li>
+          <i class="pi pi-file"></i>
+          <button type="button" class="link" (click)="view(receipt)">
+            {{ receipt.originalName }}
+          </button>
+        </li>
+      }
+    </ul>
+  }
+  @if (mode() === 'confirm') {
+    <app-file-upload rule="private" [multiple]="true" (filesChange)="picked($event)" />
+    <p-button
+      [label]="'payments.attachReceipt' | t"
+      icon="pi pi-paperclip"
+      severity="secondary"
+      [outlined]="true"
+      size="small"
+      [loading]="attaching()"
+      (onClick)="attach()"
+    />
+  }
+
+  <label for="paymentReference">{{ 'payments.reference' | t }}</label>
+  <input pInputText id="paymentReference" [(ngModel)]="reference" maxlength="100" />
+
+  <div class="dialog-actions">
+    <p-button
+      [label]="'common.cancel' | t"
+      severity="secondary"
+      [text]="true"
+      (onClick)="visible.set(false)"
+    />
+    <p-button
+      [label]="(mode() === 'refund' ? 'payments.completeRefund' : 'payments.confirm') | t"
+      icon="pi pi-check"
+      [loading]="busy()"
+      (onClick)="submit()"
+    />
+  </div>
+</p-dialog>

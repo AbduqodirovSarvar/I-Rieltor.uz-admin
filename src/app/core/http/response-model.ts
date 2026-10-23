@@ -30,4 +30,6 @@ export interface ListQuery {
   sortBy?: string | null;
   sortDirection?: 'asc' | 'desc';
   filters?: Record<string, string | number | boolean | null | undefined>;
+  /** Plain extra parameters some list endpoints need (for example `AuctionId` of the bid list). */
+  extra?: Record<string, string | number | boolean | null | undefined>;
 }

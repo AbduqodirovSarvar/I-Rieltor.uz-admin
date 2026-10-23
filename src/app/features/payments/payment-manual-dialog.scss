@@ -1,0 +1,55 @@
+.hint,
+.muted {
+  color: var(--p-text-muted-color);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+
+  label,
+  .label {
+    margin-top: 0.6rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+}
+
+.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.amount {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.5rem;
+  background: var(--p-highlight-background);
+
+  strong {
+    font-size: 1.15rem;
+  }
+}
+
+.error {
+  color: var(--p-red-500);
+}
+
+:host ::ng-deep p-autocomplete,
+:host ::ng-deep p-autocomplete input,
+:host ::ng-deep p-select,
+input {
+  width: 100%;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}

@@ -1,0 +1,119 @@
+<app-page-header [title]="'company.title' | t" />
+
+@if (loading()) {
+  <p>{{ 'common.loading' | t }}</p>
+} @else {
+  @if (!company()) {
+    <p-message severity="info">{{ 'company.createFirst' | t }}</p-message>
+  }
+  <form class="card" [formGroup]="form" (ngSubmit)="save()" novalidate>
+    <div class="grid">
+      <app-form-field
+        [label]="'company.name' | t"
+        [control]="form.controls.name"
+        [required]="true"
+        forId="cName"
+      >
+        <input pInputText id="cName" formControlName="name" />
+      </app-form-field>
+      <app-form-field
+        [label]="'company.address' | t"
+        [control]="form.controls.address"
+        [required]="true"
+        forId="cAddress"
+      >
+        <input pInputText id="cAddress" formControlName="address" />
+      </app-form-field>
+      <app-form-field
+        [label]="'company.phone' | t"
+        [control]="form.controls.phoneNumber"
+        [required]="true"
+        forId="cPhone"
+        hint="+998901234567"
+      >
+        <input pInputText id="cPhone" formControlName="phoneNumber" inputmode="tel" />
+      </app-form-field>
+      <app-form-field
+        [label]="'company.phone2' | t"
+        [control]="form.controls.phoneNumber2"
+        forId="cPhone2"
+      >
+        <input pInputText id="cPhone2" formControlName="phoneNumber2" inputmode="tel" />
+      </app-form-field>
+      <app-form-field [label]="'company.email' | t" [control]="form.controls.email" forId="cEmail">
+        <input pInputText id="cEmail" type="email" formControlName="email" />
+      </app-form-field>
+      <app-form-field
+        [label]="'company.location' | t"
+        [control]="form.controls.location"
+        [required]="true"
+        forId="cLocation"
+        hint="https://maps.google.com/..."
+      >
+        <input pInputText id="cLocation" formControlName="location" />
+      </app-form-field>
+      <app-form-field
+        [label]="'company.latitude' | t"
+        [control]="form.controls.latitude"
+        forId="cLat"
+      >
+        <p-inputnumber
+          inputId="cLat"
+          formControlName="latitude"
+          [min]="-90"
+          [max]="90"
+          [maxFractionDigits]="6"
+          [useGrouping]="false"
+        />
+      </app-form-field>
+      <app-form-field
+        [label]="'company.longitude' | t"
+        [control]="form.controls.longitude"
+        forId="cLng"
+      >
+        <p-inputnumber
+          inputId="cLng"
+          formControlName="longitude"
+          [min]="-180"
+          [max]="180"
+          [maxFractionDigits]="6"
+          [useGrouping]="false"
+        />
+      </app-form-field>
+    </div>
+
+    <app-form-field
+      [label]="'company.description' | t"
+      [control]="form.controls.description"
+      [required]="true"
+      forId="cDescription"
+    >
+      <textarea pTextarea id="cDescription" formControlName="description" rows="5"></textarea>
+    </app-form-field>
+    <app-form-field
+      [label]="'company.mission' | t"
+      [control]="form.controls.mission"
+      forId="cMission"
+    >
+      <textarea pTextarea id="cMission" formControlName="mission" rows="3"></textarea>
+    </app-form-field>
+
+    <div class="logo">
+      <span class="label">{{ 'company.logo' | t }}</span>
+      @if (company()?.logoFile?.url; as current) {
+        <img class="current" [src]="logoUrl(current)" [alt]="'company.logo' | t" />
+      }
+      <app-file-upload rule="image" (filesChange)="picked($event)" />
+    </div>
+
+    <div class="actions">
+      <p-button
+        *appHasPermission="company() ? 'UPDATE_COMPANY' : 'CREATE_COMPANY'"
+        type="submit"
+        [label]="'common.save' | t"
+        icon="pi pi-check"
+        [loading]="busy()"
+      />
+    </div>
+  </form>
+}

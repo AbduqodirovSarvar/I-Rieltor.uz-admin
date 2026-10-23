@@ -1,0 +1,188 @@
+@if (property(); as p) {
+  <app-page-header [title]="p.title ?? ''" [subtitle]="categoryName()">
+    <app-status-badge enum="PropertyStatus" [value]="p.status" />
+    <a *appHasPermission="'UPDATE_PROPERTY'" [routerLink]="['/properties', p.id, 'edit']">
+      <p-button
+        [label]="'common.edit' | t"
+        icon="pi pi-pencil"
+        severity="secondary"
+        [outlined]="true"
+      />
+    </a>
+    @if (!locked() && p.status !== 'ARCHIVED') {
+      <p-button
+        *appHasPermission="'UPDATE_PROPERTY'"
+        [label]="'properties.archive' | t"
+        icon="pi pi-inbox"
+        severity="secondary"
+        [outlined]="true"
+        (onClick)="archive()"
+      />
+    }
+    <p-button
+      *appHasPermission="'DELETE_PROPERTY'"
+      [label]="'common.delete' | t"
+      icon="pi pi-trash"
+      severity="danger"
+      [outlined]="true"
+      (onClick)="remove()"
+    />
+  </app-page-header>
+
+  @if (locked()) {
+    <p class="note"><i class="pi pi-lock"></i> {{ 'properties.statusLocked' | t }}</p>
+  }
+
+  <div class="layout">
+    <section class="card">
+      <h2>{{ 'properties.details' | t }}</h2>
+      <dl>
+        <app-key-value [label]="'properties.category' | t" [value]="categoryName()" />
+        <app-key-value [label]="'properties.region' | t" [value]="p.region" />
+        <app-key-value [label]="'properties.district' | t" [value]="p.district" />
+        <app-key-value [label]="'properties.address' | t" [value]="p.address" />
+        <app-key-value [label]="'properties.cadastralNumber' | t" [value]="p.cadastralNumber" />
+        <app-key-value [label]="'properties.areaSqm' | t" [value]="p.areaSqm" />
+        <app-key-value [label]="'properties.landAreaSotix' | t" [value]="p.landAreaSotix" />
+        <app-key-value [label]="'properties.rooms' | t" [value]="p.rooms" />
+        <app-key-value [label]="'properties.floor' | t" [value]="p.floor" />
+        <app-key-value [label]="'properties.totalFloors' | t" [value]="p.totalFloors" />
+        <app-key-value [label]="'properties.buildYear' | t" [value]="p.buildYear" />
+        <app-key-value
+          [label]="'properties.estimatedValue' | t"
+          [value]="p.estimatedValue | money"
+        />
+        <app-key-value [label]="'properties.sellerName' | t" [value]="p.sellerName" />
+        <app-key-value [label]="'properties.viewCount' | t" [value]="p.viewCount" />
+        <app-key-value [label]="'users.createdAt' | t" [value]="p.createdAt | dateTime" />
+      </dl>
+      @if (p.description) {
+        <p class="description">{{ p.description }}</p>
+      }
+    </section>
+
+    <section class="card">
+      <h2>{{ 'properties.media' | t }}</h2>
+      @if (media().length === 0) {
+        <p class="muted">{{ 'properties.mediaEmpty' | t }}</p>
+      } @else {
+        <ul class="gallery">
+          @for (m of media(); track m.id) {
+            <li [class.cover]="m.isCover">
+              @switch (m.kind) {
+                @case ('IMAGE') {
+                  <img [src]="url(m.uploadedFile.url)" [alt]="m.title || m.uploadedFile.name" />
+                }
+                @case ('VIDEO') {
+                  <a
+                    class="file"
+                    [href]="url(m.uploadedFile.url)"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    ><i class="pi pi-video"></i
+                  ></a>
+                }
+                @default {
+                  <a
+                    class="file"
+                    [href]="url(m.uploadedFile.url)"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    ><i class="pi pi-file"></i
+                  ></a>
+                }
+              }
+              <div class="meta">
+                <span class="name">{{ m.title || m.uploadedFile.name }}</span>
+                @if (m.isCover) {
+                  <small class="badge">{{ 'properties.cover' | t }}</small>
+                }
+              </div>
+              <div class="tools" *appHasPermission="'UPDATE_PROPERTY'">
+                @if (m.kind === 'IMAGE' && !m.isCover) {
+                  <p-button
+                    icon="pi pi-star"
+                    [text]="true"
+                    size="small"
+                    severity="secondary"
+                    (onClick)="makeCover(m)"
+                    [attr.aria-label]="'properties.makeCover' | t"
+                  />
+                }
+                <p-button
+                  icon="pi pi-pencil"
+                  [text]="true"
+                  size="small"
+                  severity="secondary"
+                  (onClick)="openEdit(m)"
+                  [attr.aria-label]="'common.edit' | t"
+                />
+                <p-button
+                  icon="pi pi-trash"
+                  [text]="true"
+                  size="small"
+                  severity="danger"
+                  (onClick)="removeMedia(m)"
+                  [attr.aria-label]="'common.delete' | t"
+                />
+              </div>
+            </li>
+          }
+        </ul>
+      }
+
+      <div class="upload" *appHasPermission="'UPDATE_PROPERTY'">
+        <h3>{{ 'properties.addMedia' | t }}</h3>
+        <div class="kind">
+          <span>{{ 'properties.mediaKind' | t }}</span>
+          <p-select
+            [options]="kinds"
+            optionLabel="label"
+            optionValue="value"
+            [ngModel]="kind"
+            (ngModelChange)="onKind($event)"
+            appendTo="body"
+          />
+        </div>
+        <app-file-upload [rule]="rule" [multiple]="true" (filesChange)="onPicked($event)" />
+        <p-button
+          [label]="'properties.addMedia' | t"
+          icon="pi pi-upload"
+          [loading]="uploading()"
+          (onClick)="upload()"
+        />
+      </div>
+    </section>
+  </div>
+
+  <p-dialog
+    [header]="'common.edit' | t"
+    [(visible)]="editDialog"
+    [modal]="true"
+    [style]="{ width: '24rem' }"
+  >
+    <div class="dialog-form">
+      <label for="mTitle">{{ 'properties.mediaTitle' | t }}</label>
+      <input pInputText id="mTitle" [(ngModel)]="editTitle" maxlength="200" />
+      <label for="mOrder">{{ 'slides.order' | t }}</label>
+      <p-inputnumber
+        inputId="mOrder"
+        [(ngModel)]="editOrder"
+        [min]="0"
+        [max]="10000"
+        [useGrouping]="false"
+      />
+      <div class="dialog-actions">
+        <p-button
+          [label]="'common.cancel' | t"
+          severity="secondary"
+          [text]="true"
+          (onClick)="editDialog.set(false)"
+        />
+        <p-button [label]="'common.save' | t" icon="pi pi-check" (onClick)="saveEdit()" />
+      </div>
+    </div>
+  </p-dialog>
+} @else if (loading()) {
+  <p>{{ 'common.loading' | t }}</p>
+}

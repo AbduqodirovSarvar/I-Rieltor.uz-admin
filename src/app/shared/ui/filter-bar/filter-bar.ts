@@ -22,7 +22,7 @@ export interface FilterOption {
 
 export type FilterField =
   | { key: string; label: string; type: 'text'; op?: 'contains' | 'equals' | 'startswith' }
-  | { key: string; label: string; type: 'select'; options: FilterOption[] }
+  | { key: string; label: string; type: 'select'; options: FilterOption[]; default?: string }
   | { key: string; label: string; type: 'bool' }
   | { key: string; label: string; type: 'date-range' };
 
@@ -64,8 +64,11 @@ export class FilterBar implements OnInit {
   ngOnInit(): void {
     const restored: Record<string, unknown> = {};
     for (const field of this.fields()) {
-      const raw = this.query.get(URL_PREFIX + field.key);
-      if (!raw) continue;
+      const raw =
+        this.query.get(URL_PREFIX + field.key) ??
+        (field.type === 'select' ? field.default : undefined);
+      // '-' is how the address says "all" for a filter that otherwise starts with a default.
+      if (!raw || raw === '-') continue;
       if (field.type === 'date-range') {
         const [from, to] = raw.split('..');
         restored[field.key] = [this.parseDay(from), to ? this.parseDay(to) : null];
@@ -100,7 +103,7 @@ export class FilterBar implements OnInit {
     const urlValues: Record<string, string | null> = {};
     for (const field of this.fields()) {
       const value = this.values()[field.key];
-      urlValues[URL_PREFIX + field.key] = null;
+      urlValues[URL_PREFIX + field.key] = field.type === 'select' && field.default ? '-' : null;
       if (value === null || value === undefined || value === '') continue;
 
       if (field.type === 'date-range') {

@@ -1,0 +1,44 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: var(--p-surface-0);
+  border: 1px solid var(--p-content-border-color);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  max-width: 56rem;
+  margin-top: 0.75rem;
+}
+
+:host-context(.app-dark) .card {
+  background: var(--p-surface-900);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1rem;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.current {
+  display: block;
+  max-height: 6rem;
+  margin-bottom: 0.6rem;
+  border-radius: 0.35rem;
+}
+
+textarea {
+  width: 100%;
+}
+
+:host ::ng-deep p-inputnumber,
+:host ::ng-deep p-inputnumber input {
+  width: 100%;
+}

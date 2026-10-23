@@ -1,0 +1,93 @@
+<app-page-header [title]="'permissions.forRole' | t: { role: role()?.name ?? '' }">
+  <p-button
+    [label]="'common.back' | t"
+    icon="pi pi-arrow-left"
+    severity="secondary"
+    [text]="true"
+    (onClick)="back()"
+  />
+  <p-button
+    [label]="'common.cancel' | t"
+    severity="secondary"
+    [outlined]="true"
+    [disabled]="!dirty()"
+    (onClick)="reset()"
+  />
+  <p-button
+    *appHasPermission="['CREATE_USERROLEPERMISSION', 'DELETE_USERROLEPERMISSION']"
+    [label]="'common.save' | t"
+    icon="pi pi-check"
+    [loading]="saving()"
+    [disabled]="!dirty()"
+    (onClick)="save()"
+  />
+</app-page-header>
+
+@if (isOwnRole()) {
+  <p class="warn">
+    <i class="pi pi-exclamation-triangle"></i> {{ 'permissions.ownRoleWarning' | t }}
+  </p>
+}
+
+@if (loading()) {
+  <p>{{ 'common.loading' | t }}</p>
+} @else {
+  @if (dirty()) {
+    <p class="changes">
+      {{ 'permissions.changes' | t: { added: added().length, removed: removed().length } }}
+    </p>
+  }
+  <div class="wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>{{ 'permissions.section' | t }}</th>
+          @for (column of mainActions; track column.action) {
+            <th class="center">{{ column.label }}</th>
+          }
+          <th>{{ 'permissions.other' | t }}</th>
+          <th class="center">{{ 'permissions.all' | t }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of rows(); track row.entity) {
+          <tr>
+            <th scope="row">{{ row.label }}</th>
+            @for (name of row.main; track $index) {
+              <td class="center">
+                @if (name) {
+                  <input
+                    type="checkbox"
+                    [checked]="has(name)"
+                    (change)="toggle(name)"
+                    [attr.aria-label]="row.label + ' · ' + name"
+                  />
+                }
+              </td>
+            }
+            <td>
+              @for (extra of row.other; track extra.name) {
+                <label class="extra">
+                  <input
+                    type="checkbox"
+                    [checked]="has(extra.name)"
+                    (change)="toggle(extra.name)"
+                  />
+                  {{ extra.label }}
+                </label>
+              }
+            </td>
+            <td class="center">
+              <input
+                type="checkbox"
+                [checked]="rowChecked(row)"
+                (change)="toggleRow(row)"
+                [attr.aria-label]="row.label + ' · ' + ('permissions.all' | t)"
+              />
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}

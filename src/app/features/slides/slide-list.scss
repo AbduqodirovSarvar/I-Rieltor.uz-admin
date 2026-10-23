@@ -1,0 +1,31 @@
+.thumb {
+  width: 5rem;
+  height: 3rem;
+  object-fit: cover;
+  border-radius: 0.35rem;
+  display: block;
+}
+
+.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.star,
+.error {
+  color: var(--p-red-500);
+}
+
+.hint {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--p-text-muted-color);
+}

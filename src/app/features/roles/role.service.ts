@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import type { components } from '../../api/schema';
 import { ApiClient } from '../../core/http/api-client';
+import { plainParams } from '../../core/http/query-params';
 import { ListQuery, Page } from '../../core/http/response-model';
 
 export type Role = components['schemas']['UserRoleViewModel'];
@@ -12,6 +13,10 @@ export class RoleService {
 
   list(query: ListQuery): Observable<Page<Role>> {
     return this.api.getPage<Role>('api/UserRole/list', query);
+  }
+
+  get(id: string): Observable<Role> {
+    return this.api.get<Role>('api/UserRole', plainParams({ Id: id }));
   }
 
   /** All roles for a select (there are few). */

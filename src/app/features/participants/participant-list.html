@@ -1,0 +1,114 @@
+<app-page-header [title]="'participants.title' | t" [subtitle]="'participants.closedHint' | t" />
+
+<div class="filters">
+  <app-filter-bar [fields]="fields()" (filtersChange)="filters.set($event)" />
+</div>
+
+<div class="bulk" *appHasPermission="'UPDATE_AUCTIONPARTICIPANT'">
+  <p-button
+    [label]="'participants.selectPending' | t"
+    icon="pi pi-check-square"
+    severity="secondary"
+    [outlined]="true"
+    size="small"
+    (onClick)="selectPending()"
+  />
+  <p-button
+    [label]="'participants.approveSelected' | t: { count: selected().size }"
+    icon="pi pi-check"
+    size="small"
+    [disabled]="selected().size === 0"
+    [loading]="bulkBusy()"
+    (onClick)="approveSelected()"
+  />
+</div>
+
+<app-data-table
+  [columns]="columns"
+  [fetch]="fetch"
+  [filters]="filters()"
+  [reloadKey]="reload()"
+  [defaultSort]="defaultSort"
+  [searchPlaceholder]="'participants.searchPlaceholder' | t"
+>
+  <ng-template appCell="select" let-participant>
+    @if (participant.status === 'PENDING') {
+      <input
+        type="checkbox"
+        [checked]="isSelected(participant)"
+        (change)="toggle(participant)"
+        [attr.aria-label]="participant.userFullName"
+      />
+    }
+  </ng-template>
+  <ng-template appCell="userFullName" let-participant>
+    <div class="person">
+      <strong>{{ participant.userFullName }}</strong>
+      @if (participant.userPhone) {
+        <small>{{ participant.userPhone | phone }}</small>
+      }
+    </div>
+  </ng-template>
+  <ng-template appRowActions let-participant>
+    <p-button
+      icon="pi pi-eye"
+      [text]="true"
+      severity="secondary"
+      (onClick)="view(participant)"
+      [attr.aria-label]="'participants.view' | t"
+    />
+    <app-participant-actions [participant]="participant" (changed)="reviewed()" />
+  </ng-template>
+</app-data-table>
+
+<p-dialog
+  [header]="'participants.detail' | t"
+  [(visible)]="detailOpen"
+  [modal]="true"
+  [style]="{ width: '34rem' }"
+>
+  @if (detail(); as d) {
+    <dl>
+      <app-key-value [label]="'participants.lot' | t"
+        ><a [routerLink]="['/auctions', d.auctionId]"
+          >{{ d.lotNumber }} · {{ d.auctionTitle }}</a
+        ></app-key-value
+      >
+      <app-key-value [label]="'participants.person' | t" [value]="d.userFullName" />
+      <app-key-value [label]="'participants.identifier' | t" [value]="d.userIdentifier" />
+      <app-key-value [label]="'participants.phone' | t" [value]="d.userPhone | phone" />
+      <app-key-value [label]="'participants.email' | t" [value]="d.userEmail" />
+      <app-key-value [label]="'participants.status' | t"
+        ><app-status-badge enum="ParticipantStatus" [value]="d.status"
+      /></app-key-value>
+      <app-key-value [label]="'participants.number' | t" [value]="d.participantNumber" />
+      <app-key-value [label]="'participants.deposit' | t"
+        ><app-status-badge enum="DepositStatus" [value]="d.depositStatus"
+      /></app-key-value>
+      <app-key-value [label]="'participants.signer' | t" [value]="d.signerIdentifier" />
+      <app-key-value [label]="'participants.signedAt' | t" [value]="d.signedAt | dateTime" />
+      <app-key-value [label]="'participants.reviewedAt' | t" [value]="d.reviewedAt | dateTime" />
+      @if (d.rejectReason) {
+        <app-key-value [label]="'participants.rejectReason' | t" [value]="d.rejectReason" />
+      }
+    </dl>
+    <h3>{{ 'participants.documents' | t }}</h3>
+    @if (documentsOf().length === 0) {
+      <p class="muted">{{ 'participants.noDocuments' | t }}</p>
+    } @else {
+      <ul class="docs">
+        @for (doc of documentsOf(); track doc.id) {
+          <li>
+            <i class="pi pi-file"></i>
+            <button type="button" class="link" (click)="openDocument(doc)">
+              {{ doc.originalName }}
+            </button>
+          </li>
+        }
+      </ul>
+    }
+    <div class="dialog-actions">
+      <app-participant-actions [participant]="d" (changed)="reviewed()" />
+    </div>
+  }
+</p-dialog>
