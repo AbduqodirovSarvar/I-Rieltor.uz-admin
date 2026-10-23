@@ -1,0 +1,23 @@
+:host {
+  display: block;
+}
+
+.error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 4rem 1rem;
+  text-align: center;
+
+  h1 {
+    margin: 0;
+    font-size: 4rem;
+    color: var(--p-primary-color);
+  }
+
+  p {
+    margin: 0 0 1rem;
+    color: var(--p-text-muted-color);
+  }
+}
