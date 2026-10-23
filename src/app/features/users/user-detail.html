@@ -1,0 +1,97 @@
+@if (user(); as u) {
+  <app-page-header
+    [title]="u.fullName || u.login || ''"
+    [subtitle]="u.userRole?.name ?? ('users.noRole' | t)"
+  >
+    <a *appHasPermission="'UPDATE_USER'" [routerLink]="['/users', u.id, 'edit']">
+      <p-button
+        [label]="'common.edit' | t"
+        icon="pi pi-pencil"
+        severity="secondary"
+        [outlined]="true"
+      />
+    </a>
+    <p-button
+      *appHasPermission="'ASSIGN_USERROLE'"
+      [label]="'users.assignRole' | t"
+      icon="pi pi-shield"
+      severity="secondary"
+      [outlined]="true"
+      (onClick)="openRoleDialog()"
+    />
+    @if (!isMe) {
+      <p-button
+        *appHasPermission="'DELETE_USER'"
+        [label]="'common.delete' | t"
+        icon="pi pi-trash"
+        severity="danger"
+        [outlined]="true"
+        (onClick)="remove()"
+      />
+    }
+  </app-page-header>
+
+  @if (isMe) {
+    <p class="note"><i class="pi pi-info-circle"></i> {{ 'users.ownAccountHint' | t }}</p>
+  }
+
+  <section class="card">
+    <h2>{{ 'users.details' | t }}</h2>
+    <dl>
+      <app-key-value [label]="'users.fullName' | t" [value]="u.fullName" />
+      <app-key-value [label]="'users.type' | t"
+        ><app-status-badge enum="ClientType" [value]="u.type"
+      /></app-key-value>
+      <app-key-value [label]="'users.login' | t" [value]="u.login" />
+      <app-key-value [label]="'users.legalName' | t" [value]="u.legalName" />
+      <app-key-value [label]="'users.innpinfl' | t" [value]="u.innpinfl" />
+      <app-key-value [label]="'users.phone' | t" [value]="u.phone | phone" />
+      <app-key-value [label]="'users.secondaryPhone' | t" [value]="u.secondaryPhone | phone" />
+      <app-key-value [label]="'users.address' | t" [value]="u.address" />
+      <app-key-value [label]="'users.email' | t">
+        @if (u.email) {
+          {{ u.email }}
+          <small class="muted">{{
+            (u.emailConfirmedAt ? 'users.emailConfirmed' : 'users.emailUnconfirmed') | t
+          }}</small>
+        }
+      </app-key-value>
+      <app-key-value [label]="'users.role' | t" [value]="u.userRole?.name" />
+      <app-key-value [label]="'users.createdAt' | t" [value]="u.createdAt | dateTime" />
+    </dl>
+  </section>
+
+  <p-dialog
+    [header]="'users.assignRole' | t"
+    [(visible)]="roleDialog"
+    [modal]="true"
+    [style]="{ width: '24rem' }"
+  >
+    <p-select
+      [options]="roles()"
+      optionLabel="name"
+      optionValue="id"
+      [(ngModel)]="selectedRole"
+      [placeholder]="'users.selectRole' | t"
+      appendTo="body"
+      styleClass="full"
+    />
+    <ng-template #footer>
+      <p-button
+        [label]="'common.cancel' | t"
+        severity="secondary"
+        [text]="true"
+        (onClick)="roleDialog.set(false)"
+      />
+      <p-button
+        [label]="'common.save' | t"
+        icon="pi pi-check"
+        [loading]="savingRole()"
+        [disabled]="!selectedRole"
+        (onClick)="saveRole()"
+      />
+    </ng-template>
+  </p-dialog>
+} @else if (loading()) {
+  <p>{{ 'common.loading' | t }}</p>
+}

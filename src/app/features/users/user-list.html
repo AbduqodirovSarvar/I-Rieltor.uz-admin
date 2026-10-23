@@ -1,0 +1,18 @@
+<app-page-header [title]="'users.title' | t">
+  <a *appHasPermission="'CREATE_USER'" routerLink="/users/new">
+    <p-button [label]="'users.new' | t" icon="pi pi-plus" />
+  </a>
+</app-page-header>
+
+<div class="filters">
+  <app-filter-bar [fields]="fields()" (filtersChange)="filters.set($event)" />
+</div>
+
+<app-data-table
+  [columns]="columns"
+  [fetch]="fetch"
+  [filters]="filters()"
+  [searchPlaceholder]="'users.searchPlaceholder' | t"
+  [clickable]="true"
+  (rowClick)="open($event)"
+/>

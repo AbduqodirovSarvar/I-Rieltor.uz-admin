@@ -1,0 +1,51 @@
+<main class="login">
+  <form class="card" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <div class="brand">
+      <i class="pi pi-building-columns"></i>
+      <strong>{{ 'app.name' | t }}</strong>
+    </div>
+    <h1>{{ 'auth.title' | t }}</h1>
+
+    @if (notice(); as text) {
+      <p-message severity="warn">{{ text }}</p-message>
+    }
+    @if (error(); as text) {
+      <p-message severity="error" role="alert">{{ text }}</p-message>
+    }
+
+    <app-form-field
+      [label]="'auth.login' | t"
+      [control]="form.controls.login"
+      [required]="true"
+      forId="login"
+    >
+      <input pInputText id="login" formControlName="login" autocomplete="username" />
+    </app-form-field>
+
+    <app-form-field
+      [label]="'auth.password' | t"
+      [control]="form.controls.password"
+      [required]="true"
+      forId="password"
+    >
+      <p-password
+        inputId="password"
+        formControlName="password"
+        [feedback]="false"
+        [toggleMask]="true"
+        autocomplete="current-password"
+        styleClass="full"
+        inputStyleClass="full"
+      />
+    </app-form-field>
+
+    <p-button
+      type="submit"
+      [label]="wait() > 0 ? wait() + ' s' : ('auth.signIn' | t)"
+      icon="pi pi-sign-in"
+      [loading]="busy()"
+      [disabled]="wait() > 0"
+      styleClass="full"
+    />
+  </form>
+</main>

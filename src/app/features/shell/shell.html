@@ -54,10 +54,10 @@
         (onClick)="theme.toggle()"
         [attr.aria-label]="'common.theme' | t"
       />
-      <div class="user">
+      <a class="user" routerLink="/profile" [attr.aria-label]="'profile.title' | t">
         <strong>{{ userName() }}</strong>
         <small>{{ role() }}</small>
-      </div>
+      </a>
       <p-button
         icon="pi pi-sign-out"
         [text]="true"

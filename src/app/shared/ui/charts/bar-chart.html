@@ -1,0 +1,28 @@
+<figure>
+  <svg
+    [attr.viewBox]="'0 0 ' + width + ' ' + height"
+    role="img"
+    [attr.aria-label]="ariaLabel()"
+    preserveAspectRatio="none"
+  >
+    <text x="8" y="12" class="top">{{ max() > 0 ? format()(max()) : '' }}</text>
+    <line [attr.x1]="0" [attr.x2]="width" [attr.y1]="baseline" [attr.y2]="baseline" class="axis" />
+    @for (bar of bars(); track $index) {
+      <rect
+        class="bar"
+        [attr.x]="bar.x"
+        [attr.y]="bar.y"
+        [attr.width]="bar.width"
+        [attr.height]="bar.height"
+        rx="2"
+      >
+        <title>{{ bar.tooltip }}</title>
+      </rect>
+      @if (bar.showLabel) {
+        <text [attr.x]="bar.labelX" [attr.y]="height - 6" class="label" text-anchor="middle">
+          {{ bar.label }}
+        </text>
+      }
+    }
+  </svg>
+</figure>

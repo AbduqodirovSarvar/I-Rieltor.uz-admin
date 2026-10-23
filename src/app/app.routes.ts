@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard, guestGuard } from './core/auth/auth.guards';
+import { authGuard, guestGuard, permissionGuard } from './core/auth/auth.guards';
 
 export const routes: Routes = [
   {
@@ -19,6 +19,23 @@ export const routes: Routes = [
         data: { title: 'nav.dashboard' },
         loadComponent: () =>
           import('./features/dashboard/dashboard-page').then((m) => m.DashboardPage),
+      },
+      {
+        path: 'users',
+        canActivate: [permissionGuard],
+        data: { permission: 'READ_USER', title: 'users.title' },
+        loadChildren: () => import('./features/users/users.routes').then((m) => m.USER_ROUTES),
+      },
+      {
+        path: 'roles',
+        canActivate: [permissionGuard],
+        data: { permission: 'READ_USERROLE', title: 'roles.title' },
+        loadChildren: () => import('./features/roles/roles.routes').then((m) => m.ROLE_ROUTES),
+      },
+      {
+        path: 'profile',
+        data: { title: 'profile.title' },
+        loadComponent: () => import('./features/profile/profile-page').then((m) => m.ProfilePage),
       },
       {
         path: 'forbidden',

@@ -1,0 +1,118 @@
+<div class="page">
+  <h1>{{ 'profile.title' | t }}</h1>
+
+  <div class="grid">
+    <section class="card">
+      <h2>{{ 'profile.details' | t }}</h2>
+      @if (user(); as u) {
+        <dl>
+          <dt>{{ 'profile.fullName' | t }}</dt>
+          <dd>{{ u.fullName || '—' }}</dd>
+          <dt>{{ 'profile.login' | t }}</dt>
+          <dd>{{ u.login || '—' }}</dd>
+          <dt>{{ 'profile.role' | t }}</dt>
+          <dd>{{ role() || '—' }}</dd>
+          <dt>{{ 'profile.phone' | t }}</dt>
+          <dd>{{ (u.phone | phone) || '—' }}</dd>
+        </dl>
+      }
+    </section>
+
+    <section class="card">
+      <h2>{{ 'profile.email' | t }}</h2>
+      @if (emailUnconfirmed()) {
+        <p-message severity="warn">{{ 'profile.emailUnconfirmed' | t }}</p-message>
+      } @else if (user()?.email) {
+        <p-message severity="success">{{ 'profile.emailConfirmed' | t }}</p-message>
+      } @else {
+        <p-message severity="info">{{ 'profile.emailNone' | t }}</p-message>
+      }
+      <form [formGroup]="emailForm" (ngSubmit)="saveEmail()" novalidate>
+        <app-form-field
+          [label]="'profile.email' | t"
+          [control]="emailForm.controls.email"
+          [required]="true"
+          forId="email"
+        >
+          <input pInputText id="email" type="email" formControlName="email" autocomplete="email" />
+        </app-form-field>
+        <div class="actions">
+          <p-button
+            type="submit"
+            [label]="'profile.emailSave' | t"
+            icon="pi pi-check"
+            [loading]="emailBusy()"
+          />
+          @if (emailUnconfirmed()) {
+            <p-button
+              type="button"
+              [label]="'profile.resend' | t"
+              icon="pi pi-send"
+              severity="secondary"
+              [outlined]="true"
+              [loading]="resendBusy()"
+              (onClick)="resend()"
+            />
+          }
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>{{ 'profile.changePassword' | t }}</h2>
+      <form [formGroup]="passwordForm" (ngSubmit)="changePassword()" novalidate>
+        <app-form-field
+          [label]="'profile.currentPassword' | t"
+          [control]="passwordForm.controls.currentPassword"
+          [required]="true"
+          forId="currentPassword"
+        >
+          <p-password
+            inputId="currentPassword"
+            formControlName="currentPassword"
+            [feedback]="false"
+            [toggleMask]="true"
+            autocomplete="current-password"
+          />
+        </app-form-field>
+        <app-form-field
+          [label]="'profile.newPassword' | t"
+          [control]="passwordForm.controls.newPassword"
+          [required]="true"
+          [hint]="'profile.passwordHint' | t"
+          forId="newPassword"
+        >
+          <p-password
+            inputId="newPassword"
+            formControlName="newPassword"
+            [feedback]="false"
+            [toggleMask]="true"
+            autocomplete="new-password"
+          />
+        </app-form-field>
+        <app-form-field
+          [label]="'profile.repeatPassword' | t"
+          [control]="passwordForm.controls.repeat"
+          [required]="true"
+          forId="repeat"
+        >
+          <p-password
+            inputId="repeat"
+            formControlName="repeat"
+            [feedback]="false"
+            [toggleMask]="true"
+            autocomplete="new-password"
+          />
+        </app-form-field>
+        <div class="actions">
+          <p-button
+            type="submit"
+            [label]="'profile.changePassword' | t"
+            icon="pi pi-lock"
+            [loading]="passwordBusy()"
+          />
+        </div>
+      </form>
+    </section>
+  </div>
+</div>

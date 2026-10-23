@@ -1,0 +1,36 @@
+.card {
+  background: var(--p-surface-0);
+  border: 1px solid var(--p-content-border-color);
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  max-width: 56rem;
+
+  h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.05rem;
+  }
+
+  dl {
+    margin: 0;
+  }
+}
+
+:host-context(.app-dark) .card {
+  background: var(--p-surface-900);
+}
+
+.note {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  color: var(--p-text-muted-color);
+}
+
+.muted {
+  margin-left: 0.5rem;
+  color: var(--p-text-muted-color);
+}
+
+:host ::ng-deep .full {
+  width: 100%;
+}

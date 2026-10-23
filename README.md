@@ -37,3 +37,9 @@ src/environments/   environment.ts (production), environment.development.ts
 - Commit xabari band raqami bilan: `A1-3: refresh single-flight`.
 - `src/app/api/schema.d.ts` ni backend o'zgargach `npm run api:types` bilan yangilang va commit qiling.
 - `/dev/ui` sahifasi faqat tema va komponentlarni ko'zdan kechirish uchun.
+
+## PrimeNG litsenziyasi
+PrimeNG 22 tijoriy litsenziyali kutubxona; tashkilot shartlarga mos kelsa **Community License** bepul (yillik tasdiqlash bilan,
+https://primeui.dev/licenses/community). Kalitni `src/environments/environment.ts` va `environment.development.ts` dagi `primeLicense`
+ga yozing. Kalit bo'sh bo'lsa sahifa pastki o'ng burchagida litsenziya ogohlantirishi chiqadi. Kalit bir yillik; muddati tugashidan
+oldin yangilang.

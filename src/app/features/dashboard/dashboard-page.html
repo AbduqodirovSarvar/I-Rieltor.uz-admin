@@ -1,0 +1,197 @@
+<app-page-header [title]="'nav.dashboard' | t" [subtitle]="updated() ?? ('dashboard.subtitle' | t)">
+  @if (canSee) {
+    <p-button
+      icon="pi pi-refresh"
+      [text]="true"
+      severity="secondary"
+      [loading]="loading()"
+      (onClick)="load()"
+      [attr.aria-label]="'common.refresh' | t"
+    />
+  }
+</app-page-header>
+
+@if (!canSee) {
+  <app-empty-state [message]="'dashboard.noAccess' | t" icon="pi pi-compass" />
+} @else if (failed()) {
+  <app-empty-state [message]="'dashboard.loadFailed' | t" icon="pi pi-exclamation-circle">
+    <p-button [label]="'common.refresh' | t" icon="pi pi-refresh" (onClick)="load()" />
+  </app-empty-state>
+} @else if (summary(); as s) {
+  <section class="cards">
+    <app-stat-card
+      [title]="'dashboard.users' | t"
+      [value]="formatCount(s.users.total)"
+      [note]="newUsers(s.users.newLast7Days) + (userTypes() ? ' · ' + userTypes() : '')"
+      icon="pi pi-users"
+      link="/users"
+    />
+    <app-stat-card
+      [title]="'dashboard.pendingApplications' | t"
+      [value]="formatCount(s.pendingApplications)"
+      [note]="'dashboard.pendingApplicationsHint' | t"
+      icon="pi pi-inbox"
+      [tone]="s.pendingApplications > 0 ? 'warn' : 'default'"
+      link="/participants"
+    />
+    <app-stat-card
+      [title]="'dashboard.pendingPayments' | t"
+      [value]="formatCount(s.payments.pending)"
+      icon="pi pi-clock"
+      [tone]="s.payments.pending > 0 ? 'warn' : 'default'"
+      link="/payments"
+    />
+    <app-stat-card
+      [title]="'dashboard.refunds' | t"
+      [value]="formatCount(s.payments.pendingRefunds)"
+      [note]="tr('dashboard.refundsAmount', s.payments.pendingRefundsAmount)"
+      icon="pi pi-replay"
+      [tone]="s.payments.pendingRefunds > 0 ? 'danger' : 'default'"
+      link="/payments"
+    />
+    <app-stat-card
+      [title]="'dashboard.deposits' | t"
+      [value]="amount(s.payments.paidDeposits)"
+      icon="pi pi-wallet"
+      tone="success"
+    />
+    <app-stat-card
+      [title]="'dashboard.finalPayments' | t"
+      [value]="amount(s.payments.paidFinalPayments)"
+      icon="pi pi-money-bill"
+      tone="success"
+    />
+    <app-stat-card
+      [title]="'dashboard.sold' | t"
+      [value]="formatCount(s.sales.soldCount)"
+      [note]="tr('dashboard.revenue', s.sales.revenue)"
+      icon="pi pi-building"
+      tone="success"
+    />
+  </section>
+
+  <section class="charts">
+    <div class="panel">
+      <h2>{{ 'dashboard.chartUsers' | t }}</h2>
+      <app-bar-chart
+        [points]="userChart()"
+        [format]="formatCount"
+        [ariaLabel]="'dashboard.chartUsers' | t"
+      />
+    </div>
+    <div class="panel">
+      <h2>{{ 'dashboard.chartBids' | t }}</h2>
+      <app-bar-chart
+        [points]="bidChart()"
+        [format]="formatCount"
+        [ariaLabel]="'dashboard.chartBids' | t"
+      />
+    </div>
+    <div class="panel">
+      <h2>{{ 'dashboard.chartMoney' | t }}</h2>
+      <app-bar-chart
+        [points]="moneyChart()"
+        [format]="formatSum"
+        [ariaLabel]="'dashboard.chartMoney' | t"
+      />
+    </div>
+  </section>
+
+  <section class="lists">
+    <div class="panel">
+      <h2>{{ 'dashboard.ongoing' | t }}</h2>
+      @if ((s.ongoing ?? []).length === 0) {
+        <p class="none">{{ 'dashboard.none' | t }}</p>
+      } @else {
+        <table>
+          <thead>
+            <tr>
+              <th>{{ 'dashboard.lot' | t }}</th>
+              <th>{{ 'dashboard.name' | t }}</th>
+              <th class="num">{{ 'dashboard.price' | t }}</th>
+              <th class="num">{{ 'dashboard.participants' | t }}</th>
+              <th class="num">{{ 'dashboard.bids' | t }}</th>
+              <th>{{ 'dashboard.ends' | t }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (a of s.ongoing; track a.id) {
+              <tr>
+                <td>
+                  <a [routerLink]="['/auctions', a.id]">{{ a.lotNumber }}</a>
+                </td>
+                <td>{{ a.title }}</td>
+                <td class="num">{{ a.currentPrice | money }}</td>
+                <td class="num">{{ a.participants }}</td>
+                <td class="num">{{ a.bids }}</td>
+                <td>{{ a.endsAt | dateTime }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      }
+    </div>
+
+    <div class="panel">
+      <h2>{{ 'dashboard.upcoming' | t }}</h2>
+      @if ((s.upcoming ?? []).length === 0) {
+        <p class="none">{{ 'dashboard.none' | t }}</p>
+      } @else {
+        <table>
+          <thead>
+            <tr>
+              <th>{{ 'dashboard.lot' | t }}</th>
+              <th>{{ 'dashboard.name' | t }}</th>
+              <th class="num">{{ 'dashboard.participants' | t }}</th>
+              <th>{{ 'dashboard.starts' | t }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (a of s.upcoming; track a.id) {
+              <tr>
+                <td>
+                  <a [routerLink]="['/auctions', a.id]">{{ a.lotNumber }}</a>
+                </td>
+                <td>{{ a.title }}</td>
+                <td class="num">{{ a.participants }}</td>
+                <td>{{ a.startsAt | dateTime }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      }
+    </div>
+
+    <div class="panel">
+      <h2>{{ 'dashboard.awaitingPayment' | t }}</h2>
+      @if ((s.awaitingPayment ?? []).length === 0) {
+        <p class="none">{{ 'dashboard.none' | t }}</p>
+      } @else {
+        <table>
+          <thead>
+            <tr>
+              <th>{{ 'dashboard.lot' | t }}</th>
+              <th>{{ 'dashboard.name' | t }}</th>
+              <th>{{ 'dashboard.outcome' | t }}</th>
+              <th class="num">{{ 'dashboard.price' | t }}</th>
+              <th>{{ 'dashboard.due' | t }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (a of s.awaitingPayment; track a.auctionId) {
+              <tr>
+                <td>
+                  <a [routerLink]="['/auctions', a.auctionId]">{{ a.lotNumber }}</a>
+                </td>
+                <td>{{ a.title }}</td>
+                <td><app-status-badge enum="AuctionOutcome" [value]="a.outcome" /></td>
+                <td class="num">{{ a.finalPrice | money }}</td>
+                <td>{{ a.paymentDueAt | dateTime }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      }
+    </div>
+  </section>
+}

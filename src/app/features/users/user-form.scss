@@ -1,0 +1,29 @@
+.card {
+  background: var(--p-surface-0);
+  border: 1px solid var(--p-content-border-color);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  max-width: 56rem;
+}
+
+:host-context(.app-dark) .card {
+  background: var(--p-surface-900);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+:host ::ng-deep p-password,
+:host ::ng-deep p-password input,
+:host ::ng-deep p-select {
+  width: 100%;
+}

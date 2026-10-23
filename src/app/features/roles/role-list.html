@@ -1,0 +1,64 @@
+<app-page-header [title]="'roles.title' | t">
+  <p-button
+    *appHasPermission="'CREATE_USERROLE'"
+    [label]="'roles.new' | t"
+    icon="pi pi-plus"
+    (onClick)="open()"
+  />
+</app-page-header>
+
+<app-data-table
+  [columns]="columns"
+  [fetch]="fetch"
+  [reloadKey]="reload()"
+  [defaultSort]="defaultSort"
+>
+  <ng-template appRowActions let-role>
+    <p-button
+      *appHasPermission="'UPDATE_USERROLE'"
+      icon="pi pi-pencil"
+      [text]="true"
+      severity="secondary"
+      (onClick)="open(role)"
+      [attr.aria-label]="'common.edit' | t"
+    />
+    <p-button
+      *appHasPermission="'DELETE_USERROLE'"
+      icon="pi pi-trash"
+      [text]="true"
+      severity="danger"
+      (onClick)="remove(role)"
+      [attr.aria-label]="'common.delete' | t"
+    />
+  </ng-template>
+</app-data-table>
+
+<p-dialog [header]="dialogTitle" [(visible)]="dialog" [modal]="true" [style]="{ width: '28rem' }">
+  <form [formGroup]="form" (ngSubmit)="save()" novalidate class="dialog-form">
+    <app-form-field
+      [label]="'roles.name' | t"
+      [control]="form.controls.name"
+      [required]="true"
+      forId="roleName"
+    >
+      <input pInputText id="roleName" formControlName="name" />
+    </app-form-field>
+    <app-form-field
+      [label]="'roles.description' | t"
+      [control]="form.controls.description"
+      forId="roleDescription"
+    >
+      <textarea pTextarea id="roleDescription" formControlName="description" rows="3"></textarea>
+    </app-form-field>
+    <div class="dialog-actions">
+      <p-button
+        type="button"
+        [label]="'common.cancel' | t"
+        severity="secondary"
+        [text]="true"
+        (onClick)="dialog.set(false)"
+      />
+      <p-button type="submit" [label]="'common.save' | t" icon="pi pi-check" [loading]="busy()" />
+    </div>
+  </form>
+</p-dialog>

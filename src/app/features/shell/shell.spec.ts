@@ -36,7 +36,7 @@ describe('Shell', () => {
   });
 
   it('shows the menu items that exist and that the user may see, and loads the profile', async () => {
-    TestBed.inject(TokenStore).set(sessionWith(['READ_USER']));
+    TestBed.inject(TokenStore).set(sessionWith(['READ_USER', 'READ_AUCTION']));
     const fixture = TestBed.createComponent(Shell);
     TestBed.inject(HttpTestingController)
       .expectOne('/api/Auth/me')
@@ -46,9 +46,11 @@ describe('Shell', () => {
     const text = (fixture.nativeElement as HTMLElement).textContent ?? '';
     expect(text).toContain('Bosh sahifa');
     expect(text).toContain('Ali Valiyev');
-    // READ_USER is held but the Users page does not exist yet (ready: false), so it is hidden.
-    expect(text).not.toContain('Foydalanuvchilar');
-    expect(NAV.flatMap((g) => g.items).find((i) => i.route === '/users')?.ready).toBe(false);
+    // READ_USER is held and the Users section exists: shown. READ_AUCTION is held, but that page is not built yet (ready: false).
+    expect(text).toContain('Foydalanuvchilar');
+    expect(text).not.toContain('Auksionlar');
+    expect(NAV.flatMap((g) => g.items).find((i) => i.route === '/auctions')?.ready).toBe(false);
+    expect(text).not.toContain('Rollar');
   });
 });
 

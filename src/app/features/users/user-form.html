@@ -1,0 +1,128 @@
+<app-page-header [title]="title()" />
+
+@if (loading()) {
+  <p>{{ 'common.loading' | t }}</p>
+} @else {
+  <form class="card" [formGroup]="form" (ngSubmit)="save()" novalidate>
+    <div class="grid">
+      <app-form-field [label]="'users.type' | t" [control]="form.controls.type" forId="type">
+        <p-select
+          inputId="type"
+          formControlName="type"
+          [options]="types"
+          optionLabel="label"
+          optionValue="value"
+          appendTo="body"
+        />
+      </app-form-field>
+
+      @if (editing) {
+        <app-form-field
+          [label]="'users.fullName' | t"
+          [control]="form.controls.fullName"
+          forId="fullName"
+        >
+          <input pInputText id="fullName" formControlName="fullName" />
+        </app-form-field>
+      } @else {
+        <app-form-field
+          [label]="'users.lastName' | t"
+          [control]="form.controls.lastName"
+          [required]="true"
+          forId="lastName"
+        >
+          <input pInputText id="lastName" formControlName="lastName" />
+        </app-form-field>
+        <app-form-field
+          [label]="'users.firstName' | t"
+          [control]="form.controls.firstName"
+          [required]="true"
+          forId="firstName"
+        >
+          <input pInputText id="firstName" formControlName="firstName" />
+        </app-form-field>
+        <app-form-field
+          [label]="'users.middleName' | t"
+          [control]="form.controls.middleName"
+          forId="middleName"
+        >
+          <input pInputText id="middleName" formControlName="middleName" />
+        </app-form-field>
+      }
+
+      <app-form-field [label]="'users.login' | t" [control]="form.controls.login" forId="login">
+        <input pInputText id="login" formControlName="login" autocomplete="off" />
+      </app-form-field>
+      <app-form-field
+        [label]="'users.legalName' | t"
+        [control]="form.controls.legalName"
+        forId="legalName"
+      >
+        <input pInputText id="legalName" formControlName="legalName" />
+      </app-form-field>
+      <app-form-field
+        [label]="'users.innpinfl' | t"
+        [control]="form.controls.innpinfl"
+        forId="innpinfl"
+      >
+        <input pInputText id="innpinfl" formControlName="innpinfl" inputmode="numeric" />
+      </app-form-field>
+      <app-form-field
+        [label]="'users.phone' | t"
+        [control]="form.controls.phone"
+        forId="phone"
+        hint="+998901234567"
+      >
+        <input pInputText id="phone" formControlName="phone" inputmode="tel" />
+      </app-form-field>
+      <app-form-field
+        [label]="'users.secondaryPhone' | t"
+        [control]="form.controls.secondaryPhone"
+        forId="secondaryPhone"
+      >
+        <input pInputText id="secondaryPhone" formControlName="secondaryPhone" inputmode="tel" />
+      </app-form-field>
+      <app-form-field
+        [label]="'users.address' | t"
+        [control]="form.controls.address"
+        forId="address"
+      >
+        <input pInputText id="address" formControlName="address" />
+      </app-form-field>
+      <app-form-field
+        [label]="'users.email' | t"
+        [control]="form.controls.email"
+        [required]="!editing"
+        forId="email"
+      >
+        <input pInputText id="email" type="email" formControlName="email" autocomplete="off" />
+      </app-form-field>
+      <app-form-field
+        [label]="(editing ? 'users.newPassword' : 'users.password') | t"
+        [control]="form.controls.password"
+        [required]="!editing"
+        [hint]="'profile.passwordHint' | t"
+        forId="password"
+      >
+        <p-password
+          inputId="password"
+          formControlName="password"
+          [feedback]="false"
+          [toggleMask]="true"
+          autocomplete="new-password"
+        />
+      </app-form-field>
+    </div>
+
+    <div class="actions">
+      <p-button type="submit" [label]="'common.save' | t" icon="pi pi-check" [loading]="busy()" />
+      <p-button
+        type="button"
+        [label]="'common.cancel' | t"
+        severity="secondary"
+        [text]="true"
+        (onClick)="cancel()"
+      />
+    </div>
+  </form>
+}

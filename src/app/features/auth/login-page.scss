@@ -1,0 +1,41 @@
+.login {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.card {
+  width: 100%;
+  max-width: 24rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  background: var(--p-surface-0);
+  border: 1px solid var(--p-content-border-color);
+  border-radius: 0.75rem;
+  box-shadow: 0 6px 24px rgb(0 0 0 / 8%);
+}
+
+:host-context(.app-dark) .card {
+  background: var(--p-surface-900);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--p-primary-color);
+  font-size: 1.15rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+:host ::ng-deep .full,
+:host ::ng-deep .full input {
+  width: 100%;
+}
