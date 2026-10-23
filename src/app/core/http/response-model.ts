@@ -20,13 +20,7 @@ export interface Page<T> {
 }
 
 export type FilterOperator =
-  | 'equals'
-  | 'notequals'
-  | 'contains'
-  | 'greaterthan'
-  | 'lessthan'
-  | 'greaterthanorequal'
-  | 'lessthanorequal';
+  'equals' | 'notequals' | 'contains' | 'startswith' | 'endswith' | 'greaterthan' | 'lessthan';
 
 /** What every list endpoint accepts (BaseGetListQuery). `filters` keys look like `status.equals`. */
 export interface ListQuery {

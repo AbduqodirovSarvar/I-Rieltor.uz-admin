@@ -1,0 +1,15 @@
+<div class="field" [class.invalid]="messages().length > 0">
+  <label [attr.for]="forId()">
+    {{ label() }}
+    @if (required()) {
+      <span class="star" aria-hidden="true">*</span>
+    }
+  </label>
+  <ng-content />
+  @for (message of messages(); track message) {
+    <small class="error" role="alert">{{ message }}</small>
+  }
+  @if (hint() && messages().length === 0) {
+    <small class="hint">{{ hint() }}</small>
+  }
+</div>

@@ -1,0 +1,87 @@
+:host {
+  display: block;
+}
+
+.drop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 1.25rem;
+  border: 2px dashed var(--p-content-border-color);
+  border-radius: var(--app-radius);
+  color: var(--p-text-muted-color);
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+
+  .pi {
+    font-size: 1.75rem;
+  }
+
+  &.dragging {
+    border-color: var(--p-primary-color);
+    background: var(--p-highlight-background);
+  }
+
+  &.disabled {
+    opacity: 0.55;
+  }
+}
+
+.native {
+  display: none;
+}
+
+.choose {
+  all: unset;
+  cursor: pointer;
+  color: var(--p-primary-color);
+  font-weight: 600;
+
+  &:focus-visible {
+    outline: 2px solid var(--p-primary-color);
+    outline-offset: 2px;
+  }
+}
+
+.error {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--p-red-500);
+}
+
+.list {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  img {
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+    border-radius: 0.35rem;
+  }
+
+  .pi-file {
+    font-size: 1.5rem;
+    width: 3rem;
+    text-align: center;
+  }
+
+  .name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

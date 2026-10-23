@@ -1,0 +1,73 @@
+<div class="shell">
+  <aside class="sidebar" [class.open]="menuOpen()" aria-label="Asosiy menyu">
+    <a class="brand" routerLink="/" (click)="closeMenu()">
+      <i class="pi pi-building-columns"></i>
+      <span>{{ 'app.name' | t }}</span>
+    </a>
+    <nav>
+      @for (group of groups(); track group.label) {
+        <div class="group">
+          <div class="group-title">{{ group.label | t }}</div>
+          @for (item of group.items; track item.route) {
+            <a
+              class="item"
+              [routerLink]="item.route"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: item.route === '/' }"
+              (click)="closeMenu()"
+            >
+              <i [class]="item.icon"></i>
+              <span>{{ item.label | t }}</span>
+            </a>
+          }
+        </div>
+      }
+    </nav>
+  </aside>
+
+  @if (menuOpen()) {
+    <div class="backdrop" (click)="closeMenu()" aria-hidden="true"></div>
+  }
+
+  <div class="main">
+    <header class="topbar">
+      <p-button
+        class="burger"
+        icon="pi pi-bars"
+        [text]="true"
+        severity="secondary"
+        (onClick)="toggleMenu()"
+        aria-label="Menyu"
+      />
+      <nav class="crumbs" aria-label="Joylashuv">
+        <span>{{ 'nav.dashboard' | t }}</span>
+        @for (crumb of crumbs(); track $index) {
+          <i class="pi pi-angle-right"></i>
+          <span [class.current]="$last">{{ crumb }}</span>
+        }
+      </nav>
+      <div class="spacer"></div>
+      <p-button
+        [icon]="theme.dark() ? 'pi pi-sun' : 'pi pi-moon'"
+        [text]="true"
+        severity="secondary"
+        (onClick)="theme.toggle()"
+        [attr.aria-label]="'common.theme' | t"
+      />
+      <div class="user">
+        <strong>{{ userName() }}</strong>
+        <small>{{ role() }}</small>
+      </div>
+      <p-button
+        icon="pi pi-sign-out"
+        [text]="true"
+        severity="secondary"
+        (onClick)="signOut()"
+        [attr.aria-label]="'common.signOut' | t"
+      />
+    </header>
+    <main class="content">
+      <router-outlet />
+    </main>
+  </div>
+</div>

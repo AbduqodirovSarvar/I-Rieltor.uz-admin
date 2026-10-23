@@ -1,15 +1,15 @@
-import { HttpClient, HttpContext, HttpContextToken } from '@angular/common/http';
+import { HttpClient, HttpContext } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Observable, firstValueFrom, from } from 'rxjs';
 import { ApiError } from '../http/api-error';
 import { ApiClient } from '../http/api-client';
+import { SKIP_AUTH } from '../http/skip-auth';
 import { ResponseModel } from '../http/response-model';
 import { Session, TokenResponse, toSession } from './session';
 import { TokenStore } from './token-store';
 
-/** Set on requests that must not carry the access token and must not trigger a refresh (sign-in, refresh itself). */
-export const SKIP_AUTH = new HttpContextToken<boolean>(() => false);
+export { SKIP_AUTH };
 
 const LOCK_NAME = 'irieltor-admin-refresh';
 

@@ -1,7 +1,8 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpContext, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { SKIP_AUTH } from './skip-auth';
 import { ApiError } from './api-error';
 import { listParams } from './query-params';
 import { ListQuery, Page, ResponseModel } from './response-model';
@@ -36,8 +37,10 @@ export class ApiClient {
     );
   }
 
-  post<T>(path: string, body?: unknown): Observable<T> {
-    return this.unwrap(this.http.post<ResponseModel<T>>(this.url(path), body ?? {}));
+  /** `skipAuth`: no token is sent and a 401 does not trigger a refresh (sign-in). */
+  post<T>(path: string, body?: unknown, options?: { skipAuth?: boolean }): Observable<T> {
+    const context = options?.skipAuth ? new HttpContext().set(SKIP_AUTH, true) : undefined;
+    return this.unwrap(this.http.post<ResponseModel<T>>(this.url(path), body ?? {}, { context }));
   }
 
   put<T>(path: string, body?: unknown): Observable<T> {

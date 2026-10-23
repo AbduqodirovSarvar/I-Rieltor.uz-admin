@@ -27,7 +27,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["AuctionViewModelResponseModel"];
+                        "application/json": components["schemas"]["AuctionViewModelResponseModel"];
+                        "text/json": components["schemas"]["AuctionViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -72,7 +76,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["AuctionViewModelResponseModel"];
+                        "application/json": components["schemas"]["AuctionViewModelResponseModel"];
+                        "text/json": components["schemas"]["AuctionViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -115,7 +123,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["AuctionViewModelResponseModel"];
+                        "application/json": components["schemas"]["AuctionViewModelResponseModel"];
+                        "text/json": components["schemas"]["AuctionViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -139,7 +151,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["BooleanResponseModel"];
+                        "application/json": components["schemas"]["BooleanResponseModel"];
+                        "text/json": components["schemas"]["BooleanResponseModel"];
+                    };
                 };
             };
         };
@@ -178,7 +194,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["AuctionViewModelListResponseModel"];
+                        "application/json": components["schemas"]["AuctionViewModelListResponseModel"];
+                        "text/json": components["schemas"]["AuctionViewModelListResponseModel"];
+                    };
                 };
             };
         };
@@ -219,7 +239,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["AuctionViewModelResponseModel"];
+                        "application/json": components["schemas"]["AuctionViewModelResponseModel"];
+                        "text/json": components["schemas"]["AuctionViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -258,7 +282,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["AuctionViewModelResponseModel"];
+                        "application/json": components["schemas"]["AuctionViewModelResponseModel"];
+                        "text/json": components["schemas"]["AuctionViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -291,7 +319,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PublicAuctionDetailViewModelResponseModel"];
+                        "application/json": components["schemas"]["PublicAuctionDetailViewModelResponseModel"];
+                        "text/json": components["schemas"]["PublicAuctionDetailViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -333,7 +365,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["AuditLogViewModelListResponseModel"];
+                        "application/json": components["schemas"]["AuditLogViewModelListResponseModel"];
+                        "text/json": components["schemas"]["AuditLogViewModelListResponseModel"];
+                    };
                 };
             };
         };
@@ -374,7 +410,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["TokenViewModelResponseModel"];
+                        "application/json": components["schemas"]["TokenViewModelResponseModel"];
+                        "text/json": components["schemas"]["TokenViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -405,7 +445,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["EimzoChallengeResultResponseModel"];
+                        "application/json": components["schemas"]["EimzoChallengeResultResponseModel"];
+                        "text/json": components["schemas"]["EimzoChallengeResultResponseModel"];
+                    };
                 };
             };
         };
@@ -446,7 +490,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["TokenViewModelResponseModel"];
+                        "application/json": components["schemas"]["TokenViewModelResponseModel"];
+                        "text/json": components["schemas"]["TokenViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -485,7 +533,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["BooleanResponseModel"];
+                        "application/json": components["schemas"]["BooleanResponseModel"];
+                        "text/json": components["schemas"]["BooleanResponseModel"];
+                    };
                 };
             };
         };
@@ -524,7 +576,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["BooleanResponseModel"];
+                        "application/json": components["schemas"]["BooleanResponseModel"];
+                        "text/json": components["schemas"]["BooleanResponseModel"];
+                    };
                 };
             };
         };
@@ -563,7 +619,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["BooleanResponseModel"];
+                        "application/json": components["schemas"]["BooleanResponseModel"];
+                        "text/json": components["schemas"]["BooleanResponseModel"];
+                    };
                 };
             };
         };
@@ -596,7 +656,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["EimzoMobileSessionResponseModel"];
+                        "application/json": components["schemas"]["EimzoMobileSessionResponseModel"];
+                        "text/json": components["schemas"]["EimzoMobileSessionResponseModel"];
+                    };
                 };
             };
         };
@@ -629,7 +693,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["EimzoMobileSessionResponseModel"];
+                        "application/json": components["schemas"]["EimzoMobileSessionResponseModel"];
+                        "text/json": components["schemas"]["EimzoMobileSessionResponseModel"];
+                    };
                 };
             };
         };
@@ -662,7 +730,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["EimzoMobileStatusResultResponseModel"];
+                        "application/json": components["schemas"]["EimzoMobileStatusResultResponseModel"];
+                        "text/json": components["schemas"]["EimzoMobileStatusResultResponseModel"];
+                    };
                 };
             };
         };
@@ -703,7 +775,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["TokenViewModelResponseModel"];
+                        "application/json": components["schemas"]["TokenViewModelResponseModel"];
+                        "text/json": components["schemas"]["TokenViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -742,7 +818,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["BooleanResponseModel"];
+                        "application/json": components["schemas"]["BooleanResponseModel"];
+                        "text/json": components["schemas"]["BooleanResponseModel"];
+                    };
                 };
             };
         };
@@ -781,7 +861,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["BooleanResponseModel"];
+                        "application/json": components["schemas"]["BooleanResponseModel"];
+                        "text/json": components["schemas"]["BooleanResponseModel"];
+                    };
                 };
             };
         };
@@ -820,7 +904,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["UserViewModelResponseModel"];
+                        "application/json": components["schemas"]["UserViewModelResponseModel"];
+                        "text/json": components["schemas"]["UserViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -859,7 +947,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["UserViewModelResponseModel"];
+                        "application/json": components["schemas"]["UserViewModelResponseModel"];
+                        "text/json": components["schemas"]["UserViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -898,7 +990,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["TokenViewModelResponseModel"];
+                        "application/json": components["schemas"]["TokenViewModelResponseModel"];
+                        "text/json": components["schemas"]["TokenViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -937,7 +1033,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["BooleanResponseModel"];
+                        "application/json": components["schemas"]["BooleanResponseModel"];
+                        "text/json": components["schemas"]["BooleanResponseModel"];
+                    };
                 };
             };
         };
@@ -968,7 +1068,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["UserViewModelResponseModel"];
+                        "application/json": components["schemas"]["UserViewModelResponseModel"];
+                        "text/json": components["schemas"]["UserViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -1008,7 +1112,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["BooleanResponseModel"];
+                        "application/json": components["schemas"]["BooleanResponseModel"];
+                        "text/json": components["schemas"]["BooleanResponseModel"];
+                    };
                 };
             };
         };
@@ -1047,7 +1155,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["TokenViewModelResponseModel"];
+                        "application/json": components["schemas"]["TokenViewModelResponseModel"];
+                        "text/json": components["schemas"]["TokenViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -1081,7 +1193,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["BooleanResponseModel"];
+                        "application/json": components["schemas"]["BooleanResponseModel"];
+                        "text/json": components["schemas"]["BooleanResponseModel"];
+                    };
                 };
             };
         };
@@ -1120,7 +1236,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["BooleanResponseModel"];
+                        "application/json": components["schemas"]["BooleanResponseModel"];
+                        "text/json": components["schemas"]["BooleanResponseModel"];
+                    };
                 };
             };
         };
@@ -1159,7 +1279,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PlacedBidViewModelResponseModel"];
+                        "application/json": components["schemas"]["PlacedBidViewModelResponseModel"];
+                        "text/json": components["schemas"]["PlacedBidViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -1194,7 +1318,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PublicBidViewModelListResponseModel"];
+                        "application/json": components["schemas"]["PublicBidViewModelListResponseModel"];
+                        "text/json": components["schemas"]["PublicBidViewModelListResponseModel"];
+                    };
                 };
             };
         };
@@ -1229,7 +1357,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["CompanyViewModelResponseModel"];
+                        "application/json": components["schemas"]["CompanyViewModelResponseModel"];
+                        "text/json": components["schemas"]["CompanyViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -1270,7 +1402,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["CompanyViewModelResponseModel"];
+                        "application/json": components["schemas"]["CompanyViewModelResponseModel"];
+                        "text/json": components["schemas"]["CompanyViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -1309,7 +1445,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["CompanyViewModelResponseModel"];
+                        "application/json": components["schemas"]["CompanyViewModelResponseModel"];
+                        "text/json": components["schemas"]["CompanyViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -1333,7 +1473,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["BooleanResponseModel"];
+                        "application/json": components["schemas"]["BooleanResponseModel"];
+                        "text/json": components["schemas"]["BooleanResponseModel"];
+                    };
                 };
             };
         };
@@ -1372,7 +1516,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["CompanyViewModelListResponseModel"];
+                        "application/json": components["schemas"]["CompanyViewModelListResponseModel"];
+                        "text/json": components["schemas"]["CompanyViewModelListResponseModel"];
+                    };
                 };
             };
         };
@@ -1405,7 +1553,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PublicCompanyViewModelResponseModel"];
+                        "application/json": components["schemas"]["PublicCompanyViewModelResponseModel"];
+                        "text/json": components["schemas"]["PublicCompanyViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -1438,7 +1590,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["DashboardSummaryResponseModel"];
+                        "application/json": components["schemas"]["DashboardSummaryResponseModel"];
+                        "text/json": components["schemas"]["DashboardSummaryResponseModel"];
+                    };
                 };
             };
         };
@@ -1486,7 +1642,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PrivateDocumentViewModelResponseModel"];
+                        "application/json": components["schemas"]["PrivateDocumentViewModelResponseModel"];
+                        "text/json": components["schemas"]["PrivateDocumentViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -1510,7 +1670,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["BooleanResponseModel"];
+                        "application/json": components["schemas"]["BooleanResponseModel"];
+                        "text/json": components["schemas"]["BooleanResponseModel"];
+                    };
                 };
             };
         };
@@ -1549,7 +1713,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PrivateDocumentViewModelListResponseModel"];
+                        "application/json": components["schemas"]["PrivateDocumentViewModelListResponseModel"];
+                        "text/json": components["schemas"]["PrivateDocumentViewModelListResponseModel"];
+                    };
                 };
             };
         };
@@ -1591,7 +1759,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PrivateDocumentViewModelListResponseModel"];
+                        "application/json": components["schemas"]["PrivateDocumentViewModelListResponseModel"];
+                        "text/json": components["schemas"]["PrivateDocumentViewModelListResponseModel"];
+                    };
                 };
             };
         };
@@ -1668,7 +1840,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["NotificationViewModelListResponseModel"];
+                        "application/json": components["schemas"]["NotificationViewModelListResponseModel"];
+                        "text/json": components["schemas"]["NotificationViewModelListResponseModel"];
+                    };
                 };
             };
         };
@@ -1703,7 +1879,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["ApplicationTextViewModelResponseModel"];
+                        "application/json": components["schemas"]["ApplicationTextViewModelResponseModel"];
+                        "text/json": components["schemas"]["ApplicationTextViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -1744,7 +1924,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["ParticipantViewModelResponseModel"];
+                        "application/json": components["schemas"]["ParticipantViewModelResponseModel"];
+                        "text/json": components["schemas"]["ParticipantViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -1783,7 +1967,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["ParticipantViewModelResponseModel"];
+                        "application/json": components["schemas"]["ParticipantViewModelResponseModel"];
+                        "text/json": components["schemas"]["ParticipantViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -1822,7 +2010,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["ParticipantViewModelResponseModel"];
+                        "application/json": components["schemas"]["ParticipantViewModelResponseModel"];
+                        "text/json": components["schemas"]["ParticipantViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -1853,7 +2045,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["MyParticipationViewModelListResponseModel"];
+                        "application/json": components["schemas"]["MyParticipationViewModelListResponseModel"];
+                        "text/json": components["schemas"]["MyParticipationViewModelListResponseModel"];
+                    };
                 };
             };
         };
@@ -1895,7 +2091,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["ParticipantAdminViewModelListResponseModel"];
+                        "application/json": components["schemas"]["ParticipantAdminViewModelListResponseModel"];
+                        "text/json": components["schemas"]["ParticipantAdminViewModelListResponseModel"];
+                    };
                 };
             };
         };
@@ -1936,7 +2136,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["ParticipantAdminViewModelResponseModel"];
+                        "application/json": components["schemas"]["ParticipantAdminViewModelResponseModel"];
+                        "text/json": components["schemas"]["ParticipantAdminViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -1975,7 +2179,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["ParticipantAdminViewModelResponseModel"];
+                        "application/json": components["schemas"]["ParticipantAdminViewModelResponseModel"];
+                        "text/json": components["schemas"]["ParticipantAdminViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -2014,7 +2222,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["BooleanResponseModel"];
+                        "application/json": components["schemas"]["BooleanResponseModel"];
+                        "text/json": components["schemas"]["BooleanResponseModel"];
+                    };
                 };
             };
         };
@@ -2053,7 +2265,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["BooleanResponseModel"];
+                        "application/json": components["schemas"]["BooleanResponseModel"];
+                        "text/json": components["schemas"]["BooleanResponseModel"];
+                    };
                 };
             };
         };
@@ -2092,7 +2308,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["BooleanResponseModel"];
+                        "application/json": components["schemas"]["BooleanResponseModel"];
+                        "text/json": components["schemas"]["BooleanResponseModel"];
+                    };
                 };
             };
         };
@@ -2131,7 +2351,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["CheckoutViewModelResponseModel"];
+                        "application/json": components["schemas"]["CheckoutViewModelResponseModel"];
+                        "text/json": components["schemas"]["CheckoutViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -2171,7 +2395,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PaymentViewModelListResponseModel"];
+                        "application/json": components["schemas"]["PaymentViewModelListResponseModel"];
+                        "text/json": components["schemas"]["PaymentViewModelListResponseModel"];
+                    };
                 };
             };
         };
@@ -2213,7 +2441,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PaymentViewModelListResponseModel"];
+                        "application/json": components["schemas"]["PaymentViewModelListResponseModel"];
+                        "text/json": components["schemas"]["PaymentViewModelListResponseModel"];
+                    };
                 };
             };
         };
@@ -2254,7 +2486,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PaymentViewModelResponseModel"];
+                        "application/json": components["schemas"]["PaymentViewModelResponseModel"];
+                        "text/json": components["schemas"]["PaymentViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -2293,7 +2529,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PaymentViewModelResponseModel"];
+                        "application/json": components["schemas"]["PaymentViewModelResponseModel"];
+                        "text/json": components["schemas"]["PaymentViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -2332,7 +2572,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PaymentViewModelResponseModel"];
+                        "application/json": components["schemas"]["PaymentViewModelResponseModel"];
+                        "text/json": components["schemas"]["PaymentViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -2400,7 +2644,7 @@ export interface paths {
             requestBody?: {
                 content: {
                     "multipart/form-data": {
-                        form?: components["schemas"]["StringStringValuesKeyValuePair"][];
+                        form: components["schemas"]["StringStringValuesKeyValuePair"][];
                     };
                 };
             };
@@ -2439,7 +2683,7 @@ export interface paths {
             requestBody?: {
                 content: {
                     "multipart/form-data": {
-                        form?: components["schemas"]["StringStringValuesKeyValuePair"][];
+                        form: components["schemas"]["StringStringValuesKeyValuePair"][];
                     };
                 };
             };
@@ -2482,7 +2726,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PropertyViewModelResponseModel"];
+                        "application/json": components["schemas"]["PropertyViewModelResponseModel"];
+                        "text/json": components["schemas"]["PropertyViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -2535,7 +2783,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PropertyViewModelResponseModel"];
+                        "application/json": components["schemas"]["PropertyViewModelResponseModel"];
+                        "text/json": components["schemas"]["PropertyViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -2586,7 +2838,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PropertyViewModelResponseModel"];
+                        "application/json": components["schemas"]["PropertyViewModelResponseModel"];
+                        "text/json": components["schemas"]["PropertyViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -2610,7 +2866,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["BooleanResponseModel"];
+                        "application/json": components["schemas"]["BooleanResponseModel"];
+                        "text/json": components["schemas"]["BooleanResponseModel"];
+                    };
                 };
             };
         };
@@ -2649,7 +2909,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PropertyViewModelListResponseModel"];
+                        "application/json": components["schemas"]["PropertyViewModelListResponseModel"];
+                        "text/json": components["schemas"]["PropertyViewModelListResponseModel"];
+                    };
                 };
             };
         };
@@ -2694,7 +2958,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PropertyMediaViewModelResponseModel"];
+                        "application/json": components["schemas"]["PropertyMediaViewModelResponseModel"];
+                        "text/json": components["schemas"]["PropertyMediaViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -2726,7 +2994,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PropertyMediaViewModelResponseModel"];
+                        "application/json": components["schemas"]["PropertyMediaViewModelResponseModel"];
+                        "text/json": components["schemas"]["PropertyMediaViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -2750,7 +3022,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["BooleanResponseModel"];
+                        "application/json": components["schemas"]["BooleanResponseModel"];
+                        "text/json": components["schemas"]["BooleanResponseModel"];
+                    };
                 };
             };
         };
@@ -2796,7 +3072,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PublicPropertyListItemViewModelListResponseModel"];
+                        "application/json": components["schemas"]["PublicPropertyListItemViewModelListResponseModel"];
+                        "text/json": components["schemas"]["PublicPropertyListItemViewModelListResponseModel"];
+                    };
                 };
             };
         };
@@ -2831,7 +3111,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PublicPropertyDetailViewModelResponseModel"];
+                        "application/json": components["schemas"]["PublicPropertyDetailViewModelResponseModel"];
+                        "text/json": components["schemas"]["PublicPropertyDetailViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -2866,7 +3150,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PropertyCategoryViewModelResponseModel"];
+                        "application/json": components["schemas"]["PropertyCategoryViewModelResponseModel"];
+                        "text/json": components["schemas"]["PropertyCategoryViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -2897,7 +3185,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PropertyCategoryViewModelResponseModel"];
+                        "application/json": components["schemas"]["PropertyCategoryViewModelResponseModel"];
+                        "text/json": components["schemas"]["PropertyCategoryViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -2926,7 +3218,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PropertyCategoryViewModelResponseModel"];
+                        "application/json": components["schemas"]["PropertyCategoryViewModelResponseModel"];
+                        "text/json": components["schemas"]["PropertyCategoryViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -2950,7 +3246,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["BooleanResponseModel"];
+                        "application/json": components["schemas"]["BooleanResponseModel"];
+                        "text/json": components["schemas"]["BooleanResponseModel"];
+                    };
                 };
             };
         };
@@ -2989,7 +3289,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PropertyCategoryViewModelListResponseModel"];
+                        "application/json": components["schemas"]["PropertyCategoryViewModelListResponseModel"];
+                        "text/json": components["schemas"]["PropertyCategoryViewModelListResponseModel"];
+                    };
                 };
             };
         };
@@ -3022,7 +3326,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PublicPropertyCategoryViewModelListResponseModel"];
+                        "application/json": components["schemas"]["PublicPropertyCategoryViewModelListResponseModel"];
+                        "text/json": components["schemas"]["PublicPropertyCategoryViewModelListResponseModel"];
+                    };
                 };
             };
         };
@@ -3057,7 +3365,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["SlideViewModelResponseModel"];
+                        "application/json": components["schemas"]["SlideViewModelResponseModel"];
+                        "text/json": components["schemas"]["SlideViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -3091,7 +3403,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["SlideViewModelResponseModel"];
+                        "application/json": components["schemas"]["SlideViewModelResponseModel"];
+                        "text/json": components["schemas"]["SlideViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -3123,7 +3439,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["SlideViewModelResponseModel"];
+                        "application/json": components["schemas"]["SlideViewModelResponseModel"];
+                        "text/json": components["schemas"]["SlideViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -3147,7 +3467,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["BooleanResponseModel"];
+                        "application/json": components["schemas"]["BooleanResponseModel"];
+                        "text/json": components["schemas"]["BooleanResponseModel"];
+                    };
                 };
             };
         };
@@ -3186,7 +3510,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["SlideViewModelListResponseModel"];
+                        "application/json": components["schemas"]["SlideViewModelListResponseModel"];
+                        "text/json": components["schemas"]["SlideViewModelListResponseModel"];
+                    };
                 };
             };
         };
@@ -3219,7 +3547,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["PublicSlideViewModelListResponseModel"];
+                        "application/json": components["schemas"]["PublicSlideViewModelListResponseModel"];
+                        "text/json": components["schemas"]["PublicSlideViewModelListResponseModel"];
+                    };
                 };
             };
         };
@@ -3254,7 +3586,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["UploadedFileViewModelResponseModel"];
+                        "application/json": components["schemas"]["UploadedFileViewModelResponseModel"];
+                        "text/json": components["schemas"]["UploadedFileViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -3289,7 +3625,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["UserViewModelResponseModel"];
+                        "application/json": components["schemas"]["UserViewModelResponseModel"];
+                        "text/json": components["schemas"]["UserViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -3329,7 +3669,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["UserViewModelResponseModel"];
+                        "application/json": components["schemas"]["UserViewModelResponseModel"];
+                        "text/json": components["schemas"]["UserViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -3365,7 +3709,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["UserViewModelResponseModel"];
+                        "application/json": components["schemas"]["UserViewModelResponseModel"];
+                        "text/json": components["schemas"]["UserViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -3389,7 +3737,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["BooleanResponseModel"];
+                        "application/json": components["schemas"]["BooleanResponseModel"];
+                        "text/json": components["schemas"]["BooleanResponseModel"];
+                    };
                 };
             };
         };
@@ -3426,7 +3778,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["UserViewModelResponseModel"];
+                        "application/json": components["schemas"]["UserViewModelResponseModel"];
+                        "text/json": components["schemas"]["UserViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -3467,7 +3823,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["UserViewModelListResponseModel"];
+                        "application/json": components["schemas"]["UserViewModelListResponseModel"];
+                        "text/json": components["schemas"]["UserViewModelListResponseModel"];
+                    };
                 };
             };
         };
@@ -3502,7 +3862,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["UserRoleViewModelResponseModel"];
+                        "application/json": components["schemas"]["UserRoleViewModelResponseModel"];
+                        "text/json": components["schemas"]["UserRoleViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -3529,7 +3893,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["UserRoleViewModelResponseModel"];
+                        "application/json": components["schemas"]["UserRoleViewModelResponseModel"];
+                        "text/json": components["schemas"]["UserRoleViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -3554,7 +3922,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["UserRoleViewModelResponseModel"];
+                        "application/json": components["schemas"]["UserRoleViewModelResponseModel"];
+                        "text/json": components["schemas"]["UserRoleViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -3578,7 +3950,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["BooleanResponseModel"];
+                        "application/json": components["schemas"]["BooleanResponseModel"];
+                        "text/json": components["schemas"]["BooleanResponseModel"];
+                    };
                 };
             };
         };
@@ -3617,7 +3993,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["UserRoleViewModelListResponseModel"];
+                        "application/json": components["schemas"]["UserRoleViewModelListResponseModel"];
+                        "text/json": components["schemas"]["UserRoleViewModelListResponseModel"];
+                    };
                 };
             };
         };
@@ -3652,7 +4032,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["UserRolePermissionViewModelResponseModel"];
+                        "application/json": components["schemas"]["UserRolePermissionViewModelResponseModel"];
+                        "text/json": components["schemas"]["UserRolePermissionViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -3679,7 +4063,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["UserRolePermissionViewModelResponseModel"];
+                        "application/json": components["schemas"]["UserRolePermissionViewModelResponseModel"];
+                        "text/json": components["schemas"]["UserRolePermissionViewModelResponseModel"];
+                    };
                 };
             };
         };
@@ -3703,7 +4091,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["BooleanResponseModel"];
+                        "application/json": components["schemas"]["BooleanResponseModel"];
+                        "text/json": components["schemas"]["BooleanResponseModel"];
+                    };
                 };
             };
         };
@@ -3742,7 +4134,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": components["schemas"]["UserRolePermissionViewModelListResponseModel"];
+                        "application/json": components["schemas"]["UserRolePermissionViewModelListResponseModel"];
+                        "text/json": components["schemas"]["UserRolePermissionViewModelListResponseModel"];
+                    };
                 };
             };
         };
@@ -3775,7 +4171,11 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "text/plain": string[];
+                        "application/json": string[];
+                        "text/json": string[];
+                    };
                 };
             };
         };
@@ -3794,6 +4194,26 @@ export interface components {
         AcceptOfferCommand: {
             /** Format: uuid */
             auctionId: string;
+        };
+        ApplicationTextViewModel: {
+            text: string | null;
+            textBase64: string | null;
+            /** Format: date-time */
+            applicationDeadline: string;
+        };
+        ApplicationTextViewModelResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["ApplicationTextViewModel"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
         };
         ApplyCommand: {
             /** Format: uuid */
@@ -3815,6 +4235,184 @@ export interface components {
             /** Format: uuid */
             userRoleId: string;
         };
+        AuctionAwardViewModel: {
+            /** Format: uuid */
+            id: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: uuid */
+            createdBy: string | null;
+            /** Format: date-time */
+            updatedAt: string | null;
+            /** Format: uuid */
+            updatedBy: string | null;
+            /** Format: int32 */
+            rank: number;
+            /** Format: uuid */
+            participantId: string;
+            /** Format: uuid */
+            bidId: string;
+            /** Format: double */
+            price: number;
+            status: components["schemas"]["AwardStatus"];
+            /** Format: date-time */
+            respondBy: string | null;
+            /** Format: date-time */
+            paymentDueAt: string | null;
+            /** Format: date-time */
+            resolvedAt: string | null;
+        };
+        /** @enum {string} */
+        AuctionOutcome: "AWAITING_PAYMENT" | "AWAITING_RUNNER_UP" | "SOLD" | "NOT_SOLD" | "NO_PARTICIPANTS" | "NO_BIDS";
+        AuctionResultViewModel: {
+            /** Format: uuid */
+            id: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: uuid */
+            createdBy: string | null;
+            /** Format: date-time */
+            updatedAt: string | null;
+            /** Format: uuid */
+            updatedBy: string | null;
+            /** Format: uuid */
+            auctionId: string;
+            outcome: components["schemas"]["AuctionOutcome"];
+            /** Format: uuid */
+            winnerParticipantId: string | null;
+            /** Format: uuid */
+            winningBidId: string | null;
+            /** Format: double */
+            finalPrice: number | null;
+            /** Format: date-time */
+            paymentDueAt: string | null;
+            awards: components["schemas"]["AuctionAwardViewModel"][] | null;
+        };
+        /** @enum {string} */
+        AuctionStatus: "DRAFT" | "SCHEDULED" | "ONGOING" | "FINISHED" | "FAILED" | "CANCELLED";
+        AuctionViewModel: {
+            /** Format: uuid */
+            id: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: uuid */
+            createdBy: string | null;
+            /** Format: date-time */
+            updatedAt: string | null;
+            /** Format: uuid */
+            updatedBy: string | null;
+            lotNumber: string | null;
+            title: string | null;
+            description: string | null;
+            /** Format: uuid */
+            propertyId: string;
+            status: components["schemas"]["AuctionStatus"];
+            /** Format: double */
+            startingPrice: number;
+            /** Format: double */
+            minBidStep: number;
+            /** Format: double */
+            depositAmount: number;
+            /** Format: date-time */
+            applicationDeadline: string;
+            /** Format: date-time */
+            startsAt: string;
+            /** Format: date-time */
+            endsAt: string;
+            /** Format: int32 */
+            extensionMinutes: number;
+            /** Format: double */
+            currentPrice: number | null;
+            /** Format: uuid */
+            leadingBidId: string | null;
+            offerToRunnerUp: boolean;
+            cancelReason: string | null;
+            result: components["schemas"]["AuctionResultViewModel"];
+        };
+        AuctionViewModelListResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["AuctionViewModel"][] | null;
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        AuctionViewModelResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["AuctionViewModel"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        AuditLogViewModel: {
+            /** Format: uuid */
+            id: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: uuid */
+            createdBy: string | null;
+            /** Format: date-time */
+            updatedAt: string | null;
+            /** Format: uuid */
+            updatedBy: string | null;
+            /** Format: date-time */
+            occurredAt: string;
+            /** Format: uuid */
+            userId: string | null;
+            action: string | null;
+            method: string | null;
+            path: string | null;
+            /** Format: int32 */
+            statusCode: number;
+            ipAddress: string | null;
+            userAgent: string | null;
+            correlationId: string | null;
+            /** Format: int32 */
+            durationMs: number;
+        };
+        AuditLogViewModelListResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["AuditLogViewModel"][] | null;
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        /** @enum {string} */
+        AwardStatus: "OFFERED" | "ACCEPTED" | "PAID" | "DECLINED" | "DEFAULTED" | "EXPIRED";
+        BooleanResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: boolean;
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
         CancelAuctionCommand: {
             /** Format: uuid */
             id: string;
@@ -3834,8 +4432,89 @@ export interface components {
             purpose?: components["schemas"]["PaymentPurpose"];
             provider?: components["schemas"]["PaymentProvider"];
         };
+        CheckoutViewModel: {
+            /** Format: uuid */
+            paymentId: string;
+            /** Format: double */
+            amount: number;
+            purpose: components["schemas"]["PaymentPurpose"];
+            provider: components["schemas"]["PaymentProvider"];
+            url: string | null;
+            instructions: string | null;
+        };
+        CheckoutViewModelResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["CheckoutViewModel"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
         /** @enum {string} */
         ClientType: "NONE" | "INDIVIDUAL" | "LEGAL";
+        CompanyViewModel: {
+            /** Format: uuid */
+            id: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: uuid */
+            createdBy: string | null;
+            /** Format: date-time */
+            updatedAt: string | null;
+            /** Format: uuid */
+            updatedBy: string | null;
+            name: string | null;
+            description: string | null;
+            mission: string | null;
+            address: string | null;
+            /** Format: uri */
+            location: string | null;
+            phoneNumber: string | null;
+            phoneNumber2: string | null;
+            /** Format: email */
+            email: string | null;
+            /** Format: uuid */
+            logoFileId: string | null;
+            logoFile: components["schemas"]["UploadedFileViewModel"];
+            /** Format: double */
+            latitude: number | null;
+            /** Format: double */
+            longitude: number | null;
+        };
+        CompanyViewModelListResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["CompanyViewModel"][] | null;
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        CompanyViewModelResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["CompanyViewModel"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
         CompleteRefundCommand: {
             /** Format: uuid */
             id: string;
@@ -3848,6 +4527,103 @@ export interface components {
             /** Format: uuid */
             id: string;
             reference?: string | null;
+        };
+        DashboardAuction: {
+            /** Format: uuid */
+            id: string;
+            lotNumber: string | null;
+            title: string | null;
+            /** Format: date-time */
+            startsAt: string;
+            /** Format: date-time */
+            endsAt: string;
+            /** Format: double */
+            currentPrice: number | null;
+            /** Format: int32 */
+            participants: number;
+            /** Format: int32 */
+            bids: number;
+        };
+        DashboardAwaitingPayment: {
+            /** Format: uuid */
+            auctionId: string;
+            lotNumber: string | null;
+            title: string | null;
+            outcome: string | null;
+            /** Format: double */
+            finalPrice: number | null;
+            /** Format: date-time */
+            paymentDueAt: string | null;
+        };
+        DashboardDay: {
+            /** Format: date */
+            date: string;
+            /** Format: int32 */
+            newUsers: number;
+            /** Format: int32 */
+            bids: number;
+            /** Format: double */
+            paidAmount: number;
+        };
+        DashboardPayments: {
+            /** Format: int32 */
+            pending: number;
+            /** Format: double */
+            paidDeposits: number;
+            /** Format: double */
+            paidFinalPayments: number;
+            /** Format: int32 */
+            pendingRefunds: number;
+            /** Format: double */
+            pendingRefundsAmount: number;
+        };
+        DashboardSales: {
+            /** Format: int32 */
+            soldCount: number;
+            /** Format: double */
+            revenue: number;
+        };
+        DashboardSummary: {
+            /** Format: date-time */
+            generatedAt: string;
+            users: components["schemas"]["DashboardUsers"];
+            propertiesByStatus: {
+                [key: string]: number;
+            } | null;
+            auctionsByStatus: {
+                [key: string]: number;
+            } | null;
+            /** Format: int32 */
+            pendingApplications: number;
+            payments: components["schemas"]["DashboardPayments"];
+            sales: components["schemas"]["DashboardSales"];
+            ongoing: components["schemas"]["DashboardAuction"][] | null;
+            upcoming: components["schemas"]["DashboardAuction"][] | null;
+            awaitingPayment: components["schemas"]["DashboardAwaitingPayment"][] | null;
+            last30Days: components["schemas"]["DashboardDay"][] | null;
+        };
+        DashboardSummaryResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["DashboardSummary"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        DashboardUsers: {
+            /** Format: int32 */
+            total: number;
+            /** Format: int32 */
+            newLast7Days: number;
+            byType: {
+                [key: string]: number;
+            } | null;
         };
         DeclineOfferCommand: {
             /** Format: uuid */
@@ -3894,7 +4670,72 @@ export interface components {
             id: string;
         };
         /** @enum {string} */
+        DepositStatus: "NOT_PAID" | "PAID" | "REFUNDED" | "FORFEITED";
+        /** @enum {string} */
         DocumentPurpose: "IDENTITY" | "POWER_OF_ATTORNEY" | "PAYMENT_RECEIPT" | "APPLICATION_ATTACHMENT" | "OTHER";
+        EimzoChallengeResult: {
+            challenge: string | null;
+            /** Format: int32 */
+            ttlSeconds: number;
+        };
+        EimzoChallengeResultResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["EimzoChallengeResult"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        EimzoMobileSession: {
+            siteId: string | null;
+            documentId: string | null;
+            challenge: string | null;
+        };
+        EimzoMobileSessionResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["EimzoMobileSession"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        EimzoMobileStatusResult: {
+            /** Format: int32 */
+            status: number;
+            message: string | null;
+            readonly isReady: boolean;
+            readonly isPending: boolean;
+        };
+        EimzoMobileStatusResultResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["EimzoMobileStatusResult"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        /** @enum {string} */
+        FileMimeType: "Unknown" | "ImagePng" | "ImageJpeg" | "ImageGif" | "ApplicationPdf" | "ApplicationDocx" | "ApplicationXlsx" | "VideoMp4" | "AudioMp3";
+        /** @enum {string} */
+        HttpStatusCode: "Continue" | "SwitchingProtocols" | "Processing" | "EarlyHints" | "OK" | "Created" | "Accepted" | "NonAuthoritativeInformation" | "NoContent" | "ResetContent" | "PartialContent" | "MultiStatus" | "AlreadyReported" | "IMUsed" | "MultipleChoices" | "MovedPermanently" | "Found" | "SeeOther" | "NotModified" | "UseProxy" | "Unused" | "TemporaryRedirect" | "PermanentRedirect" | "BadRequest" | "Unauthorized" | "PaymentRequired" | "Forbidden" | "NotFound" | "MethodNotAllowed" | "NotAcceptable" | "ProxyAuthenticationRequired" | "RequestTimeout" | "Conflict" | "Gone" | "LengthRequired" | "PreconditionFailed" | "RequestEntityTooLarge" | "RequestUriTooLong" | "UnsupportedMediaType" | "RequestedRangeNotSatisfiable" | "ExpectationFailed" | "MisdirectedRequest" | "UnprocessableEntity" | "Locked" | "FailedDependency" | "UpgradeRequired" | "PreconditionRequired" | "TooManyRequests" | "RequestHeaderFieldsTooLarge" | "UnavailableForLegalReasons" | "InternalServerError" | "NotImplemented" | "BadGateway" | "ServiceUnavailable" | "GatewayTimeout" | "HttpVersionNotSupported" | "VariantAlsoNegotiates" | "InsufficientStorage" | "LoopDetected" | "NotExtended" | "NetworkAuthenticationRequired";
         LinkEimzoCommand: {
             signedData: string;
         };
@@ -3904,20 +4745,800 @@ export interface components {
         LogoutCommand: {
             refreshToken: string;
         };
+        MyAwardViewModel: {
+            /** Format: int32 */
+            rank: number;
+            status: components["schemas"]["AwardStatus"];
+            /** Format: double */
+            price: number;
+            /** Format: double */
+            amountDue: number;
+            /** Format: date-time */
+            respondBy: string | null;
+            /** Format: date-time */
+            paymentDueAt: string | null;
+        };
+        MyParticipationViewModel: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            auctionId: string;
+            lotNumber: string | null;
+            auctionTitle: string | null;
+            auctionStatus: components["schemas"]["AuctionStatus"];
+            /** Format: date-time */
+            startsAt: string;
+            /** Format: date-time */
+            endsAt: string;
+            /** Format: double */
+            depositAmount: number;
+            status: components["schemas"]["ParticipantStatus"];
+            /** Format: int32 */
+            participantNumber: number | null;
+            depositStatus: components["schemas"]["DepositStatus"];
+            rejectReason: string | null;
+            /** Format: date-time */
+            createdAt: string;
+            award: components["schemas"]["MyAwardViewModel"];
+        };
+        MyParticipationViewModelListResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["MyParticipationViewModel"][] | null;
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        /** @enum {string} */
+        NotificationChannel: "EMAIL" | "SMS";
+        /** @enum {string} */
+        NotificationStatus: "PENDING" | "SENT" | "FAILED" | "SKIPPED";
+        /** @enum {string} */
+        NotificationType: "APPLICATION_APPROVED" | "APPLICATION_REJECTED" | "DEPOSIT_RECEIVED" | "AUCTION_STARTING_SOON" | "OUTBID" | "AUCTION_WON" | "PAYMENT_DUE_SOON" | "RUNNER_UP_OFFER" | "WINNER_DEFAULTED" | "AUCTION_CANCELLED" | "DEPOSIT_REFUNDED" | "PAYMENT_RECEIVED";
+        NotificationViewModel: {
+            /** Format: uuid */
+            id: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: uuid */
+            createdBy: string | null;
+            /** Format: date-time */
+            updatedAt: string | null;
+            /** Format: uuid */
+            updatedBy: string | null;
+            /** Format: uuid */
+            userId: string;
+            channel: components["schemas"]["NotificationChannel"];
+            type: components["schemas"]["NotificationType"];
+            status: components["schemas"]["NotificationStatus"];
+            destination: string | null;
+            subject: string | null;
+            body: string | null;
+            /** Format: uuid */
+            auctionId: string | null;
+            /** Format: int32 */
+            attempts: number;
+            /** Format: date-time */
+            nextAttemptAt: string;
+            /** Format: date-time */
+            sentAt: string | null;
+            lastError: string | null;
+        };
+        NotificationViewModelListResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["NotificationViewModel"][] | null;
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        ParticipantAdminViewModel: {
+            /** Format: uuid */
+            id: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: uuid */
+            createdBy: string | null;
+            /** Format: date-time */
+            updatedAt: string | null;
+            /** Format: uuid */
+            updatedBy: string | null;
+            /** Format: uuid */
+            auctionId: string;
+            /** Format: uuid */
+            userId: string;
+            userFullName: string | null;
+            userIdentifier: string | null;
+            userPhone: string | null;
+            userEmail: string | null;
+            status: components["schemas"]["ParticipantStatus"];
+            /** Format: int32 */
+            participantNumber: number | null;
+            depositStatus: components["schemas"]["DepositStatus"];
+            signerIdentifier: string | null;
+            /** Format: date-time */
+            signedAt: string | null;
+            /** Format: date-time */
+            reviewedAt: string | null;
+            /** Format: uuid */
+            reviewedBy: string | null;
+            rejectReason: string | null;
+        };
+        ParticipantAdminViewModelListResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["ParticipantAdminViewModel"][] | null;
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        ParticipantAdminViewModelResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["ParticipantAdminViewModel"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        /** @enum {string} */
+        ParticipantStatus: "PENDING" | "APPROVED" | "REJECTED" | "WITHDRAWN";
+        ParticipantViewModel: {
+            /** Format: uuid */
+            id: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: uuid */
+            createdBy: string | null;
+            /** Format: date-time */
+            updatedAt: string | null;
+            /** Format: uuid */
+            updatedBy: string | null;
+            /** Format: uuid */
+            auctionId: string;
+            status: components["schemas"]["ParticipantStatus"];
+            /** Format: int32 */
+            participantNumber: number | null;
+            depositStatus: components["schemas"]["DepositStatus"];
+            rejectReason: string | null;
+        };
+        ParticipantViewModelResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["ParticipantViewModel"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
         /** @enum {string} */
         PaymentProvider: "CLICK" | "PAYME" | "UZUM" | "BANK_TRANSFER" | "CARD_TRANSFER" | "MANUAL";
         /** @enum {string} */
         PaymentPurpose: "DEPOSIT" | "FINAL_PAYMENT" | "REFUND";
+        PaymentReceiptViewModel: {
+            /** Format: uuid */
+            id: string;
+            originalName: string | null;
+            contentType: string | null;
+            /** Format: int64 */
+            size: number;
+            /** Format: uuid */
+            ownerId: string;
+            description: string | null;
+            /** Format: date-time */
+            createdAt: string;
+        };
+        /** @enum {string} */
+        PaymentStatus: "PENDING" | "PAID" | "FAILED" | "CANCELLED" | "REFUNDED";
+        PaymentViewModel: {
+            /** Format: uuid */
+            id: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: uuid */
+            createdBy: string | null;
+            /** Format: date-time */
+            updatedAt: string | null;
+            /** Format: uuid */
+            updatedBy: string | null;
+            /** Format: uuid */
+            userId: string;
+            /** Format: uuid */
+            auctionId: string;
+            /** Format: uuid */
+            participantId: string | null;
+            purpose: components["schemas"]["PaymentPurpose"];
+            /** Format: double */
+            amount: number;
+            status: components["schemas"]["PaymentStatus"];
+            provider: components["schemas"]["PaymentProvider"];
+            providerTransactionId: string | null;
+            /** Format: date-time */
+            paidAt: string | null;
+            /** Format: date-time */
+            cancelledAt: string | null;
+            note: string | null;
+            receipts: components["schemas"]["PaymentReceiptViewModel"][] | null;
+        };
+        PaymentViewModelListResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["PaymentViewModel"][] | null;
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        PaymentViewModelResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["PaymentViewModel"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
         PlaceBidCommand: {
             /** Format: uuid */
             auctionId: string;
             /** Format: double */
             amount?: number;
         };
+        PlacedBidViewModel: {
+            /** Format: uuid */
+            bidId: string;
+            /** Format: uuid */
+            auctionId: string;
+            /** Format: double */
+            amount: number;
+            /** Format: int32 */
+            participantNumber: number;
+            /** Format: date-time */
+            placedAt: string;
+            /** Format: double */
+            currentPrice: number;
+            /** Format: double */
+            minNextBid: number;
+            /** Format: date-time */
+            endsAt: string;
+            extended: boolean;
+        };
+        PlacedBidViewModelResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["PlacedBidViewModel"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        PrivateDocumentViewModel: {
+            /** Format: uuid */
+            id: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: uuid */
+            createdBy: string | null;
+            /** Format: date-time */
+            updatedAt: string | null;
+            /** Format: uuid */
+            updatedBy: string | null;
+            /** Format: uuid */
+            ownerId: string;
+            purpose: components["schemas"]["DocumentPurpose"];
+            /** Format: uuid */
+            auctionId: string | null;
+            /** Format: uuid */
+            paymentId: string | null;
+            originalName: string | null;
+            contentType: string | null;
+            /** Format: int64 */
+            size: number;
+            description: string | null;
+        };
+        PrivateDocumentViewModelListResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["PrivateDocumentViewModel"][] | null;
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        PrivateDocumentViewModelResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["PrivateDocumentViewModel"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        PropertyCategoryViewModel: {
+            /** Format: uuid */
+            id: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: uuid */
+            createdBy: string | null;
+            /** Format: date-time */
+            updatedAt: string | null;
+            /** Format: uuid */
+            updatedBy: string | null;
+            name: string | null;
+            description: string | null;
+            /** Format: uuid */
+            parentCategoryId: string | null;
+            /** Format: int32 */
+            sortOrder: number;
+        };
+        PropertyCategoryViewModelListResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["PropertyCategoryViewModel"][] | null;
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        PropertyCategoryViewModelResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["PropertyCategoryViewModel"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
         /** @enum {string} */
         PropertyMediaKind: "IMAGE" | "DOCUMENT" | "VIDEO";
+        PropertyMediaViewModel: {
+            /** Format: uuid */
+            id: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: uuid */
+            createdBy: string | null;
+            /** Format: date-time */
+            updatedAt: string | null;
+            /** Format: uuid */
+            updatedBy: string | null;
+            /** Format: uuid */
+            propertyId: string;
+            kind: components["schemas"]["PropertyMediaKind"];
+            title: string | null;
+            /** Format: int32 */
+            sortOrder: number;
+            isCover: boolean;
+            /** Format: uuid */
+            uploadedFileId: string;
+            uploadedFile: components["schemas"]["UploadedFileViewModel"];
+        };
+        PropertyMediaViewModelResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["PropertyMediaViewModel"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
         /** @enum {string} */
         PropertyStatus: "DRAFT" | "PUBLISHED" | "IN_AUCTION" | "SOLD" | "ARCHIVED";
+        PropertyViewModel: {
+            /** Format: uuid */
+            id: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: uuid */
+            createdBy: string | null;
+            /** Format: date-time */
+            updatedAt: string | null;
+            /** Format: uuid */
+            updatedBy: string | null;
+            title: string | null;
+            description: string | null;
+            /** Format: uuid */
+            categoryId: string;
+            status: components["schemas"]["PropertyStatus"];
+            region: string | null;
+            district: string | null;
+            address: string | null;
+            /** Format: double */
+            latitude: number | null;
+            /** Format: double */
+            longitude: number | null;
+            cadastralNumber: string | null;
+            /** Format: double */
+            areaSqm: number | null;
+            /** Format: double */
+            landAreaSotix: number | null;
+            /** Format: int32 */
+            rooms: number | null;
+            /** Format: int32 */
+            floor: number | null;
+            /** Format: int32 */
+            totalFloors: number | null;
+            /** Format: int32 */
+            buildYear: number | null;
+            /** Format: double */
+            estimatedValue: number | null;
+            sellerName: string | null;
+            /** Format: int64 */
+            viewCount: number;
+            media: components["schemas"]["PropertyMediaViewModel"][] | null;
+        };
+        PropertyViewModelListResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["PropertyViewModel"][] | null;
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        PropertyViewModelResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["PropertyViewModel"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        PublicAuctionDetailViewModel: {
+            /** Format: uuid */
+            id: string;
+            lotNumber: string | null;
+            status: components["schemas"]["AuctionStatus"];
+            /** Format: double */
+            startingPrice: number;
+            /** Format: double */
+            currentPrice: number | null;
+            /** Format: double */
+            minBidStep: number;
+            /** Format: double */
+            depositAmount: number;
+            /** Format: date-time */
+            applicationDeadline: string;
+            /** Format: date-time */
+            startsAt: string;
+            /** Format: date-time */
+            endsAt: string;
+            title: string | null;
+            description: string | null;
+            /** Format: int32 */
+            extensionMinutes: number;
+            /** Format: double */
+            minNextBid: number;
+            /** Format: uuid */
+            propertyId: string;
+            propertyTitle: string | null;
+            /** Format: int32 */
+            participantCount: number;
+            /** Format: int32 */
+            bidCount: number;
+            outcome: components["schemas"]["AuctionOutcome"];
+            /** Format: double */
+            finalPrice: number | null;
+        };
+        PublicAuctionDetailViewModelResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["PublicAuctionDetailViewModel"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        PublicAuctionSummaryViewModel: {
+            /** Format: uuid */
+            id: string;
+            lotNumber: string | null;
+            status: components["schemas"]["AuctionStatus"];
+            /** Format: double */
+            startingPrice: number;
+            /** Format: double */
+            currentPrice: number | null;
+            /** Format: double */
+            minBidStep: number;
+            /** Format: double */
+            depositAmount: number;
+            /** Format: date-time */
+            applicationDeadline: string;
+            /** Format: date-time */
+            startsAt: string;
+            /** Format: date-time */
+            endsAt: string;
+        };
+        PublicBidViewModel: {
+            /** Format: int32 */
+            participantNumber: number;
+            /** Format: double */
+            amount: number;
+            /** Format: date-time */
+            placedAt: string;
+        };
+        PublicBidViewModelListResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["PublicBidViewModel"][] | null;
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        PublicCompanyViewModel: {
+            name: string | null;
+            description: string | null;
+            mission: string | null;
+            address: string | null;
+            location: string | null;
+            phoneNumber: string | null;
+            phoneNumber2: string | null;
+            email: string | null;
+            /** Format: double */
+            latitude: number | null;
+            /** Format: double */
+            longitude: number | null;
+            logo: components["schemas"]["PublicFileViewModel"];
+        };
+        PublicCompanyViewModelResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["PublicCompanyViewModel"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        PublicFileViewModel: {
+            url: string | null;
+            alt: string | null;
+            type: components["schemas"]["FileMimeType"];
+        };
+        PublicPropertyCategoryViewModel: {
+            /** Format: uuid */
+            id: string;
+            name: string | null;
+            description: string | null;
+            /** Format: uuid */
+            parentCategoryId: string | null;
+            /** Format: int32 */
+            sortOrder: number;
+        };
+        PublicPropertyCategoryViewModelListResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["PublicPropertyCategoryViewModel"][] | null;
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        PublicPropertyDetailViewModel: {
+            /** Format: uuid */
+            id: string;
+            title: string | null;
+            /** Format: uuid */
+            categoryId: string;
+            categoryName: string | null;
+            status: components["schemas"]["PropertyStatus"];
+            region: string | null;
+            district: string | null;
+            /** Format: double */
+            areaSqm: number | null;
+            /** Format: double */
+            landAreaSotix: number | null;
+            /** Format: int32 */
+            rooms: number | null;
+            /** Format: int32 */
+            floor: number | null;
+            /** Format: int32 */
+            totalFloors: number | null;
+            cover: components["schemas"]["PublicFileViewModel"];
+            auction: components["schemas"]["PublicAuctionSummaryViewModel"];
+            /** Format: date-time */
+            createdAt: string;
+            description: string | null;
+            address: string | null;
+            /** Format: double */
+            latitude: number | null;
+            /** Format: double */
+            longitude: number | null;
+            cadastralNumber: string | null;
+            /** Format: int32 */
+            buildYear: number | null;
+            /** Format: double */
+            estimatedValue: number | null;
+            sellerName: string | null;
+            /** Format: int64 */
+            viewCount: number;
+            media: components["schemas"]["PublicPropertyMediaViewModel"][] | null;
+        };
+        PublicPropertyDetailViewModelResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["PublicPropertyDetailViewModel"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        PublicPropertyListItemViewModel: {
+            /** Format: uuid */
+            id: string;
+            title: string | null;
+            /** Format: uuid */
+            categoryId: string;
+            categoryName: string | null;
+            status: components["schemas"]["PropertyStatus"];
+            region: string | null;
+            district: string | null;
+            /** Format: double */
+            areaSqm: number | null;
+            /** Format: double */
+            landAreaSotix: number | null;
+            /** Format: int32 */
+            rooms: number | null;
+            /** Format: int32 */
+            floor: number | null;
+            /** Format: int32 */
+            totalFloors: number | null;
+            cover: components["schemas"]["PublicFileViewModel"];
+            auction: components["schemas"]["PublicAuctionSummaryViewModel"];
+            /** Format: date-time */
+            createdAt: string;
+        };
+        PublicPropertyListItemViewModelListResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["PublicPropertyListItemViewModel"][] | null;
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        PublicPropertyMediaViewModel: {
+            kind: components["schemas"]["PropertyMediaKind"];
+            title: string | null;
+            isCover: boolean;
+            file: components["schemas"]["PublicFileViewModel"];
+        };
+        PublicSlideViewModel: {
+            /** Format: uuid */
+            id: string;
+            title: string | null;
+            subtitle: string | null;
+            content: string | null;
+            /** Format: int32 */
+            order: number;
+            /** Format: int32 */
+            durationMs: number;
+            image: components["schemas"]["PublicFileViewModel"];
+        };
+        PublicSlideViewModelListResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["PublicSlideViewModel"][] | null;
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
         PublishAuctionCommand: {
             /** Format: uuid */
             id: string;
@@ -3982,9 +5603,261 @@ export interface components {
         SignUpViaEimzoMobileCommand: {
             documentId: string;
         };
+        SlideViewModel: {
+            /** Format: uuid */
+            id: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: uuid */
+            createdBy: string | null;
+            /** Format: date-time */
+            updatedAt: string | null;
+            /** Format: uuid */
+            updatedBy: string | null;
+            title: string | null;
+            subtitle: string | null;
+            content: string | null;
+            /** Format: uuid */
+            uploadedFileId: string;
+            uploadedFile: components["schemas"]["UploadedFileViewModel"];
+            /** Format: int32 */
+            order: number;
+            /** Format: int32 */
+            durationMs: number;
+        };
+        SlideViewModelListResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["SlideViewModel"][] | null;
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        SlideViewModelResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["SlideViewModel"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
         StringStringValuesKeyValuePair: {
-            key?: string | null;
-            value?: string[];
+            key: string | null;
+            value: string[];
+        };
+        TokenViewModel: {
+            accessToken: string | null;
+            refreshToken: string | null;
+            /** Format: date-time */
+            accessTokenExpiration: string | null;
+            /** Format: date-time */
+            refreshTokenExpiration: string | null;
+            tokenType: string | null;
+            userId: string | null;
+        };
+        TokenViewModelResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["TokenViewModel"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        UploadedFileViewModel: {
+            /** Format: uuid */
+            id: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: uuid */
+            createdBy: string | null;
+            /** Format: date-time */
+            updatedAt: string | null;
+            /** Format: uuid */
+            updatedBy: string | null;
+            name: string | null;
+            path: string | null;
+            url: string | null;
+            type: components["schemas"]["FileMimeType"];
+            /** Format: int64 */
+            size: number;
+            description: string | null;
+            alt: string | null;
+            entityName: string | null;
+            /** Format: uuid */
+            entityId: string | null;
+        };
+        UploadedFileViewModelResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["UploadedFileViewModel"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        UserRolePermissionViewModel: {
+            /** Format: uuid */
+            id: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: uuid */
+            createdBy: string | null;
+            /** Format: date-time */
+            updatedAt: string | null;
+            /** Format: uuid */
+            updatedBy: string | null;
+            /** Format: uuid */
+            userRoleId: string;
+            permission: string | null;
+        };
+        UserRolePermissionViewModelListResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["UserRolePermissionViewModel"][] | null;
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        UserRolePermissionViewModelResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["UserRolePermissionViewModel"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        UserRoleViewModel: {
+            /** Format: uuid */
+            id: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: uuid */
+            createdBy: string | null;
+            /** Format: date-time */
+            updatedAt: string | null;
+            /** Format: uuid */
+            updatedBy: string | null;
+            name: string | null;
+            description: string | null;
+            permissions: components["schemas"]["UserRolePermissionViewModel"][] | null;
+        };
+        UserRoleViewModelListResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["UserRoleViewModel"][] | null;
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        UserRoleViewModelResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["UserRoleViewModel"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        UserViewModel: {
+            /** Format: uuid */
+            id: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: uuid */
+            createdBy: string | null;
+            /** Format: date-time */
+            updatedAt: string | null;
+            /** Format: uuid */
+            updatedBy: string | null;
+            type: components["schemas"]["ClientType"];
+            fullName: string | null;
+            login: string | null;
+            legalName: string | null;
+            innpinfl: string | null;
+            phone: string | null;
+            secondaryPhone: string | null;
+            address: string | null;
+            /** Format: email */
+            email: string | null;
+            /** Format: date-time */
+            emailConfirmedAt: string | null;
+            /** Format: uuid */
+            userRoleId: string | null;
+            userRole: components["schemas"]["UserRoleViewModel"];
+        };
+        UserViewModelListResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["UserViewModel"][] | null;
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
+        };
+        UserViewModelResponseModel: {
+            success: boolean;
+            statusCode: components["schemas"]["HttpStatusCode"];
+            message: string | null;
+            errors: string[] | null;
+            data: components["schemas"]["UserViewModel"];
+            /** Format: int32 */
+            pageIndex: number | null;
+            /** Format: int32 */
+            pageSize: number | null;
+            /** Format: int32 */
+            totalCount: number | null;
+            readonly isPaginated: boolean;
         };
         WithdrawApplicationCommand: {
             /** Format: uuid */

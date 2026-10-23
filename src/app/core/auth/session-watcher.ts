@@ -2,7 +2,7 @@ import { effect, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenStore } from './token-store';
 
-const PUBLIC_PATHS = ['/login', '/forbidden'];
+const PUBLIC_PATHS = ['/login'];
 
 /**
  * Call once from the root component. When the session disappears while a page is open (the refresh token was refused,

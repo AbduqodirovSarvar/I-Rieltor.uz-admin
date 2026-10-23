@@ -1,0 +1,33 @@
+:host {
+  display: block;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+label {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.star {
+  color: var(--p-red-500);
+}
+
+.error {
+  color: var(--p-red-500);
+}
+
+.hint {
+  color: var(--p-text-muted-color);
+}
+
+.invalid ::ng-deep input,
+.invalid ::ng-deep textarea,
+.invalid ::ng-deep .p-select,
+.invalid ::ng-deep .p-datepicker-input {
+  border-color: var(--p-red-500);
+}

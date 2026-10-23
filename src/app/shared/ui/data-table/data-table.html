@@ -1,0 +1,109 @@
+@if (searchable()) {
+  <div class="toolbar">
+    <p-iconfield class="search">
+      <p-inputicon class="pi pi-search" />
+      <input
+        pInputText
+        type="search"
+        [ngModel]="search()"
+        (ngModelChange)="onSearch($event)"
+        [placeholder]="searchPlaceholder() ?? ('common.search' | t)"
+        [attr.aria-label]="'common.search' | t"
+      />
+    </p-iconfield>
+    <ng-content select="[tableToolbar]" />
+    <span class="spacer"></span>
+    <p-button
+      icon="pi pi-refresh"
+      [text]="true"
+      severity="secondary"
+      [loading]="loading()"
+      (onClick)="refreshTick.set(refreshTick() + 1)"
+      [attr.aria-label]="'common.refresh' | t"
+    />
+  </div>
+}
+
+<p-table
+  [value]="rows()"
+  [lazy]="true"
+  [lazyLoadOnInit]="false"
+  [paginator]="true"
+  [first]="first()"
+  [rows]="pageSize()"
+  [rowsPerPageOptions]="pageSizes"
+  [totalRecords]="total()"
+  [loading]="loading()"
+  [rowTrackBy]="trackRow"
+  [showCurrentPageReport]="true"
+  [currentPageReportTemplate]="
+    'common.page' | t: { first: '{first}', last: '{last}', totalRecords: '{totalRecords}' }
+  "
+  (onLazyLoad)="onPage($event)"
+  [rowHover]="true"
+  styleClass="p-datatable-sm"
+>
+  <ng-template #header>
+    <tr>
+      @for (column of columns(); track column.field) {
+        <th [style.width]="column.width" [style.text-align]="column.align ?? 'left'">
+          @if (sortField(column); as field) {
+            <button type="button" class="sort" (click)="onSort(field)">
+              <span>{{ column.header }}</span>
+              <i [class]="sortIcon(column)"></i>
+            </button>
+          } @else {
+            {{ column.header }}
+          }
+        </th>
+      }
+      @if (actions()) {
+        <th class="actions-col">{{ 'common.actions' | t }}</th>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #body let-row>
+    <tr (click)="rowClick.emit(row)" [class.clickable]="clickable()">
+      @for (column of columns(); track column.field) {
+        <td [style.text-align]="column.align ?? 'left'">
+          @switch (column.type) {
+            @case ('custom') {
+              @if (cellTemplate(column); as tpl) {
+                <ng-container
+                  [ngTemplateOutlet]="tpl"
+                  [ngTemplateOutletContext]="{ $implicit: row }"
+                />
+              }
+            }
+            @case ('enum') {
+              <p-tag [value]="text(row, column)" [severity]="severity(row, column)" />
+            }
+            @default {
+              {{ text(row, column) }}
+            }
+          }
+        </td>
+      }
+      @if (actions(); as rowActions) {
+        <td class="actions-col" (click)="$event.stopPropagation()">
+          <ng-container
+            [ngTemplateOutlet]="rowActions.template"
+            [ngTemplateOutletContext]="{ $implicit: row }"
+          />
+        </td>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td [attr.colspan]="columns().length + (actions() ? 1 : 0)" class="empty">
+        @if (failed()) {
+          <i class="pi pi-exclamation-circle"></i>
+        } @else {
+          <i class="pi pi-inbox"></i>
+        }
+        {{ 'common.empty' | t }}
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

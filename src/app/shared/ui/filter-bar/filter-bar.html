@@ -1,0 +1,63 @@
+<div class="filters">
+  @for (field of fields(); track field.key) {
+    <div class="field">
+      <span>{{ field.label }}</span>
+      @switch (field.type) {
+        @case ('text') {
+          <input
+            pInputText
+            type="text"
+            [ngModel]="value(field.key)"
+            (ngModelChange)="set(field.key, $event)"
+            [attr.aria-label]="field.label"
+          />
+        }
+        @case ('select') {
+          <p-select
+            [options]="field.options"
+            optionLabel="label"
+            optionValue="value"
+            [showClear]="true"
+            [ngModel]="value(field.key)"
+            (ngModelChange)="set(field.key, $event)"
+            [placeholder]="'common.all' | t"
+            [ariaLabel]="field.label"
+          />
+        }
+        @case ('bool') {
+          <p-select
+            [options]="boolOptions"
+            optionLabel="label"
+            optionValue="value"
+            [showClear]="true"
+            [ngModel]="value(field.key)"
+            (ngModelChange)="set(field.key, $event)"
+            [placeholder]="'common.all' | t"
+            [ariaLabel]="field.label"
+          />
+        }
+        @case ('date-range') {
+          <p-datepicker
+            selectionMode="range"
+            dateFormat="dd.mm.yy"
+            [showIcon]="true"
+            [showClear]="true"
+            [readonlyInput]="true"
+            [ngModel]="value(field.key)"
+            (ngModelChange)="set(field.key, $event)"
+            [ariaLabel]="field.label"
+          />
+        }
+      }
+    </div>
+  }
+  @if (hasValues) {
+    <p-button
+      icon="pi pi-filter-slash"
+      [label]="'common.clear' | t"
+      [text]="true"
+      severity="secondary"
+      (onClick)="clear()"
+    />
+  }
+</div>

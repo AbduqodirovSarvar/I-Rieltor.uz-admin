@@ -1,0 +1,52 @@
+<div
+  class="drop"
+  [class.dragging]="dragging()"
+  [class.disabled]="disabled()"
+  (dragover)="onDragOver($event)"
+  (dragleave)="dragging.set(false)"
+  (drop)="onDrop($event)"
+>
+  <input
+    #picker
+    type="file"
+    class="native"
+    [accept]="accept()"
+    [multiple]="multiple()"
+    [disabled]="disabled()"
+    (change)="onPick($event)"
+    tabindex="-1"
+  />
+  <i class="pi pi-cloud-upload"></i>
+  <button type="button" class="choose" [disabled]="disabled()" (click)="open()">
+    {{ 'common.dropHere' | t }}
+  </button>
+  <small>{{ hint() }}</small>
+</div>
+
+@for (error of errors(); track error) {
+  <small class="error" role="alert">{{ error }}</small>
+}
+
+@if (picked().length > 0) {
+  <ul class="list">
+    @for (item of picked(); track item.file; let i = $index) {
+      <li>
+        @if (item.preview) {
+          <img [src]="item.preview" [alt]="item.file.name" />
+        } @else {
+          <i class="pi pi-file"></i>
+        }
+        <span class="name">{{ item.file.name }}</span>
+        <small>{{ item.file.size | fileSize }}</small>
+        <p-button
+          icon="pi pi-times"
+          [text]="true"
+          severity="danger"
+          size="small"
+          (onClick)="remove(i)"
+          [attr.aria-label]="'common.delete' | t"
+        />
+      </li>
+    }
+  </ul>
+}
