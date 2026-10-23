@@ -17,14 +17,14 @@
       [text]="true"
       severity="secondary"
       (onClick)="open(document)"
-      [attr.aria-label]="'documents.open' | t"
+      [ariaLabel]="'documents.open' | t"
     />
     <p-button
       icon="pi pi-download"
       [text]="true"
       severity="secondary"
       (onClick)="download(document)"
-      [attr.aria-label]="'documents.download' | t"
+      [ariaLabel]="'documents.download' | t"
     />
     <p-button
       *appHasPermission="'DELETE_PRIVATEDOCUMENT'"
@@ -32,7 +32,7 @@
       [text]="true"
       severity="danger"
       (onClick)="remove(document)"
-      [attr.aria-label]="'common.delete' | t"
+      [ariaLabel]="'common.delete' | t"
     />
   </ng-template>
 </app-data-table>

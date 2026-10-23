@@ -19,7 +19,7 @@
       severity="secondary"
       [loading]="loading()"
       (onClick)="refreshTick.set(refreshTick() + 1)"
-      [attr.aria-label]="'common.refresh' | t"
+      [ariaLabel]="'common.refresh' | t"
     />
   </div>
 }
@@ -63,7 +63,12 @@
     </tr>
   </ng-template>
   <ng-template #body let-row>
-    <tr (click)="rowClick.emit(row)" [class.clickable]="clickable()">
+    <tr
+      (click)="rowClick.emit(row)"
+      (keydown.enter)="clickable() && rowClick.emit(row)"
+      [attr.tabindex]="clickable() ? 0 : null"
+      [class.clickable]="clickable()"
+    >
       @for (column of columns(); track column.field) {
         <td [style.text-align]="column.align ?? 'left'">
           @switch (column.type) {

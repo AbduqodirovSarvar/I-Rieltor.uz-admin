@@ -30,7 +30,7 @@
             [text]="true"
             severity="secondary"
             (onClick)="open(undefined, node.category.id)"
-            [attr.aria-label]="'categories.newChild' | t"
+            [ariaLabel]="'categories.newChild' | t"
           />
           <p-button
             *appHasPermission="'UPDATE_PROPERTYCATEGORY'"
@@ -38,7 +38,7 @@
             [text]="true"
             severity="secondary"
             (onClick)="open(node.category)"
-            [attr.aria-label]="'common.edit' | t"
+            [ariaLabel]="'common.edit' | t"
           />
           <p-button
             *appHasPermission="'DELETE_PROPERTYCATEGORY'"
@@ -46,7 +46,7 @@
             [text]="true"
             severity="danger"
             (onClick)="remove(node.category)"
-            [attr.aria-label]="'common.delete' | t"
+            [ariaLabel]="'common.delete' | t"
           />
         </div>
       </li>

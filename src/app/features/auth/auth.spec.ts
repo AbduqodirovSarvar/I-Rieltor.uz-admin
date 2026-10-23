@@ -79,6 +79,19 @@ describe('sign-in', () => {
     };
   }
 
+  it('the sign-in page can switch between light and dark', async () => {
+    const page = fill('', '');
+    await page.fixture.whenStable();
+    const html = document.documentElement;
+    const before = html.classList.contains('app-dark');
+    const toggle = page.el.querySelector<HTMLButtonElement>('.theme-toggle button')!;
+    expect(toggle.getAttribute('aria-label')).toBeTruthy();
+    toggle.click();
+    expect(html.classList.contains('app-dark')).toBe(!before);
+    toggle.click();
+    expect(html.classList.contains('app-dark')).toBe(before);
+  });
+
   it('signs a staff member in and goes back to where they were going', async () => {
     await router.navigateByUrl('/login?returnUrl=%2Fauctions');
     const page = fill('admin', 'Secret1!');

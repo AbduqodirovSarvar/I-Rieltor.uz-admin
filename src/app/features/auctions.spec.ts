@@ -228,6 +228,23 @@ describe('AuctionDetail', () => {
     request.flush(ok(auction('CANCELLED', { cancelReason: 'Obyekt egasi rad etdi' })));
   });
 
+  it('shows how many applications the auction has', async () => {
+    const { el } = await open('PUBLISHED', ['READ_AUCTION'], {
+      participantCounts: {
+        total: 7,
+        pending: 3,
+        approved: 3,
+        rejected: 1,
+        withdrawn: 0,
+        depositPaid: 2,
+      },
+    });
+    const counts = el.querySelector('.counts')?.textContent ?? '';
+    expect(counts).toContain('Jami');
+    expect(counts.replace(/\s+/g, ' ')).toMatch(/Jami\s*7/);
+    expect(counts.replace(/\s+/g, ' ')).toMatch(/Zakalat to‘lagan\s*2/);
+  });
+
   it('shows the result and who each offer is for', async () => {
     const result = {
       outcome: 'AWAITING_PAYMENT',

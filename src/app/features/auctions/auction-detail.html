@@ -91,6 +91,33 @@
             }
           </section>
         }
+        @if (a.participantCounts; as counts) {
+          <section class="card counts">
+            <h3>{{ 'auctions.counts.title' | t }}</h3>
+            <div class="metrics">
+              <div>
+                <small>{{ 'auctions.counts.total' | t }}</small
+                ><strong>{{ counts.total }}</strong>
+              </div>
+              <div>
+                <small>{{ 'auctions.counts.pending' | t }}</small
+                ><strong>{{ counts.pending }}</strong>
+              </div>
+              <div>
+                <small>{{ 'auctions.counts.approved' | t }}</small
+                ><strong>{{ counts.approved }}</strong>
+              </div>
+              <div>
+                <small>{{ 'auctions.counts.depositPaid' | t }}</small
+                ><strong>{{ counts.depositPaid }}</strong>
+              </div>
+              <div>
+                <small>{{ 'auctions.counts.rejected' | t }}</small
+                ><strong>{{ counts.rejected + counts.withdrawn }}</strong>
+              </div>
+            </div>
+          </section>
+        }
         <div class="two">
           <section class="card">
             <dl>

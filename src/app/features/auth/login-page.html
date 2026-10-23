@@ -1,4 +1,12 @@
 <main class="login">
+  <p-button
+    class="theme-toggle"
+    [icon]="theme.dark() ? 'pi pi-sun' : 'pi pi-moon'"
+    [text]="true"
+    severity="secondary"
+    (onClick)="theme.toggle()"
+    [ariaLabel]="'common.theme' | t"
+  />
   <form class="card" [formGroup]="form" (ngSubmit)="submit()" novalidate>
     <div class="brand">
       <i class="pi pi-building-columns"></i>

@@ -206,6 +206,27 @@ describe('ParticipantList', () => {
     expect(document.body.textContent).toContain('pasport.pdf');
     expect(document.body.textContent).toContain('12345678901234');
   });
+
+  it('downloads the signature of an application with the token, as a .p7s file', async () => {
+    const { backend, first, fixture, page } = await open();
+    first.flush(list([participant('1')]));
+    await fixture.whenStable();
+    const saved: string[] = [];
+    URL.createObjectURL = () => 'blob:x';
+    URL.revokeObjectURL = () => undefined;
+    vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(function (
+      this: HTMLAnchorElement,
+    ) {
+      saved.push(this.download);
+    });
+    page['downloadSignature'](participant('1'));
+    const request = backend.expectOne((r) => r.url === '/api/Participation/signed-application');
+    expect(request.request.params.get('id')).toBe('1');
+    expect(request.request.headers.get('Authorization')).toMatch(/^Bearer /);
+    request.flush(new Blob(['x'], { type: 'application/pkcs7-signature' }));
+    expect(saved).toHaveLength(1);
+    expect(saved[0]).toMatch(/^ariza-.*\.p7s$/);
+  });
 });
 
 describe('DocumentList', () => {
@@ -250,7 +271,7 @@ describe('DocumentList', () => {
     const download = backend.expectOne((r) => r.url === '/api/Document/download');
     expect(download.request.params.get('id')).toBe('d1');
     expect(download.request.headers.get('Authorization')).toMatch(/^Bearer /);
-    download.flush(new Blob(['%PDF']));
+    download.flush(new Blob(['%PDF'], { type: 'application/pdf' }));
     expect(opened).toHaveBeenCalled();
 
     vi.spyOn(TestBed.inject(Notify), 'confirmDelete').mockResolvedValue(true);

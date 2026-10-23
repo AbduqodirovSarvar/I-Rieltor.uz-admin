@@ -64,3 +64,11 @@ CORS kerak emas (`ng build --configuration docker`, `environment.docker.ts`, `ap
 ## Yangi ekran qo'shish
 1. `features/<nom>/` da xizmat (`ApiClient`), sahifa(lar), `*.spec.ts`. 2. `app.routes.ts` ga lazy marshrut: `canActivate: [permissionGuard]`, `data: { permission, title }`.
 3. `core/layout/nav.ts` ga menyu bandi (`ready: true`). 4. Matnlar `core/i18n/uz.ts` ga. 5. `npm run format; npm run lint; npm test; npm run build`.
+
+## E2E (Playwright)
+Haqiqiy brauzer (Chromium) lokal stackga qarshi: `npx playwright install chromium` (bir marta), stackni `..\I-Rieltor.uz-backend\deploy\local\up.ps1` bilan
+ko'taring, so'ng (PowerShell):
+```
+$env:E2E_LOGIN="<DefaultAdmin__Email>"; $env:E2E_PASSWORD="<DefaultAdmin__Password>"; npm run e2e
+```
+`E2E_BASE_URL` (standart `http://127.0.0.1:8081`). Sinovlar: noto'g'ri parol, kirishdan keyin qaytish, barcha bo'limlar xatosiz (skript/CSP/5xx, nomsiz tugma yo'q), uslub va sessiya, audit, chiqish, hamda admin oqimi: toifa → obyekt → auksion → e'lon (`flow.spec.ts`; lokal bazada `E2E ...` nomli yozuvlar qoladi).

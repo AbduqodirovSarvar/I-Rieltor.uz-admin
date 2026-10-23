@@ -22,7 +22,7 @@
         icon="pi pi-key"
         [text]="true"
         severity="secondary"
-        [attr.aria-label]="'roles.permissions' | t"
+        [ariaLabel]="'roles.permissions' | t"
       />
     </a>
     <p-button
@@ -31,7 +31,7 @@
       [text]="true"
       severity="secondary"
       (onClick)="open(role)"
-      [attr.aria-label]="'common.edit' | t"
+      [ariaLabel]="'common.edit' | t"
     />
     <p-button
       *appHasPermission="'DELETE_USERROLE'"
@@ -39,7 +39,7 @@
       [text]="true"
       severity="danger"
       (onClick)="remove(role)"
-      [attr.aria-label]="'common.delete' | t"
+      [ariaLabel]="'common.delete' | t"
     />
   </ng-template>
 </app-data-table>

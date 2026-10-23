@@ -271,6 +271,14 @@ export const uz = {
     kinds: { IMAGE: 'Rasm', VIDEO: 'Video', DOCUMENT: 'Hujjat' },
   },
   auctions: {
+    counts: {
+      title: 'Arizalar',
+      total: 'Jami',
+      pending: 'Ko‘rib chiqilmagan',
+      approved: 'Tasdiqlangan',
+      depositPaid: 'Zakalat to‘lagan',
+      rejected: 'Rad etilgan / qaytarilgan',
+    },
     title: 'Auksionlar',
     new: 'Yangi auksion',
     edit: 'Auksionni tahrirlash',
@@ -366,6 +374,7 @@ export const uz = {
     status: 'Holat',
     deposit: 'Zakalat',
     signedAt: 'Imzolangan',
+    downloadSignature: 'Imzoni yuklab olish (.p7s)',
     auction: 'Auksion',
     view: 'Ko‘rish',
     selectPending: 'Kutilayotganlarni tanlash',

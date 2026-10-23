@@ -31,7 +31,7 @@
         severity="secondary"
         [disabled]="!canMove(slide, -1)"
         (onClick)="move(slide, -1)"
-        [attr.aria-label]="'slides.moveUp' | t"
+        [ariaLabel]="'slides.moveUp' | t"
       />
       <p-button
         icon="pi pi-arrow-down"
@@ -39,14 +39,14 @@
         severity="secondary"
         [disabled]="!canMove(slide, 1)"
         (onClick)="move(slide, 1)"
-        [attr.aria-label]="'slides.moveDown' | t"
+        [ariaLabel]="'slides.moveDown' | t"
       />
       <p-button
         icon="pi pi-pencil"
         [text]="true"
         severity="secondary"
         (onClick)="open(slide)"
-        [attr.aria-label]="'common.edit' | t"
+        [ariaLabel]="'common.edit' | t"
       />
     </ng-container>
     <p-button
@@ -55,7 +55,7 @@
       [text]="true"
       severity="danger"
       (onClick)="remove(slide)"
-      [attr.aria-label]="'common.delete' | t"
+      [ariaLabel]="'common.delete' | t"
     />
   </ng-template>
 </app-data-table>

@@ -7,6 +7,7 @@ import { MessageModule } from 'primeng/message';
 import { PasswordModule } from 'primeng/password';
 import { AuthService } from '../../core/auth/auth.service';
 import { ApiError } from '../../core/http/api-error';
+import { ThemeService } from '../../core/layout/theme.service';
 import { I18n } from '../../core/i18n/i18n.service';
 import { TPipe } from '../../core/i18n/t.pipe';
 import { FormField } from '../../shared/ui/form-field/form-field';
@@ -37,6 +38,7 @@ export class LoginPage implements OnDestroy {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly i18n = inject(I18n);
+  protected readonly theme = inject(ThemeService);
 
   protected readonly form = new FormGroup({
     login: new FormControl('', {

@@ -22,14 +22,14 @@ import { Participant, ParticipantService } from './participant.service';
           severity="success"
           [loading]="busy()"
           (onClick)="approve()"
-          [attr.aria-label]="'auctions.approve' | t"
+          [ariaLabel]="'auctions.approve' | t"
         />
         <p-button
           icon="pi pi-times"
           [text]="true"
           severity="danger"
           (onClick)="open()"
-          [attr.aria-label]="'auctions.reject' | t"
+          [ariaLabel]="'auctions.reject' | t"
         />
       </ng-container>
     }

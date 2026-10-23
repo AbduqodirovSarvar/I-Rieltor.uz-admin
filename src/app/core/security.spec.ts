@@ -20,6 +20,10 @@ function sources(dir: string): string[] {
 describe('security rules for the source', () => {
   const files = sources(join(process.cwd(), 'src'));
 
+  it('scans the real source tree', () => {
+    expect(files.length).toBeGreaterThan(100);
+  });
+
   it('never renders raw HTML or turns off Angular sanitization', () => {
     const offenders = files.filter((f) =>
       /\[innerHTML\]|\.innerHTML\s*=|bypassSecurityTrust|outerHTML\s*=|document\.write|\beval\(/.test(
@@ -71,5 +75,15 @@ describe('GlobalErrorHandler', () => {
     TestBed.inject(ErrorHandler).handleError(new ApiError(401, 'Unauthorized'));
     expect(toast).not.toHaveBeenCalled();
     expect(TestBed.inject(Notify)).toBeTruthy();
+  });
+});
+
+describe('opening downloaded files', () => {
+  it('previews only plain pictures and PDF; SVG, HTML and unknown types are saved instead', async () => {
+    const { isSafeToPreview } = await import('../features/documents/document.service');
+    for (const ok of ['image/png', 'image/jpeg', 'image/webp', 'image/gif', 'application/pdf'])
+      expect(isSafeToPreview(ok)).toBe(true);
+    for (const bad of ['image/svg+xml', 'text/html', 'application/xhtml+xml', '', null, undefined])
+      expect(isSafeToPreview(bad)).toBe(false);
   });
 });

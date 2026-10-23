@@ -55,7 +55,7 @@
       [text]="true"
       severity="secondary"
       (onClick)="view(participant)"
-      [attr.aria-label]="'participants.view' | t"
+      [ariaLabel]="'participants.view' | t"
     />
     <app-participant-actions [participant]="participant" (changed)="reviewed()" />
   </ng-template>
@@ -87,6 +87,17 @@
       /></app-key-value>
       <app-key-value [label]="'participants.signer' | t" [value]="d.signerIdentifier" />
       <app-key-value [label]="'participants.signedAt' | t" [value]="d.signedAt | dateTime" />
+      @if (d.signedAt) {
+        <p-button
+          class="signature"
+          icon="pi pi-download"
+          [label]="'participants.downloadSignature' | t"
+          severity="secondary"
+          [outlined]="true"
+          size="small"
+          (onClick)="downloadSignature(d)"
+        />
+      }
       <app-key-value [label]="'participants.reviewedAt' | t" [value]="d.reviewedAt | dateTime" />
       @if (d.rejectReason) {
         <app-key-value [label]="'participants.rejectReason' | t" [value]="d.rejectReason" />

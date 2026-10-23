@@ -181,6 +181,10 @@ export class ParticipantList implements OnInit {
     });
   }
 
+  protected downloadSignature(participant: Participant): void {
+    this.participants.downloadSignature(participant);
+  }
+
   protected openDocument(document: PrivateDocument): void {
     this.documents.open(document);
   }

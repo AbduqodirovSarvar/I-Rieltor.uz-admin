@@ -2107,6 +2107,41 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/Participation/signed-application": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query: {
+                    id: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/Participation/approve": {
         parameters: {
             query?: never;
@@ -4334,6 +4369,7 @@ export interface components {
             offerToRunnerUp: boolean;
             cancelReason: string | null;
             result: components["schemas"]["AuctionResultViewModel"];
+            participantCounts: components["schemas"]["ParticipantCountsViewModel"];
         };
         AuctionViewModelListResponseModel: {
             success: boolean;
@@ -4913,6 +4949,20 @@ export interface components {
             /** Format: int32 */
             totalCount: number | null;
             readonly isPaginated: boolean;
+        };
+        ParticipantCountsViewModel: {
+            /** Format: int32 */
+            total: number;
+            /** Format: int32 */
+            pending: number;
+            /** Format: int32 */
+            approved: number;
+            /** Format: int32 */
+            rejected: number;
+            /** Format: int32 */
+            withdrawn: number;
+            /** Format: int32 */
+            depositPaid: number;
         };
         /** @enum {string} */
         ParticipantStatus: "PENDING" | "APPROVED" | "REJECTED" | "WITHDRAWN";

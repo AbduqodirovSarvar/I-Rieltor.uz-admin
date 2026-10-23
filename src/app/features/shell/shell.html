@@ -37,7 +37,7 @@
         [text]="true"
         severity="secondary"
         (onClick)="toggleMenu()"
-        aria-label="Menyu"
+        ariaLabel="Menyu"
       />
       <nav class="crumbs" aria-label="Joylashuv">
         <span>{{ 'nav.dashboard' | t }}</span>
@@ -52,7 +52,7 @@
         [text]="true"
         severity="secondary"
         (onClick)="theme.toggle()"
-        [attr.aria-label]="'common.theme' | t"
+        [ariaLabel]="'common.theme' | t"
       />
       <a class="user" routerLink="/profile" [attr.aria-label]="'profile.title' | t">
         <strong>{{ userName() }}</strong>
@@ -63,7 +63,7 @@
         [text]="true"
         severity="secondary"
         (onClick)="signOut()"
-        [attr.aria-label]="'common.signOut' | t"
+        [ariaLabel]="'common.signOut' | t"
       />
     </header>
     <main class="content">

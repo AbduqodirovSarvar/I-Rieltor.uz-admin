@@ -58,8 +58,7 @@ export class DocumentService {
   /** Fetches the file with the access token (a plain link would not carry it) and shows or saves it. */
   open(document: Pick<PrivateDocument, 'id' | 'originalName' | 'contentType'>): void {
     this.api.blob('api/Document/download', plainParams({ id: document.id })).subscribe((blob) => {
-      const viewable = /^image\/|^application\/pdf$/.test(document.contentType ?? '');
-      if (viewable) previewBlob(blob);
+      if (isSafeToPreview(blob.type)) previewBlob(blob);
       else saveBlob(blob, document.originalName ?? 'document');
     });
   }
@@ -69,4 +68,12 @@ export class DocumentService {
       .blob('api/Document/download', plainParams({ id: document.id }))
       .subscribe((blob) => saveBlob(blob, document.originalName ?? 'document'));
   }
+}
+
+/**
+ * Only plain pictures and PDF open in a tab. A blob opens on the admin's own origin, so an uploaded SVG or HTML would run
+ * its script with the admin's session: everything else is saved, never opened.
+ */
+export function isSafeToPreview(contentType: string | null | undefined): boolean {
+  return /^(image\/(png|jpeg|webp|gif)|application\/pdf)$/i.test(contentType ?? '');
 }
