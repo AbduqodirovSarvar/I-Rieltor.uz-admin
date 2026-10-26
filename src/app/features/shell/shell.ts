@@ -6,6 +6,7 @@ import { filter, map, startWith } from 'rxjs';
 import { AuthService } from '../../core/auth/auth.service';
 import { PermissionService } from '../../core/auth/permission.service';
 import { I18n } from '../../core/i18n/i18n.service';
+import { LanguageSwitch } from '../../core/i18n/language-switch';
 import { TPipe } from '../../core/i18n/t.pipe';
 import { NAV } from '../../core/layout/nav';
 import { routeTitles } from '../../core/layout/page-title';
@@ -14,7 +15,7 @@ import { ThemeService } from '../../core/layout/theme.service';
 /** The frame of every page: side menu (by permission), top bar, breadcrumb, user menu. */
 @Component({
   selector: 'app-shell',
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, ButtonModule, TPipe],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, ButtonModule, LanguageSwitch, TPipe],
   templateUrl: './shell.html',
   styleUrl: './shell.scss',
 })

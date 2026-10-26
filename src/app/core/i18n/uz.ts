@@ -39,6 +39,7 @@ export const uz = {
     page: '{first}–{last} / {totalRecords}',
     soum: 'so‘m',
     theme: 'Mavzu',
+    language: 'Til',
     light: 'Yorug‘',
     dark: 'Qorong‘i',
     signOut: 'Chiqish',
@@ -673,4 +674,6 @@ export const uz = {
   },
 } as const;
 
-export type Dictionary = typeof uz;
+/** The shape of a dictionary with any text as the value, so that another language is checked against Uzbek by its keys. */
+type DeepStrings<T> = { [K in keyof T]: T[K] extends string ? string : DeepStrings<T[K]> };
+export type Dictionary = DeepStrings<typeof uz>;

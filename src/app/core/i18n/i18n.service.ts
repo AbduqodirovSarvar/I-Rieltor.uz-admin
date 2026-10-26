@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { cyrillicDictionary } from './cyrillic';
+import { en } from './en';
+import { ru } from './ru';
 import { Dictionary, uz } from './uz';
 
 type Paths<T, Prefix extends string = ''> = {
@@ -10,10 +13,53 @@ export type TextKey = Paths<Omit<Dictionary, 'enums'>>;
 
 export type EnumName = keyof Dictionary['enums'];
 
-/** Texts of the interface. One language now (uz); the dictionary is the only thing another language has to supply. */
+/** The four languages of the panel: Uzbek (Latin, the default), Russian, English and Uzbek in Cyrillic. */
+export type Lang = 'uz' | 'ru' | 'en' | 'cyrl';
+export const LANGS: readonly Lang[] = ['uz', 'ru', 'en', 'cyrl'];
+export const LANG_NAME: Record<Lang, string> = {
+  uz: 'O‘zbekcha',
+  ru: 'Русский',
+  en: 'English',
+  cyrl: 'Ўзбекча',
+};
+const HTML_LANG: Record<Lang, string> = { uz: 'uz', ru: 'ru', en: 'en', cyrl: 'uz-Cyrl' };
+export const LANG_STORAGE_KEY = 'irieltor.admin.lang';
+
+/** Uzbek in Cyrillic is made from the Latin text (see `cyrillic.ts`), so the two scripts cannot drift apart. */
+const DICTIONARIES: Record<Lang, Dictionary> = { uz, ru, en, cyrl: cyrillicDictionary(uz) };
+
+function stored(): Lang {
+  try {
+    const value = globalThis.localStorage?.getItem(LANG_STORAGE_KEY);
+    return LANGS.includes(value as Lang) ? (value as Lang) : 'uz';
+  } catch {
+    return 'uz';
+  }
+}
+
+/**
+ * Texts of the interface in the language the person chose (kept in this browser). Changing the language reloads the page, so
+ * everything, including the components of the UI library, is built again in it.
+ */
 @Injectable({ providedIn: 'root' })
 export class I18n {
-  private readonly dictionary: Dictionary = uz;
+  readonly lang: Lang = stored();
+  private readonly dictionary: Dictionary = DICTIONARIES[this.lang];
+
+  constructor() {
+    globalThis.document?.documentElement.setAttribute('lang', HTML_LANG[this.lang]);
+  }
+
+  /** Saves the choice and reloads. */
+  setLang(lang: Lang): void {
+    if (lang === this.lang) return;
+    try {
+      globalThis.localStorage?.setItem(LANG_STORAGE_KEY, lang);
+    } catch {
+      // Storage blocked: the choice cannot be kept.
+    }
+    globalThis.location?.reload();
+  }
 
   t(key: TextKey, params?: Record<string, string | number>): string {
     let node: unknown = this.dictionary;

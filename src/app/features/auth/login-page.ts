@@ -1,3 +1,4 @@
+import { LanguageSwitch } from '../../core/i18n/language-switch';
 import { Component, OnDestroy, computed, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -28,6 +29,7 @@ export function safeReturnUrl(value: string | null): string {
     PasswordModule,
     MessageModule,
     FormField,
+    LanguageSwitch,
     TPipe,
   ],
   templateUrl: './login-page.html',

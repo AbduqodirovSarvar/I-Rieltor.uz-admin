@@ -7,7 +7,9 @@ import {
 } from '@angular/core';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { TitleStrategy, provideRouter } from '@angular/router';
-import { providePrimeNG } from 'primeng/config';
+import { PrimeNG, providePrimeNG } from 'primeng/config';
+import { I18n } from './core/i18n/i18n.service';
+import { primeLocale } from './core/i18n/primeng-locale';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { environment } from '../environments/environment';
 import { routes } from './app.routes';
@@ -32,6 +34,8 @@ export const appConfig: ApplicationConfig = {
     }),
     { provide: TitleStrategy, useClass: AppTitleStrategy },
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
+    // The calendar and button texts of the UI library, in the language of the panel.
+    provideAppInitializer(() => inject(PrimeNG).setTranslation(primeLocale(inject(I18n).lang))),
     provideAppInitializer(() => inject(AuthService).restore()),
     MessageService,
     ConfirmationService,
