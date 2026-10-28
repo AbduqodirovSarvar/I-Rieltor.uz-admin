@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "eslint \"src/**/*.{ts,html}\"",
     "format": "prettier --write \"src/**/*.{ts,html,scss,json}\"",
-    "api:types": "openapi-typescript http://127.0.0.1:8080/swagger/v1/swagger.json -o src/app/api/schema.d.ts --properties-required-by-default",
+    "api:types": "openapi-typescript http://127.0.0.1:8081/swagger/v1/swagger.json -o src/app/api/schema.d.ts --properties-required-by-default",
     "e2e": "playwright test"
   },
   "private": true,

@@ -49,7 +49,12 @@ export const AppPreset = definePreset(Aura, {
           hoverColor: '#1e40af',
           activeColor: '#1e3a8a',
         },
-        text: { color: '{surface.900}', mutedColor: '{surface.500}' },
+        text: {
+          color: '{surface.900}',
+          hoverColor: '{surface.950}',
+          mutedColor: '{surface.500}',
+          hoverMutedColor: '{surface.600}',
+        },
       },
       dark: {
         surface: {
@@ -71,6 +76,13 @@ export const AppPreset = definePreset(Aura, {
           contrastColor: '#0b1020',
           hoverColor: '#8aa9ff',
           activeColor: '#a5b8f3',
+        },
+        // Given here too: the light text colours above otherwise leak into dark mode (dark text on dark cards).
+        text: {
+          color: '{surface.0}',
+          hoverColor: '{surface.0}',
+          mutedColor: '{surface.400}',
+          hoverMutedColor: '{surface.300}',
         },
       },
     },

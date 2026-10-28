@@ -67,6 +67,19 @@ import { RouterLink } from '@angular/router';
       background: var(--p-red-100);
       color: var(--p-red-600);
     }
+    /* Dark mode: a faint tint of the same colour instead of the light pastel. */
+    :host-context(.app-dark) i[data-tone='warn'] {
+      background: color-mix(in srgb, var(--p-orange-500) 18%, transparent);
+      color: var(--p-orange-300);
+    }
+    :host-context(.app-dark) i[data-tone='success'] {
+      background: color-mix(in srgb, var(--p-green-500) 18%, transparent);
+      color: var(--p-green-300);
+    }
+    :host-context(.app-dark) i[data-tone='danger'] {
+      background: color-mix(in srgb, var(--p-red-500) 18%, transparent);
+      color: var(--p-red-300);
+    }
     .text {
       display: flex;
       flex-direction: column;

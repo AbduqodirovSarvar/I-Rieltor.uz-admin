@@ -75,7 +75,7 @@ test('the page is styled (the stylesheet is not blocked) and the session survive
   const sidebar = page.locator('nav').first();
   await expect(sidebar).toBeVisible();
   const font = await page.evaluate(() => getComputedStyle(document.body).fontFamily);
-  expect(font).toContain('Inter');
+  expect(font).toContain('Onest');
   await page.reload();
   await expect(page).not.toHaveURL(/login/);
 });

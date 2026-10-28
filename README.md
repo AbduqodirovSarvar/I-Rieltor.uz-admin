@@ -4,7 +4,7 @@ Angular 22 (standalone komponentlar, signal), PrimeNG, SPA (SSR yo'q). Reja va h
 
 ## Ishga tushirish
 
-Backend (lokal Docker) `http://localhost:8080` da ishlab turishi kerak (`../I-Rieltor.uz-backend/deploy/local/README.md`).
+Backend (lokal Docker) `http://localhost:8081` da ishlab turishi kerak (`../I-Rieltor.uz-backend/deploy/local/README.md`).
 
 ```
 npm install            # .npmrc: legacy-peer-deps (openapi-typescript TypeScript 6 ni hali e'lon qilmagan)
@@ -49,7 +49,7 @@ oldin yangilang.
 konteyneriga proksi qilish, keshlash, CSP va boshqa xavfsizlik sarlavhalari). Brauzer admin va API ni **bitta manzildan** ko'radi, shuning uchun
 CORS kerak emas (`ng build --configuration docker`, `environment.docker.ts`, `apiUrl: ''`).
 
-- Backend papkasidagi `docker-compose.yml` da `admin` xizmati bor: `http://localhost:8081` (`.env` da `ADMIN_PORT`).
+- Backend papkasidagi `docker-compose.yml` da `admin` xizmati bor: `http://localhost:8082` (`.env` da `ADMIN_PORT`).
 - Lokal: `..\I-Rieltor.uz-backend\deploy\local\up.ps1` adminni ham hostda quradi (`Dockerfile.local`, korporativ TLS sababli) va ishga tushiradi.
 - Admin alohida domenda (`admin.i-rieltor.uz`) va `environment.ts` dagi `apiUrl` bilan qurilsa, backendning `Cors__AllowedOrigins__*` ida
   admin manzili bo'lishi shart (`.env.example` da bor).
@@ -71,4 +71,4 @@ ko'taring, so'ng (PowerShell):
 ```
 $env:E2E_LOGIN="<DefaultAdmin__Email>"; $env:E2E_PASSWORD="<DefaultAdmin__Password>"; npm run e2e
 ```
-`E2E_BASE_URL` (standart `http://127.0.0.1:8081`). Sinovlar: noto'g'ri parol, kirishdan keyin qaytish, barcha bo'limlar xatosiz (skript/CSP/5xx, nomsiz tugma yo'q), uslub va sessiya, audit, chiqish, hamda admin oqimi: toifa → obyekt → auksion → e'lon (`flow.spec.ts`; lokal bazada `E2E ...` nomli yozuvlar qoladi).
+`E2E_BASE_URL` (standart `http://127.0.0.1:8082`). Sinovlar: noto'g'ri parol, kirishdan keyin qaytish, barcha bo'limlar xatosiz (skript/CSP/5xx, nomsiz tugma yo'q), uslub va sessiya, audit, chiqish, hamda admin oqimi: toifa → obyekt → auksion → e'lon (`flow.spec.ts`; lokal bazada `E2E ...` nomli yozuvlar qoladi).
