@@ -1,7 +1,7 @@
 <div class="shell">
   <aside class="sidebar" [class.open]="menuOpen()" aria-label="Asosiy menyu">
     <a class="brand" routerLink="/" (click)="closeMenu()">
-      <i class="pi pi-building-columns"></i>
+      <span class="mark" aria-hidden="true">iR</span>
       <span>{{ 'app.name' | t }}</span>
     </a>
     <nav>
@@ -56,8 +56,11 @@
         [ariaLabel]="'common.theme' | t"
       />
       <a class="user" routerLink="/profile" [attr.aria-label]="'profile.title' | t">
-        <strong>{{ userName() }}</strong>
-        <small>{{ role() }}</small>
+        <span class="avatar" aria-hidden="true">{{ initials() }}</span>
+        <span class="who">
+          <strong>{{ userName() }}</strong>
+          <small>{{ role() }}</small>
+        </span>
       </a>
       <p-button
         icon="pi pi-sign-out"

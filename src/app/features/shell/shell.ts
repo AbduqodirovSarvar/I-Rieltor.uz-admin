@@ -29,6 +29,14 @@ export class Shell {
   protected readonly menuOpen = signal(false);
   protected readonly userName = this.auth.displayName;
   protected readonly role = this.permissions.role;
+  protected readonly initials = computed(() =>
+    this.userName()
+      .split(/\s+/)
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((word) => word[0].toUpperCase())
+      .join(''),
+  );
 
   /** Only the groups and items the user may see and that already exist. */
   protected readonly groups = computed(() =>
